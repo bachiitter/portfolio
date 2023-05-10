@@ -1,7 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
- 
     "allowSyntheticDefaultImports": true,
     "composite": false,
     "esModuleInterop": true,
@@ -17,7 +16,6 @@
     "skipLibCheck": true,
     "strict": true,
     "useUnknownInCatchVariables": true,
-
 
     "allowJs": true,
     "allowUnreachableCode": false,
