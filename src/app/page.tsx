@@ -1,4 +1,4 @@
-import Image from "next/image";
+/* eslint-disable @next/next/no-img-element */
 
 import { NowPlaying } from "@/components/NowPlaying";
 
@@ -7,7 +7,7 @@ export default function Home() {
     <main className="xs:bg-neutral-100 fixed inset-0 flex h-full w-full items-center justify-center">
       <div className="h-[calc(100% - 48px)] w-[calc(100% - 48px)] xs:p-14 flex max-h-[600px] max-w-[400px] flex-col gap-4 rounded-[48px] bg-white p-10">
         <div className="relative w-fit">
-          <Image
+          <img
             src="/pfp.jpg"
             alt="Image of Bachitter"
             width={64}

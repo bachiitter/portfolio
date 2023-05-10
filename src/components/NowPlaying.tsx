@@ -1,6 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
-
-import Image from "next/image";
 
 import useSWR from "swr";
 
@@ -20,7 +19,7 @@ export function NowPlaying() {
 
   return (
     <>
-      <Image
+      <img
         src={
           currentPlayingQuery.data?.is_playing
             ? coloredSpotifyLogo
