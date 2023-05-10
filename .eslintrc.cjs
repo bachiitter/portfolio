@@ -20,6 +20,7 @@ module.exports = {
     "build/**",
     "node_modules",
     "/**/*.cjs",
+    "/**/*.config.js",
     "/**/*.config.ts",
     "postgenerate.ts",
   ],
