@@ -1,10 +1,11 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
+
+import Image from "next/image";
 
 import useSWR from "swr";
 
-import blackSpotifyLogo from "../assets/Spotify_Icon_RGB_Black.png";
-import coloredSpotifyLogo from "../assets/Spotify_Icon_RGB_Green.png";
+const blackSpotifyLogo = "/Spotify_Icon_RGB_Black.png";
+const coloredSpotifyLogo = "/Spotify_Icon_RGB_Green.png";
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json());
 
@@ -19,8 +20,7 @@ export function NowPlaying() {
 
   return (
     <>
-      <img
-        //@ts-expect-error image is not typed
+      <Image
         src={
           currentPlayingQuery.data?.is_playing
             ? coloredSpotifyLogo

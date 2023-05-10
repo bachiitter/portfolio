@@ -1,17 +1,14 @@
-/* eslint-disable @next/next/no-img-element */
+import Image from "next/image";
 
 import { NowPlaying } from "@/components/NowPlaying";
-
-import pfp from "../assets/pfp.jpg";
 
 export default function Home() {
   return (
     <main className="xs:bg-neutral-100 fixed inset-0 flex h-full w-full items-center justify-center">
       <div className="h-[calc(100% - 48px)] w-[calc(100% - 48px)] xs:p-14 flex max-h-[600px] max-w-[400px] flex-col gap-4 rounded-[48px] bg-white p-10">
         <div className="relative w-fit">
-          <img
-            //@ts-expect-error image is not typed
-            src={pfp}
+          <Image
+            src="/pfp.jpg"
             alt="Image of Bachitter"
             width={64}
             height={64}
