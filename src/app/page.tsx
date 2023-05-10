@@ -1,12 +1,13 @@
-import { NowPlaying } from "@/components/NowPlaying";
-import pfp from "../assets/pfp.jpg";
 import Image from "next/image";
 
-export default function Home() {
+import { NowPlaying } from "@/components/NowPlaying";
 
+import pfp from "../assets/pfp.jpg";
+
+export default function Home() {
   return (
-    <main className="fixed inset-0 flex h-full w-full items-center justify-center xs:bg-neutral-100">
-      <div className="h-[calc(100% - 48px)] w-[calc(100% - 48px)] flex max-h-[600px] max-w-[400px] flex-col gap-4 rounded-[48px] bg-white p-10 xs:p-14">
+    <main className="xs:bg-neutral-100 fixed inset-0 flex h-full w-full items-center justify-center">
+      <div className="h-[calc(100% - 48px)] w-[calc(100% - 48px)] xs:p-14 flex max-h-[600px] max-w-[400px] flex-col gap-4 rounded-[48px] bg-white p-10">
         <div className="relative w-fit">
           <Image
             src={pfp}
@@ -44,21 +45,19 @@ export default function Home() {
             <NowPlaying />
           </li>
         </ul>
-        <div className="w-[calc(100% - 64px)] mt-16 flex h-[48px] flex-col gap-4 xs:flex-row">
+        <div className="w-[calc(100% - 64px)] xs:flex-row mt-16 flex h-[48px] flex-col gap-4">
           <a
             className="block flex-1 rounded-[24px] bg-neutral-100 text-center font-semibold leading-[48px]"
-            href="https://twitter.com/bachiitter"
-          >
+            href="https://twitter.com/bachiitter">
             Twitter
           </a>
           <a
             className="block flex-1 rounded-[24px] bg-neutral-100 text-center font-semibold leading-[48px]"
-            href="mailto:me@bachitter.dev"
-          >
+            href="mailto:me@bachitter.dev">
             Email
           </a>
         </div>
       </div>
     </main>
-  )
+  );
 }

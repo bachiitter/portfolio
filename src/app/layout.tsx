@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: {
     default: "Bachitter",
-    template: "%s - Bachitter"
+    template: "%s - Bachitter",
   },
   description: "FullStack Web Developer based in Vancouver,BC.",
   openGraph: {
@@ -16,7 +16,7 @@ export const metadata = {
     url: "https://bachitter.dev",
     siteName: "Bachitter",
     locale: "en-US",
-    type: "website"
+    type: "website",
   },
   robots: {
     index: true,
@@ -24,20 +24,20 @@ export const metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
   twitter: {
     title: "Bachitter",
     description: "FullStack Web Developer based in Vancouver,BC.",
     card: "summary_large_image",
-    creator: "@bachiitter"
+    creator: "@bachiitter",
   },
   icons: {
     shortcut: "/favicon.io",
-  }
+  },
 };
 
 export default function RootLayout({
@@ -47,7 +47,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} mx-auto antialiased`}>{children}</body>
+      <body className={`${inter.className} mx-auto antialiased`}>
+        {children}
+      </body>
     </html>
   );
 }
