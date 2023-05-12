@@ -6,6 +6,9 @@ export default {
     extend: {
       animation: {
         'spin-slow': 'spin 2s linear infinite',
+      },
+      screens: {
+        xs: '460px'
       }
     }
   },
