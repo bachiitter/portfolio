@@ -4,9 +4,6 @@ const isDev = process.env.NODE_ENV === "development";
 
 const nextConfig = {
   output: isDev ? "standalone" : "export",
-  experimental: {
-    typedRoutes: true,
-  },
   // async rewrites() {
   //   return [{
   //     source: '/api/v1/:path*',

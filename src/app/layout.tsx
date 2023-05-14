@@ -1,3 +1,4 @@
+import Script from "next/script";
 import "./globals.css";
 
 import { Inter } from "next/font/google";
@@ -47,6 +48,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <Script src="https://beamanalytics.b-cdn.net/beam.min.js" data-token="6b689caa-ac50-4f9c-b5a4-4ab04927dfeb" async />
       <body className={`${inter.className} mx-auto antialiased`}>
         {children}
       </body>
