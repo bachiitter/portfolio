@@ -1,6 +1,5 @@
 import Image from "next/image";
 
-import profilePic from "@/assets/dp.png";
 import { cn } from "@/utils/cn";
 
 export const ProfileImage = ({
@@ -29,7 +28,7 @@ export const ProfileImage = ({
           "transition duration-300 group-hover:scale-105": isInteractive,
         })}>
         <Image
-          src={profilePic}
+          src="/f16a1a1fb3d501953a9e578a1db4310e/dp.png"
           alt="Picture of Bachitter"
           quality={95}
           priority={true}
