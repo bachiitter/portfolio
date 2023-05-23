@@ -27,7 +27,7 @@ export default function Home() {
         <ProfileImage size="large" isInteractive />
         <h1 className="w-full max-w-2xl pt-6 text-2xl font-bold">
           <Balancer>
-            a fullstack developer with obsession over little details
+            a full-stack developer with a passion for sweating details
           </Balancer>
         </h1>
         <div className="pt-6 md:pt-16">
@@ -41,7 +41,7 @@ export default function Home() {
             music.
           </p>
           <p className="mt-2 w-full max-w-2xl text-[15px] text-muted-foreground">
-            PS: I&#39;m no way a designer. I just like to experiment with UI.
+            PS: I&#39;m in no way a designer. I just like to experiment with UI.
           </p>
         </div>
         <div className="mb-8 pt-6 md:pt-16">
