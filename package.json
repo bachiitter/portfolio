@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next build && npx serve out",
     "lint:check": "eslint . --cache --cache-strategy content --ignore-path .gitignore",
     "lint:fix": "eslint . --fix --ignore-path .gitignore",
     "format:check": "prettier --check \"**/*.{ts,tsx,cjs,mjs,json,md,mdx}\" --cache",
@@ -43,7 +43,6 @@
     "postcss": "8.4.23",
     "prettier": "2.8.8",
     "prettier-plugin-tailwindcss": "^0.3.0",
-    "sharp": "^0.32.1",
     "tailwindcss": "3.3.2",
     "typescript": "5.0.4"
   }
