@@ -3,6 +3,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import "./globals.css";
 
 import { Inter as FontSans } from "next/font/google";
+import Link from "next/link";
 
 import { cn } from "@/utils/cn";
 
@@ -63,12 +64,12 @@ export default function RootLayout({
           <BackgroundGrid>
             <main className="scrollbar-hide top-0 flex min-h-screen min-w-full flex-col self-start px-6 font-sans antialiased md:sticky md:px-10 lg:overflow-hidden lg:px-20">
               <header className="sticky top-0 z-50 flex w-full max-w-2xl justify-between pb-20 pt-5 md:pb-28 md:pt-12">
-                <a className="flex flex-col items-start">
+                <Link href="/" className="flex flex-col items-start">
                   <p className="text-2xl font-bold">bachitter</p>
                   <p className="text-xs font-semibold text-muted-foreground">
                     30.4864° N, 75.6455° E
                   </p>
-                </a>
+                </Link>
               </header>
               {children}
             </main>
