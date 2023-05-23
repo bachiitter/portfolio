@@ -27,7 +27,7 @@ export default function Home() {
         <ProfileImage size="large" isInteractive />
         <h1 className="w-full max-w-2xl pt-6 text-2xl font-bold">
           <Balancer>
-            a fullstack developer with passion for sweating details
+            a fullstack developer with obsession over little details
           </Balancer>
         </h1>
         <div className="pt-6 md:pt-16">
