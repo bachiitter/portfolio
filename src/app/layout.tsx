@@ -1,20 +1,27 @@
+import { ThemeProvider } from "@/components/ThemeProvider";
+
 import "./globals.css";
 
-import { Inter } from "next/font/google";
+import { Inter as FontSans } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+import { cn } from "@/utils/cn";
+
+import { BackgroundGrid } from "@/components/GridPattern";
+import { NavBar } from "@/components/Navbar";
+
+const fontSans = FontSans({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata = {
   title: {
-    default: "Bachitter",
-    template: "%s - Bachitter",
+    default: "bachitter",
+    template: "%s - bachitter",
   },
   description: "FullStack Web Developer based in Vancouver,BC.",
   openGraph: {
     title: "Bachitter",
     description: "FullStack Web Developer based in Vancouver,BC.",
     url: "https://bachitter.dev",
-    siteName: "Bachitter",
+    siteName: "bachitter",
     locale: "en-US",
     type: "website",
   },
@@ -30,7 +37,7 @@ export const metadata = {
     },
   },
   twitter: {
-    title: "Bachitter",
+    title: "bachitter",
     description: "FullStack Web Developer based in Vancouver,BC.",
     card: "summary_large_image",
     creator: "@bachiitter",
@@ -46,9 +53,30 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} mx-auto antialiased`}>
-        {children}
+    <html lang="en" style={{ colorScheme: "dark" }} suppressHydrationWarning>
+      <body
+        className={cn(
+          "scrollbar-hide bg-background font-sans",
+          fontSans.variable
+        )}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <BackgroundGrid>
+            <main className="scrollbar-hide top-0 flex min-h-screen min-w-full flex-col self-start px-6 font-sans antialiased md:sticky md:px-10 lg:overflow-hidden lg:px-20">
+              <header className="sticky top-0 z-50 flex w-full max-w-2xl justify-between pb-20 pt-5 md:pb-28 md:pt-12">
+                <a className="flex flex-col items-start">
+                  <p className="text-2xl font-bold">bachitter</p>
+                  <p className="text-xs font-semibold text-muted-foreground">
+                    30.4864° N, 75.6455° E
+                  </p>
+                </a>
+              </header>
+              {children}
+            </main>
+            <footer className="fixed inset-x-0 bottom-12">
+              <NavBar />
+            </footer>
+          </BackgroundGrid>
+        </ThemeProvider>
       </body>
     </html>
   );
