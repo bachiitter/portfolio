@@ -49,7 +49,7 @@ export default function Home() {
         </div>
       </section>
       <section className="w-full max-w-sm pt-2">
-        <Card className={cn("rounded-3xl")}>
+        <Card className={cn("rounded-[30px]")}>
           <CardHeader>
             <CardTitle>Tech I Use</CardTitle>
           </CardHeader>
