@@ -62,8 +62,8 @@ export default function RootLayout({
         )}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <BackgroundGrid>
-            <main className="scrollbar-hide top-0 flex min-h-screen min-w-full flex-col self-start px-6 font-sans antialiased md:sticky md:px-10 lg:overflow-hidden lg:px-20">
-              <header className="sticky top-0 z-50 flex w-full max-w-2xl justify-between pb-20 pt-5 md:pb-28 md:pt-12">
+            <main className="scrollbar-hide top-0 flex min-h-screen min-w-full flex-col self-start px-6 pb-6 font-sans antialiased md:sticky md:px-10 lg:overflow-hidden lg:px-20">
+              <header className="sticky top-0 z-50 flex w-full max-w-2xl justify-between pb-20 pt-6 md:pb-28 md:pt-12">
                 <Link href="/" className="flex flex-col items-start">
                   <p className="text-2xl font-bold">bachitter</p>
                   <p className="text-xs font-semibold text-muted-foreground">
