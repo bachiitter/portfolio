@@ -8,12 +8,14 @@ const coloredSpotifyLogo = "/Spotify_Icon_RGB_Green.png";
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json());
 
+const apiURL = process.env.API_SERVER_URL
+
 export function NowPlaying() {
-  const currentPlayingQuery = useSWR(`/api/v1/spotify/tracks/now-playing`, fetcher, {
+  const currentPlayingQuery = useSWR(`${apiURL}/spotify/tracks/now-playing`, fetcher, {
     refreshInterval: 1000 * 10,
     revalidateOnFocus: false,
   });
-  const lastPlayedQuery = useSWR(`/api/v1/spotify/tracks/last-played`, fetcher, {
+  const lastPlayedQuery = useSWR(`${apiURL}/spotify/tracks/last-played`, fetcher, {
     refreshInterval: 1000 * 30,
   });
 
