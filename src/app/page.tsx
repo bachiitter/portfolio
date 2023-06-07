@@ -25,7 +25,7 @@ export default function Home() {
     <>
       <section className="flex flex-col items-start">
         <ProfileImage size="large" isInteractive />
-        <h1 className="w-full max-w-2xl pt-6 text-2xl font-bold">
+        <h1 className="w-full max-w-2xl pt-6 text-2xl font-bold sm:text-3xl">
           <Balancer>
             a full-stack developer with a passion for sweating details
           </Balancer>
