@@ -1,5 +1,4 @@
 import { cn } from "@/utils/cn";
-import { Balancer } from "react-wrap-balancer";
 
 import { AvailabilityBadge } from "@/components/AvailabilityBadge";
 import { ProfileImage } from "@/components/ProfileImage";
@@ -26,9 +25,7 @@ export default function Home() {
       <section className="flex flex-col items-start">
         <ProfileImage size="large" isInteractive />
         <h1 className="w-full max-w-2xl pt-6 text-2xl font-bold sm:text-3xl">
-          <Balancer>
-            a full-stack developer with a passion for sweating details
-          </Balancer>
+          a full-stack developer with a passion for sweating details
         </h1>
         <div className="pt-6 md:pt-16">
           <p className="w-full max-w-2xl text-[15px] text-muted-foreground">
