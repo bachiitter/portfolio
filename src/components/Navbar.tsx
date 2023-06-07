@@ -34,7 +34,7 @@ export function NavBar() {
 
   return (
     <nav className=" mx-auto flex w-auto items-center">
-      <ul className="mx-auto flex w-auto gap-x-2 rounded-[36px] bg-muted px-2.5 py-2.5">
+      <ul className="mx-auto flex w-auto gap-x-2 rounded-[36px] border bg-muted px-2.5 py-2.5 shadow-sm">
         {navItems.map((item) => {
           const isActive = item.href === pathname;
           return (
