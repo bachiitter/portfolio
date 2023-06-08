@@ -1,10 +1,8 @@
-const isDev = process.env.NODE_ENV !== "development";
-
 const isProd = process.env.NODE_ENV === "production";
 
 /** @type {import('next').NextConfig} */
 const config = {
-  output: isDev ? "standalone" : "export",
+  output: "export",
   images: {
     loader: "custom",
     loaderFile: "./src/utils/cfloader.ts",
