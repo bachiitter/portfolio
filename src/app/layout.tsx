@@ -10,10 +10,10 @@ export const metadata = {
     default: "Bachitter",
     template: "%s - Bachitter",
   },
-  description: "FullStack Web Developer based in Vancouver,BC.",
+  description: "Full-stack Web Developer based in Vancouver,BC.",
   openGraph: {
     title: "Bachitter",
-    description: "FullStack Web Developer based in Vancouver,BC.",
+    description: "Full-stack Web Developer based in Vancouver,BC.",
     url: "https://bachitter.dev",
     siteName: "Bachitter",
     locale: "en-US",
@@ -32,7 +32,7 @@ export const metadata = {
   },
   twitter: {
     title: "Bachitter",
-    description: "FullStack Web Developer based in Vancouver,BC.",
+    description: "Full-stack Web Developer based in Vancouver,BC.",
     card: "summary_large_image",
     creator: "@bachiitter",
   },
