@@ -8,7 +8,7 @@ const coloredSpotifyLogo = "/Spotify_Icon_RGB_Green.png";
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json());
 
-const apiURL = process.env.API_SERVER_URL
+const apiURL = process.env.NEXT_PUBLIC_API_SERVER_URL
 
 export function NowPlaying() {
   const currentPlayingQuery = useSWR(`${apiURL}/spotify/tracks/now-playing`, fetcher, {
