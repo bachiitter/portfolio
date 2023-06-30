@@ -35,7 +35,7 @@ export default function Home() {
             <p>
               Building{" "}
               <span className="font-semibold">
-                <a href="https://dayplanr.bachitter.dev">Dayplanr</a>
+                <a href="https://github.com/bachiitter/dayplanr">Dayplanr</a>
               </span>
             </p>
           </li>
