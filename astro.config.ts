@@ -7,5 +7,8 @@ import tailwind from "@astrojs/tailwind";
 // https://astro.build/config
 export default defineConfig({
   site: "https://bachitter.dev",
-  integrations: [react(), tailwind(), sitemap()],
+  integrations: [react(), tailwind({
+    configFile: "./tailwind.config.ts"
+  }), sitemap()],
+ 
 });
