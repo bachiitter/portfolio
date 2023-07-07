@@ -12,7 +12,9 @@ import "@fontsource/jetbrains-mono/600.css";
 import "@fontsource/source-sans-pro/400.css";
 import "@fontsource/source-sans-pro/600.css";
 import "~/styles/globals.css";
-import { BaseLayout } from "./base";
+
+import Clock from "~/components/clock";
+import { NowPlaying } from "~/components/now-playing";
 ---
 
 <html lang="en" class="text-foreground bg-background">
@@ -53,9 +55,17 @@ import { BaseLayout } from "./base";
     <link rel="sitemap" href="/sitemap.xml" />
   </head>
 
-  <BaseLayout>
-    <slot />
-  </BaseLayout>
+  <body class="font-sans antialiased">
+    <main class="container mt-20">
+      <slot />
+    </main>
+    <footer
+      class="container my-20 flex flex-col gap-4 sm:flex-row items-start md:items-center justify-between"
+    >
+      <Clock client:visible />
+      <NowPlaying client:visible />
+    </footer>
+  </body>
 
   <script is:inline>
     const theme = (() => {
@@ -72,6 +82,4 @@ import { BaseLayout } from "./base";
 
     window.localStorage.setItem("theme", theme);
   </script>
-
-
 </html>

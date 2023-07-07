@@ -1,7 +1,7 @@
 /// <reference types="astro/client" />
 
 interface ImportMetaEnv {
-  readonly API_SERVER_URL: string;
+  readonly PUBLIC_API_SERVER_URL: string;
 }
 
 interface ImportMeta {
