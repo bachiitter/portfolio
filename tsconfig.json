@@ -17,9 +17,13 @@
     "skipLibCheck": true,
     "strict": true,
     "useUnknownInCatchVariables": true,
-
+    "baseUrl": ".",
     "paths": {
-      "~/*": ["./src/*"]
-    }
+      "~/*": [
+        "./src/*"
+      ]
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
   }
 }
