@@ -8,7 +8,7 @@ function NowPlaying() {
     `${import.meta.env.PUBLIC_API_SERVER_URL}/spotify/tracks/now-playing`,
     fetcher,
     {
-      refreshInterval: 1000 * 10,
+      refreshInterval: 1000 * 6,
       revalidateOnFocus: false,
     },
   );
