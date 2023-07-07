@@ -1,0 +1,62 @@
+---
+import { ArrowLeftIcon } from "@radix-ui/react-icons";
+import { Content } from "~/components/markdown";
+import { Separator } from "~/components/ui/separator";
+import Base from "~/layouts/base.astro";
+import { fetcher, formatDate } from "~/utils";
+import type { PostResponse } from "~/utils/types";
+
+export async function getStaticPaths() {
+  const { data: postData } = await fetcher<PostResponse>(async () => {
+    const res = await fetch(
+      `${import.meta.env.PUBLIC_API_SERVER_URL}/contentful/posts`,
+      {
+        method: "GET",
+      }
+    );
+
+    return res.json();
+  });
+
+  const posts = postData?.data.postCollection.items;
+
+  return posts?.map(post => ({
+    params: { slug: post.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+
+const { data: postData } = await fetcher<PostResponse>(async () => {
+  const res = await fetch(
+    `${import.meta.env.PUBLIC_API_SERVER_URL}/contentful/posts/${slug}`,
+    {
+      method: "GET",
+    }
+  );
+
+  return res.json();
+});
+
+const post = postData?.data.postCollection.items[0];
+
+---
+
+<Base title={post?.title ?? ""} description={post?.description ?? ""}>
+  <a class="flex items-center gap-1" href="/">
+    <ArrowLeftIcon />
+    <span> Return Home</span>
+  </a>
+  <h1 class="mt-10 scroll-m-20">{post?.title}</h1>
+  <div class="flex justify-between items-center mb-6">
+    <p>
+      <a href="">Bachitter</a>{" "}
+      <span aria-hidden class="select-none"> ·</span>{" "}
+      {formatDate(post?.sys.firstPublishedAt!)}
+    </p>
+  </div>
+  <Separator className="mb-10" />
+  <article>
+    <Content content={post?.content ?? ""} />
+  </article>
+</Base>
