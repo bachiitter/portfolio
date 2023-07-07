@@ -1,73 +1,73 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
+
 @layer base {
   :root {
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
- 
+
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%;
- 
+
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
- 
+
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
- 
+
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
- 
+
     --primary: 240 5.9% 10%;
     --primary-foreground: 0 0% 98%;
- 
+
     --secondary: 240 4.8% 95.9%;
     --secondary-foreground: 240 5.9% 10%;
- 
+
     --accent: 240 4.8% 95.9%;
     --accent-foreground: 240 5.9% 10%;
- 
+
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
- 
+
     --ring: 240 5% 64.9%;
- 
+
     --radius: 0.5rem;
   }
- 
+
   .dark {
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
- 
+
     --muted: 240 3.7% 15.9%;
     --muted-foreground: 240 5% 64.9%;
- 
+
     --popover: 240 10% 3.9%;
     --popover-foreground: 0 0% 98%;
- 
+
     --card: 240 10% 3.9%;
     --card-foreground: 0 0% 98%;
- 
+
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
- 
+
     --primary: 0 0% 98%;
     --primary-foreground: 240 5.9% 10%;
- 
+
     --secondary: 240 3.7% 15.9%;
     --secondary-foreground: 0 0% 98%;
- 
+
     --accent: 240 3.7% 15.9%;
     --accent-foreground: 0 0% 98%;
- 
+
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 85.7% 97.3%;
- 
+
     --ring: 240 3.7% 15.9%;
   }
 }
- 
+
 @layer base {
   * {
     @apply border-border;
@@ -75,4 +75,108 @@
   body {
     @apply bg-background text-foreground;
   }
+  h1 {
+    @apply scroll-m-20 text-2xl font-extrabold tracking-tight font-serif;
+    text-wrap: balance;
+  }
+  h2 {
+    @apply mt-10 scroll-m-20 text-xl font-semibold tracking-tight transition-colors first:mt-0 font-serif;
+    text-wrap: balance;
+  }
+  h3 {
+    @apply scroll-m-20 text-lg font-semibold tracking-tight font-serif;
+    text-wrap: balance;
+  }
+  a {
+    @apply font-semibold text-primary underline underline-offset-4 decoration-muted hover:decoration-primary transition-colors;
+  }
+  p {
+    @apply leading-7 [&:not(:first-child)]:mt-6;
+  }
+  blockquote {
+    @apply mt-6 border-l-2 pl-6 italic;
+  }
+  ul {
+    @apply my-6 ml-6 list-disc [&>li]:mt-2;
+  }
+  code {
+    @apply relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold;
+  }
+  .large {
+    @apply font-semibold leading-none font-sans;
+  }
+  .small {
+    @apply text-sm font-semibold leading-none font-sans;
+  }
+  .muted {
+    @apply text-sm text-muted-foreground font-sans;
+  }
+}
+
+[data-theme="light"] {
+  display: block;
+}
+
+[data-theme="dark"] {
+  display: none;
+}
+
+.dark [data-theme="light"] {
+  display: none;
+}
+
+.dark [data-theme="dark"] {
+  display: block;
+}
+
+[data-rehype-pretty-code-fragment] {
+  @apply relative;
+}
+
+[data-rehype-pretty-code-fragment] code {
+  @apply grid min-w-full break-words rounded-none border-0 bg-transparent p-0;
+  counter-reset: line;
+  box-decoration-break: clone;
+}
+
+[data-rehype-pretty-code-fragment] [data-line] {
+  @apply px-4 min-h-[1rem] py-0.5 w-full inline-block;
+}
+
+[data-rehype-pretty-code-fragment] [data-line-numbers] [data-line] {
+  @apply px-2;
+}
+
+[data-rehype-pretty-code-fragment] [data-line-numbers] > [data-line]::before {
+  @apply text-zinc-50/40 text-xs;
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 1.8rem;
+  margin-right: 1.4rem;
+  text-align: right;
+}
+
+[data-rehype-pretty-code-fragment] .line--highlighted {
+  @apply bg-zinc-700/50;
+}
+
+[data-rehype-pretty-code-fragment] .line-highlighted span {
+  @apply relative;
+}
+
+[data-rehype-pretty-code-fragment] .word--highlighted {
+  @apply rounded-md bg-zinc-700/50 border-zinc-700/70 p-1;
+}
+
+.dark [data-rehype-pretty-code-fragment] .word--highlighted {
+  @apply bg-zinc-900;
+}
+
+[data-rehype-pretty-code-title] {
+  @apply mt-2 pt-6 px-4 text-sm font-semibold;
+}
+
+[data-rehype-pretty-code-title] + pre {
+  @apply mt-2;
 }

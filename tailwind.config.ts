@@ -58,9 +58,9 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ["var(--font-sans)", ...fontFamily.sans],
-        serif: ["var(--font-serif)", ...fontFamily.serif],
-        mono: ["var(--font-mono)", ...fontFamily.mono],
+        sans: ["Source Sans Pro", ...fontFamily.sans],
+        serif: ["Playfair Display Variable", ...fontFamily.serif],
+        mono: ["JetBrains Mono", ...fontFamily.mono],
       },
       keyframes: {
         "accordion-down": {
