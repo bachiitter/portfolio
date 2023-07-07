@@ -1,10 +1,140 @@
 ---
+import { buttonVariants } from "~/components/ui/button";
 import Base from "~/layouts/base.astro";
+import { fetcher, formatDate } from "~/utils";
+import { cn } from "~/utils/cn";
+import type { PostsResponse } from "~/utils/types";
+
+const sideProjects: {
+	name: string;
+	link: string;
+	description: string;
+}[] = [
+	{
+		name: "dayplanr",
+		link: "https://github.com/bachiitter/dayplanr",
+		description:
+			"A simple task management app, built for personal use, shaped my own ideas.",
+	},
+	{
+		name: "quirk",
+		link: "https://github.com/bachiitter/quirk",
+		description:
+			"An opinionated template for building full-stack web apps using React and Cloudflare Pages/Functions.",
+	},
+	{
+		name: "api",
+		link: "https://github.com/bachiitter/api",
+		description:
+			"A proxy backend written in Golang for the APIs I use in projects.",
+	},
+	{
+		name: "bachitter.dev",
+		link: "https://github.com/bachiitter/portfolio/tree/minimal",
+		description:
+			"An understated personal website built using Next.js and TailwindCSS.",
+	},
+];
+
+const { data: postData, error } = await fetcher<PostsResponse>(async () => {
+	const res = await fetch(
+		`${import.meta.env.PUBLIC_API_SERVER_URL}/contentful/posts`,
+		{
+			method: "GET",
+		}
+	);
+
+	return res.json();
+});
+
+const posts = postData?.data.postCollection.items;
 ---
 
 <Base
 	title="bachitter"
 	description="Full-stack developer living in Canada. I create fun and silly things on the web."
 >
-	<p>Hi Astro</p>
+	<section class="flex flex-col items-start">
+		<h1>bachitter</h1>
+		<p>
+			Hey, my name is Bachitter, and I&#39;m a full-stack developer living in <span
+				class="font-serif font-semibold italic">Canada</span
+			>. I create fun and silly things on the web. I mainly work with React and
+			TypeScript. Furthermore, I enjoy learning new things and listening to
+			music.
+		</p>
+		<p>
+			Currently, I&#39;m building a{" "}
+			<a href="https://github.com/bachiitter/dayplanr" target="_blank">
+				to-do app
+			</a>
+			, learning Golang, and figuring out life stuff.
+		</p>
+	</section>
+	<section class="flex flex-col items-start">
+		<h2 class="first:mt-10">Projects</h2>
+		<div class="mt-6 grid grid-cols-1 gap-4 auto-cols-max xs:grid-cols-2">
+			{
+				sideProjects.map(project => {
+					return (
+						<div class="flex flex-col">
+							<a href={project.link} class="cursor-pointer large">
+								{project.name}
+							</a>
+							<p>{project.description}</p>
+						</div>
+					);
+				})
+			}
+		</div>
+	</section>
+	<section class="flex flex-col items-start">
+		<h2 class="first:mt-10">Posts</h2>
+		<div class="mt-6 flex flex-col w-full">
+			{
+				posts?.length === 0 ? (
+					<p>No posts found!</p>
+				) : error ? (
+					<p>Something went wrong...</p>
+				) : (
+					posts?.map(post => {
+						return (
+							<a
+								href={`/blog/${post.slug}`}
+								class={cn(
+									buttonVariants({
+										variant: "ghost",
+									}),
+									"no-underline font-normal w-full flex justify-between px-2 [&:not(:first-child)]:mt-1 transition-colors"
+								)}
+							>
+								<span>{post.title}</span>
+								<span>{formatDate(post.sys.firstPublishedAt)}</span>
+							</a>
+						);
+					})
+				)
+			}
+		</div>
+	</section>
+	<section class="flex flex-col items-start">
+		<h2 class="first:mt-10">Connect</h2>
+		<div class="mt-6">
+			<p>Few ways to get in touch with me.</p>
+			<ul>
+				<li>
+					Twitter:{" "}
+					<a target="_blank" href="https://twitter.com/bachiitter">
+						@bachiitter
+					</a>
+				</li>
+				<li>
+					Email:{" "}
+					<a target="_blank" href="mailto:me@bachitter.dev">
+						me@bachitter.dev
+					</a>
+				</li>
+			</ul>
+		</div>
+	</section>
 </Base>
