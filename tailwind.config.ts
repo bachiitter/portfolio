@@ -9,7 +9,7 @@ export default {
       center: true,
       padding: "1.5rem",
       screens: {
-        "2xl": "65ch",
+        "2xl": "72ch",
       },
     },
 
