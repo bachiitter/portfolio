@@ -11,6 +11,9 @@ dependencies:
   '@astrojs/tailwind':
     specifier: ^4.0.0
     version: 4.0.0(astro@2.8.0)(tailwindcss@3.3.2)
+  '@astrojs/ts-plugin':
+    specifier: ^1.0.10
+    version: 1.0.10
   '@fontsource-variable/playfair-display':
     specifier: ^5.0.5
     version: 5.0.5
@@ -218,6 +221,13 @@ packages:
       which-pm-runs: 1.1.0
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /@astrojs/ts-plugin@1.0.10:
+    resolution: {integrity: sha512-HLEIkVRYfL1FbHvdNXbPQLloUBHZpiYCSuwEQNyLM14TXX21JtqIVF9snHcs2qPge/XHgFnGh2V/1qvLPdRi7g==}
+    dependencies:
+      '@astrojs/compiler': 1.5.4
+      '@jridgewell/trace-mapping': 0.3.18
     dev: false
 
   /@astrojs/webapi@2.2.0:
