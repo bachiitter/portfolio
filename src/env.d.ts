@@ -2,7 +2,6 @@
 
 interface ImportMetaEnv {
   readonly API_SERVER_URL: string;
-
 }
 
 interface ImportMeta {
