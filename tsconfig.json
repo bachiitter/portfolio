@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "astro/tsconfigs/strictest",
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "composite": false,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "inlineSources": false,
+    "isolatedModules": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "preserveWatchOutput": true,
+    "pretty": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "useUnknownInCatchVariables": true,
+
+    "paths": {
+      "~/*": ["./src/*"]
+    }
+  }
+}
