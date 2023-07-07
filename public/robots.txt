@@ -1,0 +1,4 @@
+User-Agent: *
+
+Host: https://bachitter.dev
+Sitemap: https://bachitter.dev/sitemap.xml
