@@ -84,7 +84,7 @@
     text-wrap: balance;
   }
   h3 {
-    @apply scroll-m-20 text-lg font-semibold tracking-tight font-serif;
+    @apply mt-8 scroll-m-20 text-lg font-semibold tracking-tight font-serif;
     text-wrap: balance;
   }
   a {
@@ -98,6 +98,9 @@
   }
   ul {
     @apply my-6 ml-6 list-disc [&>li]:mt-2;
+  }
+  ol {
+    @apply my-6 ml-6 list-decimal [&>li]:mt-2;
   }
   code {
     @apply relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold;
