@@ -1,5 +1,3 @@
-
-
 import useSWR from "swr";
 import type { NowPlayingResponse } from "~/utils/types";
 
@@ -12,9 +10,8 @@ function NowPlaying() {
     {
       refreshInterval: 1000 * 10,
       revalidateOnFocus: false,
-    }
+    },
   );
-
 
   if (currentPlayingQuery.isLoading ?? !currentPlayingQuery.data) {
     return (
