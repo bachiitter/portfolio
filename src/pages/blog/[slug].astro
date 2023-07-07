@@ -52,7 +52,7 @@ const post = postData?.data.postCollection.items[0];
     <p>
       <a href="">Bachitter</a>{" "}
       <span aria-hidden class="select-none"> ·</span>{" "}
-      {formatDate(post?.sys.firstPublishedAt!)}
+      {formatDate(post?.sys.firstPublishedAt as string)}
     </p>
   </div>
   <Separator className="mb-10" />
