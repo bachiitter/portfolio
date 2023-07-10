@@ -5,11 +5,13 @@ import { fetcher, formatDate } from "~/utils";
 import { cn } from "~/utils/cn";
 import type { PostsResponse } from "~/utils/types";
 
-const sideProjects: {
-	name: string;
-	link: string;
+interface SideProject {
+	name: string
+	link: string
 	description: string;
-}[] = [
+}
+
+const sideProjects: SideProject[] = [
 	{
 		name: "dayplanr",
 		link: "https://github.com/bachiitter/dayplanr",
