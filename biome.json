@@ -1,0 +1,27 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "organizeImports": {
+    "enabled": true,
+    "ignore": ["node_modules", ".astro", "dist", ".wrangler", "routeTree.gen.ts"]
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "security": {
+        "all": true
+      },
+      "performance": {
+        "all": true
+      }
+    },
+    "ignore": ["node_modules", ".astro", "dist", ".wrangler", "routeTree.gen.ts"]
+  },
+  "formatter": {
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "enabled": true,
+    "lineWidth": 100,
+    "ignore": ["node_modules", ".astro", "dist", ".wrangler", "routeTree.gen.ts"]
+  }
+}
