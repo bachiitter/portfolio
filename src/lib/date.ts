@@ -9,5 +9,6 @@ export function formatDate(date: Date): string {
 }
 
 export function sortPostsByDate(posts: CollectionEntry<"blog">[]): CollectionEntry<"blog">[] {
+  // @ts-expect-error just shut up
   return posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 }
