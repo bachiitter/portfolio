@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "~/styles/globals.css";
+import "~/styles/analog/theme.css";
 import "reshaped/themes/reshaped/theme.css";
-import { App } from "~/components/App";
+import { ThemeProvider } from "next-themes";
+import { Reshaped } from "reshaped";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,9 +19,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" data-rs-theme="analog" suppressHydrationWarning>
       <body className={inter.className}>
-        <App>{children}</App>
+        <ThemeProvider defaultTheme="system" attribute="data-rs-color-mode">
+          <Reshaped defaultTheme="analog" theme="analog">
+            {children}
+          </Reshaped>
+        </ThemeProvider>
       </body>
     </html>
   );
