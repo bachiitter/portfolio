@@ -1,4 +1,4 @@
-import { Link } from "reshaped";
+import Link from "next/link";
 
 const linkItems: Array<{
   name: string;
@@ -18,8 +18,8 @@ export function Navbar() {
   return (
     <nav className="bg-background w-full py-2 flex gap-2">
       {linkItems.map((link) => (
-        <Link variant="plain" href={link.href} key={link.href}>
-          {link.name}{" "}
+        <Link href={link.href} key={link.href}>
+          {link.name}
         </Link>
       ))}
     </nav>
