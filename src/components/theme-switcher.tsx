@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { MoonIcon, SunIcon, DesktopIcon } from "@radix-ui/react-icons";
+import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import { useTheme } from "next-themes";
 import {
   DropdownMenu,
@@ -12,19 +12,14 @@ import {
 import { Button } from "./ui/button";
 
 export function ThemeSwitcher() {
-  const { setTheme, theme } = useTheme();
+  const { setTheme } = useTheme();
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="link" size="icon" className="p-0">
-          {theme === "system" ? (
-            <DesktopIcon className="w-[14px] h-[14px]" />
-          ) : theme === "dark" ? (
-            <MoonIcon className="w-[14px] h-[14px]" />
-          ) : (
-            <SunIcon className="w-[14px] h-[14px]" />
-          )}
+          <SunIcon className="h-[14px] w-[14px] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+          <MoonIcon className="absolute h-[14px] w-[14px] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
