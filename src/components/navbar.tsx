@@ -22,8 +22,6 @@ const linkItems: Array<{
 export function Navbar() {
   const pathname = usePathname();
 
-  console.log(pathname);
-
   return (
     <nav className="bg-background w-full py-2 flex gap-2 justify-between items-center">
       <div className="flex gap-2">
