@@ -1,12 +1,17 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "~/styles/globals.css";
 import "~/styles/analog/theme.css";
 import "reshaped/themes/reshaped/theme.css";
 import { ThemeProvider } from "next-themes";
 import { Reshaped } from "reshaped";
+import { Navbar } from "~/components/navbar";
 
-const inter = Inter({ subsets: ["latin"] });
+const hubot = localFont({
+  src: "../fonts/Hubot-Sans.woff2",
+  variable: "--font-sans",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,11 +24,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-rs-theme="analog" suppressHydrationWarning>
-      <body className={inter.className}>
+    <html lang="en" className={`${hubot.variable}`} data-rs-theme="analog" suppressHydrationWarning>
+      <body className={"antialiased bg-background font-sans"}>
         <ThemeProvider defaultTheme="system" attribute="data-rs-color-mode">
           <Reshaped defaultTheme="analog" theme="analog">
-            {children}
+            <div className="mx-auto max-w-2xl h-dvh py-4 px-6">
+              <div className="mt-20" />
+              {children}
+              <footer className="fixed max-w-2xl w-full mx-auto bottom-0 bg-gradient-to-t from-background pt-8">
+                <Navbar />
+              </footer>
+            </div>
           </Reshaped>
         </ThemeProvider>
       </body>
