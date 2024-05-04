@@ -1,5 +1,5 @@
-import type { Config } from "tailwindcss";
 import { getTheme } from "reshaped/config/tailwind";
+import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: [
