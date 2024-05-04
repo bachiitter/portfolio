@@ -18,7 +18,7 @@
       --primary-foreground: 0 0% 98.82%;
       --secondary: 0 0% 55.29%;
       --secondary-foreground: 0 0% 98.82%;
-      --accent: 0 0% 97.65%;
+      --accent: 0 0% 90.98%;
       --accent-foreground: 0 0% 39.22%;
       --destructive: 358.09 75.12% 59.02%;
       --destructive-foreground: 0 0% 98.82%;
@@ -45,7 +45,7 @@
       --primary-foreground: 0 0% 93.33%;
       --secondary: 0 0% 43.14%;
       --secondary-foreground: 0 0% 93.33%;
-      --accent: 0 0% 9.8%;
+      --accent: 0 0% 16.47%;
       --accent-foreground: 0 0% 70.59%;
       --destructive: 358.09 75.12% 59.02%;
       --destructive-foreground: 0 0% 93.33%;
@@ -56,6 +56,7 @@
       --ring: 10 78% 54%;
     }
 }
+  
   
 @layer base {
     * {
