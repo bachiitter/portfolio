@@ -21,7 +21,7 @@ export function Navbar() {
     <nav className="bg-background w-full py-2 flex gap-2 justify-between items-center">
       <div className="flex gap-2">
         {linkItems.map((link) => (
-          <Button variant="link" asChild key={link.href} className="p-0">
+          <Button variant="link" asChild key={link.href} className="p-0 h-auto">
             <Link href={link.href}>{link.name}</Link>
           </Button>
         ))}
