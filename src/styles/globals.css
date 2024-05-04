@@ -55,5 +55,13 @@
       --success-foreground: 0 0% 93.33%;
       --ring: 10 78% 54%;
     }
-  }
+}
   
+@layer base {
+    * {
+      @apply border-border;
+    }
+    body {
+      @apply bg-background text-foreground;
+    }
+  }
