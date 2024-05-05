@@ -4,10 +4,11 @@ import { Button } from "./ui/button";
 import { ThemeSwitcher } from "./theme-switcher";
 import { cn } from "~/lib/utils";
 import { usePathname } from "next/navigation";
+import type { Route } from "next";
 
 const linkItems: Array<{
   name: string;
-  href: string;
+  href: Route;
 }> = [
   {
     name: "about",
