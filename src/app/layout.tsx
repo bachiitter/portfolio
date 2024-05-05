@@ -29,10 +29,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="mx-auto max-w-2xl h-dvh py-4 px-6">
+          <div className="mx-auto max-w-xl h-dvh py-4 px-6">
             <div className="mt-20" />
             {children}
-            <footer className="fixed max-w-2xl w-full mx-auto bottom-0 bg-gradient-to-t from-background pt-8">
+            <footer className="fixed max-w-xl w-full mx-auto bottom-0 left-0 right-0 px-6 bg-gradient-to-t from-background pt-8">
               <Navbar />
             </footer>
           </div>
