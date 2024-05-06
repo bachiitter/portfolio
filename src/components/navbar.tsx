@@ -10,15 +10,15 @@ const linkItems: Array<{
   name: string;
   href: Route;
 }> = [
-  {
-    name: "about",
-    href: "/",
-  },
-  {
-    name: "blog",
-    href: "/blog",
-  },
-];
+    {
+      name: "about",
+      href: "/",
+    },
+    {
+      name: "blog",
+      href: "/blog",
+    },
+  ];
 
 export function Navbar() {
   const pathname = usePathname();
@@ -33,7 +33,7 @@ export function Navbar() {
             key={link.href}
             className={cn(
               "p-0 h-auto",
-              pathname === link.href ? "text-primary-foreground" : "text-muted-foreground",
+              pathname === link.href ? "text-foreground" : "text-muted-foreground",
             )}
           >
             <Link href={link.href}>{link.name}</Link>
