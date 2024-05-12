@@ -27,7 +27,7 @@ export function EmailLink() {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="link" className="p-0 h-auto text-secondary-foreground">
+        <Button variant="link" className="p-0 h-auto text-foreground">
           email
         </Button>
       </PopoverTrigger>
@@ -48,7 +48,7 @@ export function EmailLink() {
         >
           {success ? <CheckIcon className="w-3" /> : <ClipboardCopyIcon className="w-3" />}{" "}
         </Button>
-        <Button variant="link" className="p-0 h-auto text-secondary-foreground">
+        <Button variant="link" className="p-0 h-auto text-foreground">
           <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
         </Button>
         <Button size="sm" variant="outline" className="-my-[1px] -mr-[1px] h-7 px-2 rounded-none">
