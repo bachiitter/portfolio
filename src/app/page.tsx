@@ -43,7 +43,7 @@ export default function Home() {
                 <p className="!mt-0 text-muted-foreground">{project.description}</p>
 
                 <Button variant="link" className="p-0 h-auto text-secondary-foreground" asChild>
-                  <a target="_blank" rel="noreferrer" href="https://twitter.com/bachiitter">
+                  <a target="_blank" rel="noreferrer" href={project.link}>
                     visit
                   </a>
                 </Button>
