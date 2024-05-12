@@ -1,8 +1,11 @@
 import { EmailLink } from "~/components/email-link";
 import { Button } from "~/components/ui/button";
 import { projectsList } from "~/data/projects";
+import { allPosts } from "../../data";
 
 export default function Home() {
+  const filteredPosts = allPosts.all().filter((post) => !post.frontMatter.draft);
+
   return (
     <main className="flex flex-col gap-10">
       <section className="flex flex-col">
@@ -50,6 +53,29 @@ export default function Home() {
               </div>
             </div>
           ))}
+        </div>
+      </section>
+      <section className="flex flex-col gap-6">
+        <h2>Posts</h2>
+        <div>
+          {filteredPosts.length > 0 ? (
+            <div>
+              {filteredPosts.map((post) => (
+                <a key={post.label} href={`blog/${post.label}`}>
+                  <div className="flex gap-6 justify-between">
+                    {" "}
+                    <h3>{post.frontMatter.title}</h3>
+                    <span className="text-muted-foreground text-sm">date</span>
+                  </div>
+                  <p className="text-muted-foreground text-sm !mt-0 pr-[32px]">
+                    {post.frontMatter.description}
+                  </p>
+                </a>
+              ))}
+            </div>
+          ) : (
+            <p className="">Nothing to see here!</p>
+          )}
         </div>
       </section>
     </main>

@@ -1,3 +1,10 @@
+import { createMdxtsPlugin } from "mdxts/next";
+
+const withMdxts = createMdxtsPlugin({
+  theme: "tokyo-night",
+  highlightErrors: true,
+});
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "export",
@@ -15,4 +22,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+export default withMdxts(nextConfig);
