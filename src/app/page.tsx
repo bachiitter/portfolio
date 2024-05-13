@@ -45,9 +45,8 @@ export default function Home() {
         <div className="flex flex-col gap-6">
           {projectsList.map((project) => (
             <div key={project.name}>
-              <h3>{project.name}</h3>
               <div className="flex justify-between gap-4">
-                <p className="!mt-0 text-muted-foreground">{project.description}</p>
+                <h3>{project.name}</h3>
 
                 <Button variant="link" className="p-0 h-auto text-foreground" asChild>
                   <a target="_blank" rel="noreferrer" href={project.link}>
@@ -55,6 +54,8 @@ export default function Home() {
                   </a>
                 </Button>
               </div>
+
+              <p className="!mt-0 text-muted-foreground">{project.description}</p>
             </div>
           ))}
         </div>
