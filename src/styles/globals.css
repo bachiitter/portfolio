@@ -66,13 +66,13 @@
       @apply bg-background text-foreground;
     }
     h1 {
-    @apply scroll-m-20 font-extrabold tracking-tight;
+    @apply scroll-m-20 text-[32px] leading-[1.6] font-extrabold tracking-tight;
     }
     h2 {
-    @apply scroll-m-20 border-b pb-2 font-semibold tracking-tight first:mt-0;
+    @apply scroll-m-20 border-b pb-2 text-[24px] leading-[1.6] font-semibold tracking-tight first:mt-0;
     }
     h3 {
-    @apply scroll-m-20 font-semibold tracking-tight;
+    @apply scroll-m-20 font-semibold text-[20px] leading-[1.6] tracking-tight;
     }
     h4 {
     @apply scroll-m-20 font-semibold tracking-tight;
