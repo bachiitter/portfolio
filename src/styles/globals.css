@@ -69,13 +69,13 @@
     @apply scroll-m-20 text-[32px] leading-[1.6] font-extrabold tracking-tight;
     }
     h2 {
-    @apply scroll-m-20 border-b pb-2 text-[24px] leading-[1.6] font-semibold tracking-tight first:mt-0;
+    @apply scroll-m-20 mt-6 border-b pb-2 text-[24px] leading-[1.6] font-semibold tracking-tight first:mt-0;
     }
     h3 {
     @apply scroll-m-20 font-semibold text-[20px] leading-[1.6] tracking-tight;
     }
     h4 {
-    @apply scroll-m-20 font-semibold tracking-tight;
+    @apply scroll-m-20 font-semibold text-[18px] leading-[1.6] tracking-tight;
     }
     p {
     @apply text-sm leading-7 [&:not(:first-child)]:mt-6;
@@ -95,7 +95,10 @@
     ul {
     @apply my-6 ml-6 list-disc [&>li]:mt-2;
     }
+    pre {
+    @apply mt-6 w-auto text-sm;
+    }
     code {
-    @apply relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold;
+    @apply w-full
     }
   }
