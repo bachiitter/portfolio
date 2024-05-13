@@ -23,7 +23,7 @@ export default function Home() {
         </p>
         <p className="text-muted-foreground">
           Currently, I am building{" "}
-          <Button variant="link" className="p-0 h-auto text-foreground" asChild>
+          <Button variant="link" className="p-0 h-auto" asChild>
             <a target="_blank" rel="noreferrer" href="https://favite.co">
               favite
             </a>
@@ -32,7 +32,7 @@ export default function Home() {
         </p>
         <p className="text-muted-foreground">
           Get in touch via{" "}
-          <Button variant="link" className="p-0 h-auto text-foreground" asChild>
+          <Button variant="link" className="p-0 h-auto" asChild>
             <a target="_blank" rel="noreferrer" href="https://twitter.com/bachiitter">
               twitter
             </a>
@@ -48,7 +48,7 @@ export default function Home() {
               <div className="flex justify-between gap-4">
                 <h3>{project.name}</h3>
 
-                <Button variant="link" className="p-0 h-auto text-foreground" asChild>
+                <Button variant="link" className="p-0 h-auto" asChild>
                   <a target="_blank" rel="noreferrer" href={project.link}>
                     visit
                   </a>

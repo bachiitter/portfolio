@@ -27,7 +27,7 @@ export function EmailLink() {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="link" className="p-0 h-auto text-foreground">
+        <Button variant="link" className="p-0 h-auto">
           email
         </Button>
       </PopoverTrigger>
@@ -35,7 +35,7 @@ export function EmailLink() {
         <Button
           size="sm"
           variant="outline"
-          className="-my-[1px] -ml-[1px] h-7 px-2 rounded-none"
+          className="-my-[1px] -ml-[1px] h-7 px-2 rounded-none bg-transparent"
           onClick={() => {
             if (!navigator.clipboard) {
               console.log(
@@ -46,14 +46,18 @@ export function EmailLink() {
             navigator.clipboard.writeText(EMAIL).then(incrementSuccess);
           }}
         >
-          {success ? <CheckIcon className="w-3" /> : <ClipboardCopyIcon className="w-3" />}{" "}
+          {success ? <CheckIcon className="w-3.5" /> : <ClipboardCopyIcon className="w-3.5" />}{" "}
         </Button>
         <Button variant="link" className="p-0 h-auto text-foreground">
           <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
         </Button>
-        <Button size="sm" variant="outline" className="-my-[1px] -mr-[1px] h-7 px-2 rounded-none">
+        <Button
+          size="sm"
+          variant="outline"
+          className="-my-[1px] -mr-[1px] h-7 px-2 rounded-none bg-transparent"
+        >
           <a href={`mailto:${EMAIL}`}>
-            <PaperPlaneIcon />
+            <PaperPlaneIcon className="w-3.5" />
           </a>
         </Button>
       </PopoverContent>
