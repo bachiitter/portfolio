@@ -4,7 +4,10 @@ import { projectsList } from "~/data/projects";
 import { allPosts } from "../../data";
 
 export default function Home() {
-  const filteredPosts = allPosts.all().filter((post) => !post.frontMatter.draft);
+  const filteredPosts = allPosts
+    .all()
+    .slice(0, 8)
+    .filter((post) => !post.frontMatter.draft);
 
   return (
     <main className="flex flex-col gap-10">
