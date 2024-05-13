@@ -1,8 +1,8 @@
 "use client";
+import { CheckIcon, ClipboardCopyIcon, PaperPlaneIcon } from "@radix-ui/react-icons";
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
-import { CheckIcon, ClipboardCopyIcon, PaperPlaneIcon } from "@radix-ui/react-icons";
 
 const EMAIL = "bachiitter@pm.me";
 

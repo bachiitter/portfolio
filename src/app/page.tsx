@@ -1,8 +1,8 @@
 import { EmailLink } from "~/components/email-link";
 import { Button } from "~/components/ui/button";
 import { projectsList } from "~/data/projects";
-import { allPosts } from "../../data";
 import { formatDate } from "~/lib/utils";
+import { allPosts } from "../../data";
 
 export default function Home() {
   const filteredPosts = allPosts

@@ -3,14 +3,14 @@ export const projectsList: Array<{
   description: string;
   link: string;
 }> = [
-    {
-      name: "bachitter.dev",
-      description: "my personal website and blog",
-      link: "https://bachitter.dev",
-    },
-    {
-      name: "favite",
-      description: "a simple bookmarking app",
-      link: "https://favite.co",
-    },
-  ];
+  {
+    name: "bachitter.dev",
+    description: "my personal website and blog",
+    link: "https://bachitter.dev",
+  },
+  {
+    name: "favite",
+    description: "a simple bookmarking app",
+    link: "https://favite.co",
+  },
+];

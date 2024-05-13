@@ -1,6 +1,6 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { allPosts } from "../../../../data";
-import type { Metadata } from "next";
 
 export function generateStaticParams() {
   return allPosts.paths().map((pathname) => ({ slug: pathname }));

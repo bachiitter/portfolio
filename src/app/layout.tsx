@@ -33,7 +33,7 @@ export default function RootLayout({
             <div className="mt-20" />
             {children}
             <div className="pb-20" />
-            <footer className="fixed max-w-xl w-full mx-auto bottom-0 left-0 right-0 px-6 bg-gradient-to-t from-background pt-8">
+            <footer className="fixed max-w-xl w-full mx-auto bottom-0 left-0 right-0 px-6 bg-gradient-to-t from-background pt-10">
               <Navbar />
             </footer>
           </div>

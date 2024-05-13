@@ -1,10 +1,10 @@
 "use client";
-import Link from "next/link";
-import { Button } from "./ui/button";
-import { ThemeSwitcher } from "./theme-switcher";
-import { cn } from "~/lib/utils";
-import { usePathname } from "next/navigation";
 import type { Route } from "next";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { cn } from "~/lib/utils";
+import { ThemeSwitcher } from "./theme-switcher";
+import { Button } from "./ui/button";
 
 const linkItems: Array<{
   name: string;
@@ -24,7 +24,7 @@ export function Navbar() {
   const pathname = usePathname();
 
   return (
-    <nav className="bg-background w-full py-2 flex gap-2 justify-between items-center">
+    <nav className="bg-gradient-to-t from-background w-full pb-2 pt-10 flex gap-2 justify-between items-center">
       <div className="flex gap-2">
         {linkItems.map((link) => (
           <Button
