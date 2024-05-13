@@ -2,6 +2,7 @@ import { EmailLink } from "~/components/email-link";
 import { Button } from "~/components/ui/button";
 import { projectsList } from "~/data/projects";
 import { allPosts } from "../../data";
+import { formatDate } from "~/lib/utils";
 
 export default function Home() {
   const filteredPosts = allPosts
@@ -68,7 +69,9 @@ export default function Home() {
                   <div className="flex gap-6 justify-between">
                     {" "}
                     <h3>{post.frontMatter.title}</h3>
-                    <span className="text-muted-foreground text-sm">date</span>
+                    <span className="text-muted-foreground text-sm">
+                      {formatDate(post.frontMatter.date)}
+                    </span>
                   </div>
                   <p className="text-muted-foreground text-sm !mt-0 pr-[32px]">
                     {post.frontMatter.description}
