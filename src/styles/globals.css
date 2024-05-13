@@ -72,16 +72,19 @@
     @apply scroll-m-20 mt-6 border-b pb-2 text-[24px] leading-[1.6] font-semibold tracking-tight first:mt-0;
     }
     h3 {
-    @apply scroll-m-20 font-semibold text-[20px] leading-[1.6] tracking-tight;
+    @apply scroll-m-20 mt-6 font-semibold text-[20px] leading-[1.6] tracking-tight;
     }
     h4 {
-    @apply scroll-m-20 font-semibold text-[18px] leading-[1.6] tracking-tight;
+    @apply scroll-m-20 mt-6 font-semibold text-[18px] leading-[1.6] tracking-tight;
     }
     p {
     @apply text-sm leading-7 [&:not(:first-child)]:mt-6;
     }
     blockquote {
     @apply mt-6 border-l-2 pl-6 italic;
+    }
+    table {
+    @apply overflow-x-scroll
     }
     tr {
     @apply m-0 border-t p-0 even:bg-muted;
