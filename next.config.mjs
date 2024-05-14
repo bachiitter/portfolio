@@ -3,7 +3,7 @@ import { createMdxtsPlugin } from "mdxts/next";
 const withMdxts = createMdxtsPlugin({
   theme: "tokyo-night",
   highlightErrors: true,
-  siteUrl: "https://bachitter.dev",
+  gitSource: "https://github.com/bachiitter/portfolio",
 });
 
 /** @type {import('next').NextConfig} */

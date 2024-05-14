@@ -19,7 +19,7 @@ export async function GET() {
   });
 
   for (const data of allPosts.all().filter((post) => !post.frontMatter.draft)) {
-    const url = new URL(data.pathname, process.env.MDXTS_SITE_URL).href;
+    const url = new URL(data.pathname, metadata.openGraph.url).href;
 
     feed.addItem({
       title: data.frontMatter.title,
