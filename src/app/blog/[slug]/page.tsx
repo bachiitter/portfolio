@@ -59,7 +59,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
           <time>{formattedDate}</time> / <span>{post.readingTime?.average.minutes} min read</span>
         </p>
       </section>
-      <article className="overflow-auto">
+      <article className="overflow-auto flex flex-col gap-6">
         {Content ? <Content renderTitle={false} /> : null}
       </article>
     </main>

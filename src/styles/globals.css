@@ -102,9 +102,12 @@
     @apply my-6 ml-6 list-decimal [&>li]:mt-2;
     }
     pre {
-    @apply mt-6 w-auto text-sm;
+    @apply w-auto text-sm;
     }
     code {
-    @apply w-full
+    @apply w-full;
+    }
+    article {
+    @apply [&>h2]:!mt-0 [&>h3]:!mt-0 [&>h4]:!mt-0 [&>p]:!mt-0 [&>pre]:!mt-0 [&>table]:!mt-0 [&>ul]:!mt-0 [&>ol]:!mt-0; 
     }
   }
