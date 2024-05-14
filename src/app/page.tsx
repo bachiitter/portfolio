@@ -45,8 +45,8 @@ export default function Home() {
         <div className="flex flex-col gap-6">
           {projectsList.map((project) => (
             <div key={project.name}>
-              <div className="flex justify-between gap-4">
-                <h3>{project.name}</h3>
+              <div className="flex justify-between items-center gap-4">
+                <h3 className="!mt-0">{project.name}</h3>
 
                 <Button variant="link" className="p-0 h-auto" asChild>
                   <a target="_blank" rel="noreferrer" href={project.link}>
@@ -67,9 +67,9 @@ export default function Home() {
             <div>
               {filteredPosts.map((post) => (
                 <a key={post.pathname} href={post.pathname}>
-                  <div className="flex gap-6 justify-between">
+                  <div className="flex gap-6 justify-between items-center">
                     {" "}
-                    <h3>{post.frontMatter.title}</h3>
+                    <h3 className="!mt-0">{post.frontMatter.title}</h3>
                     <span className="text-muted-foreground text-sm">
                       {formatDate(post.frontMatter.date)}
                     </span>
