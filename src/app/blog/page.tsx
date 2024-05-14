@@ -22,9 +22,9 @@ export default function Blog() {
           <div className="flex flex-col gap-6">
             {filteredPosts.map((post) => (
               <a key={post.pathname} href={post.pathname}>
-                <div className="flex gap-6 justify-between">
+                <div className="flex gap-6 justify-between items-center">
                   {" "}
-                  <h3>{post.frontMatter.title}</h3>
+                  <h3 className="!mt-0">{post.frontMatter.title}</h3>
                   <span className="text-muted-foreground text-sm">
                     {formatDate(post.frontMatter.date)}
                   </span>

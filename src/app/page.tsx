@@ -64,7 +64,7 @@ export default function Home() {
         <h2>Posts</h2>
         <div>
           {filteredPosts.length > 0 ? (
-            <div>
+            <div className="flex flex-col gap-6">
               {filteredPosts.map((post) => (
                 <a key={post.pathname} href={post.pathname}>
                   <div className="flex gap-6 justify-between items-center">
