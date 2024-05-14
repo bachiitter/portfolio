@@ -4,7 +4,7 @@ const url = "https://bachitter.dev";
 
 export function getSiteMetadata({
   title = "Bachitter",
-  description = "",
+  description = "Hi! I am Bachitter Chahal, a Product Engineer based in Vancouver, Canada.",
   ...rest
 }: { title?: string; description?: string } & Omit<Metadata, "title" | "description"> = {}) {
   return {
