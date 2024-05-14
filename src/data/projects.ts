@@ -6,7 +6,7 @@ export const projectsList: Array<{
   {
     name: "bachitter.dev",
     description: "my personal website and blog",
-    link: "https://bachitter.dev",
+    link: "https://github.com/bachiitter/portfolio",
   },
   {
     name: "favite",
