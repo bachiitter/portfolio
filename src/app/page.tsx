@@ -66,7 +66,7 @@ export default function Home() {
           {filteredPosts.length > 0 ? (
             <div>
               {filteredPosts.map((post) => (
-                <a key={post.label} href={`blog/${post.label}`}>
+                <a key={post.pathname} href={post.pathname}>
                   <div className="flex gap-6 justify-between">
                     {" "}
                     <h3>{post.frontMatter.title}</h3>

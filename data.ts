@@ -9,6 +9,8 @@ type FrontMatter = {
 
 export const allPosts = createSource<{
   frontMatter: FrontMatter;
-}>("content/posts/*.mdx", {
+}>("content/blog/*.mdx", {
   sort: (a, b) => b.frontMatter.date.getTime() - a.frontMatter.date.getTime(),
+  baseDirectory: "content",
+  basePathname: "",
 });

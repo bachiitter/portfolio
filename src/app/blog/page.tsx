@@ -1,10 +1,11 @@
 import { formatDate } from "~/lib/utils";
 import { allPosts } from "../../../data";
+import { getSiteMetadata } from "~/lib/constants";
 
-export const metadata = {
+export const metadata = getSiteMetadata({
   title: "Blog",
   description: "A collection of my writings, rants and incomplete notes.",
-};
+});
 
 export default function Blog() {
   const filteredPosts = allPosts.all().filter((post) => !post.frontMatter.draft);
@@ -20,7 +21,7 @@ export default function Blog() {
         {filteredPosts.length > 0 ? (
           <div className="flex flex-col gap-6">
             {filteredPosts.map((post) => (
-              <a key={post.label} href={`blog/${post.label}`}>
+              <a key={post.pathname} href={post.pathname}>
                 <div className="flex gap-6 justify-between">
                   {" "}
                   <h3>{post.frontMatter.title}</h3>

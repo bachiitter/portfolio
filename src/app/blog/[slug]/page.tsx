@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { allPosts } from "../../../../data";
+import { getSiteMetadata } from "~/lib/constants";
 
 export function generateStaticParams() {
   return allPosts.paths().map((pathname) => ({ slug: pathname }));
@@ -10,13 +11,13 @@ export async function generateMetadata({
   params,
 }: { params: { slug: string } }): Promise<Metadata | undefined> {
   // biome-ignore lint/style/noNonNullAssertion: shut up
-  const post = (await allPosts.get(`content/posts/${params.slug}`))!;
+  const post = (await allPosts.get(`blog/${params.slug}`))!;
 
   if (!post) {
     return notFound();
   }
 
-  return {
+  return getSiteMetadata({
     title: post.frontMatter.title,
     description: post.frontMatter.description,
     openGraph: {
@@ -31,12 +32,12 @@ export async function generateMetadata({
       title: post.frontMatter.title,
       description: post.frontMatter.description,
     },
-  };
+  });
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
   // biome-ignore lint/style/noNonNullAssertion: shut up
-  const post = (await allPosts.get(`content/posts/${params.slug}`))!;
+  const post = (await allPosts.get(`blog/${params.slug}`))!;
 
   if (!post) {
     return notFound();

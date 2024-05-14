@@ -4,6 +4,7 @@ import "~/styles/globals.css";
 import { ThemeProvider } from "next-themes";
 import { Navbar } from "~/components/navbar";
 import { cn } from "~/lib/utils";
+import { getSiteMetadata } from "~/lib/constants";
 
 const fontSans = localFont({
   src: "../fonts/Hubot-Sans.woff2",
@@ -11,9 +12,7 @@ const fontSans = localFont({
   variable: "--font-sans",
 });
 
-export const metadata: Metadata = {
-  title: "Bachitter",
-};
+export const metadata: Metadata = getSiteMetadata();
 
 export default function RootLayout({
   children,
