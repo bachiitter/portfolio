@@ -14,7 +14,7 @@ export default function Home() {
     <main className="flex flex-col gap-10">
       <section className="flex flex-col">
         <h1>Bachitter</h1>
-        <p className="!mt-0 text-muted-foreground">Product Engineer</p>
+        <p className="!mt-0 text-muted-foreground">Innately curious person</p>
         <p className="text-muted-foreground">
           Hi! I am Bachitter Chahal, a Product Engineer based in Vancouver, Canada. I love building
           and breaking things. Everything I have learned has been taught by my curiosity about{" "}
