@@ -24,7 +24,7 @@ export function Navbar() {
   const pathname = usePathname();
 
   return (
-    <nav className="bg-gradient-to-t from-background w-full pb-2 pt-10 flex gap-2 justify-between items-center">
+    <nav className="bg-gradient-to-t from-background to-85%  w-full pb-4 md:pb-2 pt-10 flex gap-2 justify-between items-center">
       <div className="flex gap-2">
         {linkItems.map((link) => (
           <Button
