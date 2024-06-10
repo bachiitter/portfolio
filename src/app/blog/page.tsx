@@ -1,6 +1,6 @@
+import { getSiteMetadata } from "~/lib/constants";
 import { formatDate } from "~/lib/utils";
 import { allPosts } from "../../../data";
-import { getSiteMetadata } from "~/lib/constants";
 
 export const metadata = getSiteMetadata({
   title: "Blog",

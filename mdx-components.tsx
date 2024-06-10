@@ -1,6 +1,6 @@
-import * as React from "react";
 import { CodeBlock, MDXComponents } from "mdxts/components";
 import { PackageInstall } from "mdxts/components/PackageInstall";
+import * as React from "react";
 
 export function useMDXComponents() {
   return {

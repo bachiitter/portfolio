@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "~/styles/globals.css";
+import { PackageInstallStylesAndScript } from "mdxts/components/PackageInstall";
 import { ThemeProvider } from "next-themes";
 import { Navbar } from "~/components/navbar";
-import { cn } from "~/lib/utils";
 import { getSiteMetadata } from "~/lib/constants";
-import { PackageInstallStylesAndScript } from "mdxts/components/PackageInstall";
+import { cn } from "~/lib/utils";
 
 const fontSans = localFont({
   src: "../fonts/Hubot-Sans.woff2",
