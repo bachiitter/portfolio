@@ -6,6 +6,7 @@ import { ThemeProvider } from "next-themes";
 import { Navbar } from "~/components/navbar";
 import { getSiteMetadata } from "~/lib/constants";
 import { cn } from "~/lib/utils";
+import { PostHogProvider } from "./providers";
 
 const fontSans = localFont({
   src: "../fonts/Hubot-Sans.woff2",
@@ -47,6 +48,7 @@ export default function RootLayout({
       <head>
         <meta content="width=device-width, initial-scale=1" name="viewport" />
       </head>
+      <PostHogProvider>
       <body className={cn("min-h-dvh bg-background font-sans antialiased", fontSans.variable)}>
         <PackageInstallStylesAndScript />
         <ThemeProvider
@@ -66,6 +68,7 @@ export default function RootLayout({
           </div>
         </ThemeProvider>
       </body>
+      </PostHogProvider>
     </html>
   );
 }
