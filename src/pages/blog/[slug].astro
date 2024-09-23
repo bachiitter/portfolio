@@ -1,0 +1,54 @@
+---
+import { getCollection, type CollectionEntry, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+interface Props {
+  post: CollectionEntry<"posts">;
+}
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts");
+
+  return posts.map((post: CollectionEntry<"posts">) => ({
+    params: {
+      slug: post.data.slug,
+    },
+    props: {
+      post,
+    },
+  }));
+}
+
+const { post } = Astro.props;
+
+console.log(post.rendered);
+
+const formattedDate = new Intl.DateTimeFormat("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "2-digit",
+  timeZone: "UTC",
+}).format(post.data.publishedAt);
+
+const { Content } = await render(post);
+---
+
+<style>
+article a {
+  @apply p-0 h-auto text-primary underline-offset-4 hover:underline inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
+}
+</style>
+
+<BaseLayout title={post.data.title} description={post.data.description} >
+  <main class="flex flex-col gap-12">
+  <section class="flex flex-col">
+    <h1>{post.data.title}</h1>
+    <p class="text-sm text-muted-foreground !mt-2">
+      <time>{formattedDate}</time>
+      </p>
+  </section>
+    <article class="overflow-auto" >
+    <Content />     
+    </article>
+  </main>
+</BaseLayout>

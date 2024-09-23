@@ -1,3 +1,12 @@
+@font-face {
+  font-family: "Hubot Sans";
+  src: url("/fonts/Hubot-Sans.woff2") format("woff2 supports variations"),
+    url("/fonts/Hubot-Sans.woff2") format("woff2-variations");
+  font-weight: 200 900;
+  font-stretch: 75% 125%;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -30,84 +39,149 @@
     --radius: 0.75rem;
   }
 
-  .dark {
-    --background: 0 0% 6.67%;
-    --foreground: 0 0% 93.33%;
-    --muted: 0 0% 9.8%;
-    --muted-foreground: 0 0% 70.59%;
-    --popover: 0 0% 9.8%;
-    --popover-foreground: 0 0% 93.33%;
-    --card: 0 0% 9.8%;
-    --card-foreground: 0 0% 93.33%;
-    --border: 0 0% 22.75%;
-    --input: 0 0% 28.24%;
-    --primary: 10 78% 54%;
-    --primary-foreground: 0 0% 93.33%;
-    --secondary: 0 0% 43.14%;
-    --secondary-foreground: 0 0% 93.33%;
-    --accent: 0 0% 16.47%;
-    --accent-foreground: 0 0% 93.33%;
-    --destructive: 358.09 75.12% 59.02%;
-    --destructive-foreground: 0 0% 93.33%;
-    --warning: 42.1 100% 62%;
-    --success-foreground: 0 0% 93.33%;
-    --success: 151 54.7% 41.6%;
-    --success-foreground: 0 0% 93.33%;
-    --ring: 10 78% 54%;
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: 0 0% 6.67%;
+      --foreground: 0 0% 93.33%;
+      --muted: 0 0% 9.8%;
+      --muted-foreground: 0 0% 70.59%;
+      --popover: 0 0% 9.8%;
+      --popover-foreground: 0 0% 93.33%;
+      --card: 0 0% 9.8%;
+      --card-foreground: 0 0% 93.33%;
+      --border: 0 0% 22.75%;
+      --input: 0 0% 28.24%;
+      --primary: 10 78% 54%;
+      --primary-foreground: 0 0% 93.33%;
+      --secondary: 0 0% 43.14%;
+      --secondary-foreground: 0 0% 93.33%;
+      --accent: 0 0% 16.47%;
+      --accent-foreground: 0 0% 93.33%;
+      --destructive: 358.09 75.12% 59.02%;
+      --destructive-foreground: 0 0% 93.33%;
+      --warning: 42.1 100% 62%;
+      --success-foreground: 0 0% 93.33%;
+      --success: 151 54.7% 41.6%;
+      --success-foreground: 0 0% 93.33%;
+      --ring: 10 78% 54%;
+    }
   }
 }
-  
-  
+
 @layer base {
-    * {
-      @apply border-border;
-    }
-    body {
-      @apply bg-background text-foreground;
-    }
-    h1 {
-    @apply scroll-m-20 text-[32px] leading-[1.6] font-extrabold tracking-tight;
-    }
-    h2 {
-    @apply scroll-m-20 mt-6 border-b pb-2 text-[24px] leading-[1.6] font-semibold tracking-tight first:mt-0;
-    }
-    h3 {
-    @apply scroll-m-20 mt-6 font-semibold text-[20px] leading-[1.6] tracking-tight;
-    }
-    h4 {
-    @apply scroll-m-20 mt-6 font-semibold text-[18px] leading-[1.6] tracking-tight;
-    }
-    p {
-    @apply text-sm leading-7 [&:not(:first-child)]:mt-6;
-    }
-    blockquote {
-    @apply mt-6 border-l-2 pl-6 italic;
-    }
-    table {
-    @apply overflow-x-scroll mt-6;
-    }
-    tr {
-    @apply m-0 border-t p-0 even:bg-muted;
-    }
-    th {
-    @apply border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right;
-    }
-    td {
-    @apply border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right;
-    }
-    ul {
-    @apply my-6 ml-6 list-disc [&>li]:mt-2;
-    }
-    ol {
-    @apply my-6 ml-6 list-decimal [&>li]:mt-2;
-    }
-    pre {
-    @apply w-auto text-sm;
-    }
-    code {
-    @apply w-full;
-    }
-    article {
-    @apply [&>h2]:!mt-0 [&>h3]:!mt-0 [&>h4]:!mt-0 [&>p]:!mt-0 [&>pre]:!mt-0 [&>table]:!mt-0 [&>ul]:!mt-0 [&>ol]:!mt-0; 
-    }
+
+  html {
+    @apply scroll-smooth;
   }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  h1 {
+    @apply scroll-m-20 mt-12 text-[32px] leading-[1.2] font-extrabold tracking-tight;
+  }
+
+  h2 {
+    @apply scroll-m-20 mt-12 border-b pb-2 text-[24px] leading-[1.4] font-semibold tracking-tight first:mt-0;
+  }
+
+  h3 {
+    @apply scroll-m-20 mt-8 font-semibold text-[20px] leading-[1.4] tracking-tight;
+  }
+
+  h4 {
+    @apply scroll-m-20 mt-8 font-semibold text-[18px] leading-[1.4] tracking-tight;
+  }
+
+  p {
+    @apply text-sm leading-7 [&:not(:first-child)]:mt-6;
+  }
+
+  img {
+    @apply rounded-md;
+  }
+
+  hr {
+    @apply my-4 md:my-8;
+  }
+
+  blockquote {
+    @apply mt-6 border-l-4 border-l-primary pl-6 italic;
+  }
+
+  table {
+    @apply my-6 w-full overflow-y-auto rounded-lg;
+  }
+
+  tr {
+    @apply m-0 border-t p-0 even:bg-muted;
+  }
+
+  th {
+    @apply border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right;
+  }
+
+  td {
+    @apply border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right;
+  }
+
+  ul {
+    @apply my-6 ml-6 list-disc [&>li]:mt-2;
+  }
+
+  ol {
+    @apply my-6 ml-6 list-decimal [&>li]:mt-2;
+  }
+
+  article a {
+    @apply p-0 h-auto text-primary underline-offset-4 hover:underline inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  pre {
+    --pre-bg: hsl(0 0% 9.8%);
+    @apply !bg-[--pre-bg] py-4 text-sm leading-6;
+  }
+
+  code {
+    --pre-bg: hsl(0 0% 9.8%);
+    @apply isolate block w-fit min-w-full [counter-reset:line] *:inline-block *:w-full *:[counter-increment:line] *:before:pointer-events-none *:before:sticky *:before:left-0 *:before:z-20 *:before:inline-block *:before:w-11 *:before:select-none *:before:bg-gradient-to-r *:before:from-[--pre-bg] *:before:from-80% *:before:pr-4 *:before:text-right *:before:text-muted-foreground *:before:content-[counter(line)] *:after:pointer-events-none *:after:sticky *:after:right-0 *:after:z-10 *:after:inline-block *:after:w-6 *:after:select-none *:after:bg-gradient-to-l *:after:from-[--pre-bg] *:after:from-35% *:after:content-['_'];
+  }
+
+  mark {
+    @apply -mx-0.5 inline rounded bg-amber-500/20 px-0.5 text-amber-100 [box-decoration-break:clone];
+  }
+
+  pre {
+    @apply overflow-hidden mt-6 rounded-md border border-border;
+  }
+
+  pre code span:last-of-type:empty {
+    @apply hidden;
+  }
+
+  pre code .highlighted {
+    @apply bg-muted;
+  }
+
+  kbd {
+    @apply -mx-0.5 inline rounded bg-accent px-0.5 text-[0.9375rem] [box-decoration-break:clone];
+  }
+
+  :not(pre) > code {
+    @apply inline px-[0.3rem] py-[0.2rem] text-sm [box-decoration-break:clone]
+  }
+
+  :not(pre) > code::before {
+    content: "`";
+  }
+
+  :not(pre) > code::after {
+    content: "`";
+  }
+
+}

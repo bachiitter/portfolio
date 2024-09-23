@@ -2,7 +2,7 @@ import type { Config } from "tailwindcss";
 import { fontFamily } from "tailwindcss/defaultTheme";
 
 const config = {
-  darkMode: ["class"],
+  darkMode: "media",
   content: ["./src/**/*.{astro,html,md,mdx,ts,tsx}"],
   theme: {
     container: {
@@ -14,7 +14,8 @@ const config = {
     },
     extend: {
       fontFamily: {
-        sans: ["var(--font-sans)", ...fontFamily.sans],
+        sans: ["Hubot Sans", ...fontFamily.sans],
+        mono: ["JetBrains Mono Variable", ...fontFamily.mono],
       },
       colors: {
         border: "hsl(var(--border))",

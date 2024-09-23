@@ -1,27 +1,38 @@
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "files": {
+    "ignore": [
+      "**/build",
+      "**/dist",
+      "**/node_modules",
+      "**/playwright-report",
+      ".vercel",
+      ".vscode",
+      ".astro"
+    ]
+  },
   "organizeImports": {
-    "enabled": true,
-    "ignore": ["node_modules", ".next", "out", ".wrangler", "routeTree.gen.ts"]
+    "enabled": true
   },
   "linter": {
     "enabled": true,
     "rules": {
       "recommended": true,
-      "security": {
-        "all": true
-      },
-      "performance": {
-        "all": true
+      "a11y": {
+        "noSvgWithoutTitle": "off"
       }
-    },
-    "ignore": ["node_modules", ".next", "out", ".wrangler", "routeTree.gen.ts"]
+    }
   },
   "formatter": {
     "indentStyle": "space",
     "indentWidth": 2,
     "enabled": true,
     "lineWidth": 100,
-    "ignore": ["node_modules", ".next", "out", ".wrangler", "routeTree.gen.ts"]
-  }
+    "lineEnding": "lf"
+  },
+  "overrides": [
+    {
+      "include": ["*.astro"]
+    }
+  ]
 }
