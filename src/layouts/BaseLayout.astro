@@ -1,0 +1,105 @@
+---
+import "../styles/globals.css";
+import "@fontsource-variable/jetbrains-mono";
+
+import { NAVIGATION } from "../consts.ts";
+
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+const metaTitle = Astro.url.pathname === "/" ? "Bachitter" : `${title} // Bachitter`;
+const metaDescription = description
+  ? description
+  : "Hi! I am Bachitter Chahal, a Product Engineer based in Vancouver, Canada.";
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const currentYear = new Date().getFullYear();
+---
+
+<html lang="en">
+  <head>
+    <!-- Font Preload -->
+    <link rel="preload" href="/fonts/Hubot-Sans.woff2" as="font" type="font/woff2" crossorigin>
+
+    <!-- Global Metadata -->
+    <meta charset="UTF-8" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Icons -->
+    <link rel="icon" href="/icon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-icon.png" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />    
+
+    <!-- Primary Meta Tags -->
+    <title>{metaTitle}</title>
+    <meta name="title" content={metaTitle} />
+    <meta name="description" content={metaDescription} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={metaDescription} />
+    <!-- <meta property="og:image" content={new URL(image, Astro.url)} /> -->
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={metaTitle} />
+    <meta property="twitter:description" content={metaDescription} />    
+
+    <!-- Manifest -->
+    <!-- <link rel="manifest" href="/manifest.json" /> -->
+
+    <!-- Sitemap -->
+    <link rel="sitemap" href={new URL("/sitemap-index.xml", Astro.site)} />
+
+    <!-- RSS -->
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      href={new URL("/rss.xml", Astro.site)}
+    />  
+  </head>
+  <body class="min-h-dvh bg-background font-sans antialiased" >
+    <div class="mx-auto max-w-xl h-dvh py-4 px-6">
+      <header class="fixed max-w-xl w-full mx-auto bottom-0 left-0 right-0 px-6 bg-gradient-to-t from-background to-85% pt-10 z-50">
+        <nav class="bg-gradient-to-t from-background to-85%  w-full pb-4 md:pb-2 pt-10 flex gap-2 justify-between items-center">
+          <div class="flex gap-2">
+            {
+              NAVIGATION.map((link) => {
+                const isCurrent = 
+                  Astro.url.pathname === `${link.slug}/` ||
+                  Astro.url.pathname === `${link.slug}`;
+
+                return (
+                  <a href={link.slug} aria-current={isCurrent ? "page" : undefined} class={"text-muted-foreground underline-offset-4 hover:underline p-0 h-auto inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 aria-[current]:text-primary"}>
+                    {link.label}      
+                  </a>
+                )
+              })
+            }
+          </div>
+        </nav>
+      </header>
+      <div class="mt-20" />
+        <slot />
+      <div class="pb-20" />
+      <footer class="pb-20 flex items-center justify-between">
+        <p class="text-muted-foreground" >&copy; <span id="footer-year">{currentYear}</span></p>
+        <p class="!mt-0">Bachitter</p>
+      </footer>     
+    </div>
+  </body>
+</html>
+
+<script is:inline>
+  document.getElementById("footer-year").innerText = new Date().getFullYear();
+</script>
