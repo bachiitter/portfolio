@@ -1,6 +1,20 @@
+import { createMarkdownProcessor } from "@astrojs/markdown-remark";
+import {
+  transformerNotationDiff,
+  transformerNotationFocus,
+  transformerMetaHighlight,
+  transformerMetaWordHighlight,
+  transformerNotationHighlight,
+  transformerNotationWordHighlight,
+  transformerNotationErrorLevel,
+  transformerRenderWhitespace,
+  transformerCompactLineOptions,
+} from "@shikijs/transformers";
 import type { Loader } from "astro/loaders";
 import { z } from "astro:content";
 import { CONTENTFUL_API_TOKEN, CONTENTFUL_SPACE_ID } from "astro:env/server";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeSlug from "rehype-slug";
 
 const CONTENTFUL_ENDPOINT = `https://graphql.contentful.com/content/v1/spaces/${CONTENTFUL_SPACE_ID}`;
 
@@ -24,6 +38,7 @@ const GET_POSTS = `
 export const ContentfulLoader: Loader = {
   name: "posts",
   schema: z.object({
+    id: z.string(),
     title: z.string(),
     description: z.string(),
     slug: z.string(),
@@ -48,6 +63,44 @@ export const ContentfulLoader: Loader = {
     const { data } = await res.json();
 
     for (const item of data.blogPostCollection.items) {
+      const preprocessor = await createMarkdownProcessor({
+        gfm: true,
+        smartypants: true,
+        syntaxHighlight: "shiki",
+        shikiConfig: {
+          theme: "vesper",
+          defaultColor: false,
+          transformers: [
+            transformerNotationDiff(),
+            transformerNotationFocus(),
+            transformerMetaHighlight(),
+            transformerMetaWordHighlight(),
+            transformerNotationHighlight(),
+            transformerNotationWordHighlight(),
+            transformerNotationErrorLevel(),
+            transformerRenderWhitespace(),
+            transformerCompactLineOptions(),
+          ],
+        },
+        remarkPlugins: [],
+        rehypePlugins: [
+          rehypeSlug,
+          [
+            rehypeAutolinkHeadings,
+            { behavior: "append", className: ["subheading-anchor"], ariaLabel: "Link to section" },
+          ],
+        ],
+      });
+
+      const { code, metadata } = await preprocessor.render(item.content, {
+        frontmatter: {
+          title: item.title,
+          description: item.description,
+          slug: item.slug,
+          publishedAt: item.sys.publishedAt,
+        },
+      });
+
       ctx.store.set({
         id: item.sys.id,
         data: {
@@ -58,6 +111,11 @@ export const ContentfulLoader: Loader = {
           content: item.content,
         },
         body: item.content,
+        rendered: {
+          html: code,
+          // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+          metadata: metadata as any,
+        },
       });
     }
   },
