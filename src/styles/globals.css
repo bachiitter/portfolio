@@ -83,7 +83,7 @@
   }
 
   h1 {
-    @apply scroll-m-20 mt-12 text-[32px] leading-[1.2] font-extrabold tracking-tight;
+    @apply scroll-m-20 mt-12 text-[32px] leading-[1.2] font-extrabold tracking-tight text-balance;
   }
 
   h2 {
