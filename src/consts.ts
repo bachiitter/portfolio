@@ -51,6 +51,6 @@ export const PROJECTS: Array<{
   {
     name: "favite",
     description: "a simple bookmarking app",
-    link: "https://favite.co",
+    link: "#",
   },
 ];
