@@ -23,7 +23,7 @@ const posts = await getCollection("posts");
                   {" "}
                   <h3 class="!mt-0">{post.data.title}</h3>
                   <span class="text-muted-foreground text-sm">
-                    {formatDate(post.data.publishedAt)}
+                    {formatDate(new Date(post.data.publishedAt))}
                   </span>
                 </div>
                 <p class="text-muted-foreground text-sm !mt-0 pr-[32px]">
