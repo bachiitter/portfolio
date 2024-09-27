@@ -42,7 +42,7 @@ export const ContentfulLoader: Loader = {
     title: z.string(),
     description: z.string(),
     slug: z.string(),
-    publishedAt: z.coerce.date(),
+    publishedAt: z.string().datetime(),
     content: z.string(),
   }),
   load: async (ctx) => {
@@ -113,8 +113,11 @@ export const ContentfulLoader: Loader = {
         body: item.content,
         rendered: {
           html: code,
-          // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-          metadata: metadata as any,
+          metadata: {
+            frontmatter: metadata.frontmatter,
+            headings: metadata.headings,
+            imagePaths: Array.from(metadata.imagePaths),
+          },
         },
       });
     }

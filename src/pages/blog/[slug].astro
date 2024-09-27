@@ -26,7 +26,7 @@ const formattedDate = new Intl.DateTimeFormat("en-US", {
   month: "long",
   day: "2-digit",
   timeZone: "UTC",
-}).format(post.data.publishedAt);
+}).format(new Date(post.data.publishedAt));
 
 const { Content } = await render(post);
 ---
