@@ -1,14 +1,5 @@
-import { createMarkdownProcessor } from "@astrojs/markdown-remark";
-import { transformerMetaHighlight, transformerMetaWordHighlight } from "@shikijs/transformers";
 import type { Loader } from "astro/loaders";
-import {
-  CONTENTFUL_DELIVERY_API_TOKEN,
-  CONTENTFUL_PREVIEW_API_TOKEN,
-  CONTENTFUL_SPACE_ID,
-} from "astro:env/server";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypeSlug from "rehype-slug";
-import remarkToc from "remark-toc";
+import { CONTENTFUL_API_TOKEN, CONTENTFUL_SPACE_ID } from "astro:env/server";
 
 const CONTENTFUL_ENDPOINT = `https://graphql.contentful.com/content/v1/spaces/${CONTENTFUL_SPACE_ID}`;
 
@@ -35,7 +26,7 @@ export const ContentfulLoader: Loader = {
     const res = await fetch(CONTENTFUL_ENDPOINT, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${import.meta.env.DEV ? CONTENTFUL_PREVIEW_API_TOKEN : CONTENTFUL_DELIVERY_API_TOKEN}`,
+        Authorization: `Bearer ${CONTENTFUL_API_TOKEN}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -49,34 +40,6 @@ export const ContentfulLoader: Loader = {
     const { data } = await res.json();
 
     for (const item of data.blogPostCollection.items) {
-      const preprocessor = await createMarkdownProcessor({
-        gfm: true,
-        syntaxHighlight: "shiki",
-        shikiConfig: {
-          theme: "vesper",
-          defaultColor: false,
-          transformers: [transformerMetaHighlight(), transformerMetaWordHighlight()],
-        },
-        remarkPlugins: [[remarkToc, { heading: "contents" }]],
-        rehypePlugins: [
-          rehypeSlug,
-          [
-            rehypeAutolinkHeadings,
-            { behavior: "append", className: ["subheading-anchor"], ariaLabel: "Link to section" },
-          ],
-        ],
-        smartypants: true,
-      });
-
-      const { code, metadata } = await preprocessor.render(item.content, {
-        frontmatter: {
-          title: item.title,
-          description: item.description,
-          slug: item.slug,
-          publishedAt: item.sys.publishedAt,
-        },
-      });
-
       ctx.store.set({
         id: item.sys.id,
         data: {
@@ -85,14 +48,7 @@ export const ContentfulLoader: Loader = {
           description: item.description,
           slug: item.slug,
           publishedAt: item.sys.publishedAt,
-        },
-        rendered: {
-          html: code,
-          metadata: {
-            frontmatter: metadata.frontmatter,
-            headings: metadata.headings,
-            imagePaths: Array.from(metadata.imagePaths),
-          },
+          content: item.content,
         },
       });
     }
