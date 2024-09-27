@@ -1,4 +1,5 @@
 import type { Loader } from "astro/loaders";
+import { z } from "astro:content";
 import { CONTENTFUL_API_TOKEN, CONTENTFUL_SPACE_ID } from "astro:env/server";
 
 const CONTENTFUL_ENDPOINT = `https://graphql.contentful.com/content/v1/spaces/${CONTENTFUL_SPACE_ID}`;
@@ -22,6 +23,13 @@ const GET_POSTS = `
 
 export const ContentfulLoader: Loader = {
   name: "posts",
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    slug: z.string(),
+    publishedAt: z.coerce.date(),
+    content: z.string(),
+  }),
   load: async (ctx) => {
     const res = await fetch(CONTENTFUL_ENDPOINT, {
       method: "POST",
@@ -43,13 +51,13 @@ export const ContentfulLoader: Loader = {
       ctx.store.set({
         id: item.sys.id,
         data: {
-          id: item.sys.id,
           title: item.title,
           description: item.description,
           slug: item.slug,
           publishedAt: item.sys.publishedAt,
           content: item.content,
         },
+        body: item.content,
       });
     }
   },
