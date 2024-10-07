@@ -1,18 +1,18 @@
-import { createMarkdownProcessor } from "@astrojs/markdown-remark";
-import {
-  transformerNotationDiff,
-  transformerNotationFocus,
-  transformerMetaHighlight,
-  transformerMetaWordHighlight,
-  transformerNotationHighlight,
-  transformerNotationWordHighlight,
-  transformerNotationErrorLevel,
-  transformerRenderWhitespace,
-  transformerCompactLineOptions,
-} from "@shikijs/transformers";
-import type { Loader } from "astro/loaders";
 import { z } from "astro:content";
 import { CONTENTFUL_API_TOKEN, CONTENTFUL_SPACE_ID } from "astro:env/server";
+import { createMarkdownProcessor } from "@astrojs/markdown-remark";
+import {
+  transformerCompactLineOptions,
+  transformerMetaHighlight,
+  transformerMetaWordHighlight,
+  transformerNotationDiff,
+  transformerNotationErrorLevel,
+  transformerNotationFocus,
+  transformerNotationHighlight,
+  transformerNotationWordHighlight,
+  transformerRenderWhitespace,
+} from "@shikijs/transformers";
+import type { Loader } from "astro/loaders";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 

@@ -69,7 +69,6 @@
 }
 
 @layer base {
-
   html {
     @apply scroll-smooth;
   }
@@ -173,7 +172,7 @@
   }
 
   :not(pre) > code {
-    @apply inline px-[0.3rem] py-[0.2rem] text-sm [box-decoration-break:clone]
+    @apply inline px-[0.3rem] py-[0.2rem] text-sm [box-decoration-break:clone];
   }
 
   :not(pre) > code::before {
@@ -183,5 +182,4 @@
   :not(pre) > code::after {
     content: "`";
   }
-
 }
