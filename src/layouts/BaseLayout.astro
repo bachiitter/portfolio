@@ -2,6 +2,8 @@
 import "../styles/globals.css";
 import "@fontsource-variable/jetbrains-mono";
 
+import Sign from "../components/sign.astro";
+
 import { NAVIGATION } from "../consts.ts";
 
 export interface Props {
@@ -97,7 +99,7 @@ const currentYear = new Date().getFullYear();
       <div class="pb-20" />
       <footer class="pb-20 flex items-center justify-between">
         <p class="text-muted-foreground" >&copy; <span id="footer-year">{currentYear}</span></p>
-        <p class="!mt-0">Bachitter</p>
+        <Sign class="w-20" />
       </footer>     
     </div>
   </body>
