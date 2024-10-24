@@ -4,7 +4,15 @@ import { defineConfig, envField } from "astro/config";
 // https://astro.build/config
 
 export default defineConfig({
-  site: "https://bachitter.dev",
+  env: {
+    schema: {
+      CONTENTFUL_API_TOKEN: envField.string({ context: "server", access: "secret" }),
+      CONTENTFUL_SPACE_ID: envField.string({ context: "server", access: "public" }),
+    },
+  },
+  experimental: {
+    clientPrerender: true,
+  },
   integrations: [
     sitemap(),
     tailwind({
@@ -12,11 +20,12 @@ export default defineConfig({
       nesting: true,
     }),
   ],
-  scopedStyleStrategy: "attribute",
-  env: {
-    schema: {
-      CONTENTFUL_SPACE_ID: envField.string({ context: "server", access: "public" }),
-      CONTENTFUL_API_TOKEN: envField.string({ context: "server", access: "secret" }),
-    },
+  output: "static",
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: "viewport",
   },
+  scopedStyleStrategy: "attribute",
+  site: "https://bachitter.dev",
+  trailingSlash: "never",
 });

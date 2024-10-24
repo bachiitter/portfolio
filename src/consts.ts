@@ -36,6 +36,11 @@ export const SOCIALS: Array<{
     handle: "@bachiitter",
     url: "https://x.com/bachiitter",
   },
+  {
+    label: "bluesky",
+    handle: "@bachiitter.bsky.social",
+    url: "https://bsky.app/profile/bachiitter.bsky.social",
+  },
 ] as const;
 
 export const PROJECTS: Array<{

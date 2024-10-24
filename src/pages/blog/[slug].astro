@@ -37,16 +37,16 @@ const { Content } = await render(post);
   }
 </style>
 
-<BaseLayout title={post.data.title} description={post.data.description} >
+<BaseLayout title={post.data.title} description={post.data.description}  >
   <main class="flex flex-col gap-12">
     <section class="flex flex-col">
       <h1>{post.data.title}</h1>
       <p class="text-sm text-muted-foreground !mt-2">
-        <time>{formattedDate}</time>
+        Posted <time>{formattedDate}</time>
       </p>
     </section>
     <article class="overflow-auto" >
-      <Content />     
+      <Content />
     </article>
   </main>
 </BaseLayout>

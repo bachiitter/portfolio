@@ -8,11 +8,11 @@ import { NAVIGATION } from "../consts.ts";
 
 export interface Props {
   title?: string;
-  description?: string;
+  description: string | undefined;
 }
 
 const { title, description } = Astro.props;
-const metaTitle = Astro.url.pathname === "/" ? "Bachitter" : `${title} // Bachitter`;
+const metaTitle = Astro.url.pathname === "/" ? "Bachitter Chahal" : `${title} // Bachitter`;
 const metaDescription = description
   ? description
   : "Hi! I am Bachitter Chahal, a Product Engineer based in Vancouver, Canada.";
@@ -35,9 +35,9 @@ const currentYear = new Date().getFullYear();
     <!-- Icons -->
     <link rel="icon" href="/icon.png" type="image/png" />
     <link rel="apple-touch-icon" href="/apple-icon.png" />
-    
+
     <!-- Canonical URL -->
-    <link rel="canonical" href={canonicalURL} />    
+    <link rel="canonical" href={canonicalURL} />
 
     <!-- Primary Meta Tags -->
     <title>{metaTitle}</title>
@@ -55,7 +55,7 @@ const currentYear = new Date().getFullYear();
     <meta property="twitter:card" content="summary" />
     <meta property="twitter:url" content={Astro.url} />
     <meta property="twitter:title" content={metaTitle} />
-    <meta property="twitter:description" content={metaDescription} />    
+    <meta property="twitter:description" content={metaDescription} />
 
     <!-- Manifest -->
     <!-- <link rel="manifest" href="/manifest.json" /> -->
@@ -69,7 +69,7 @@ const currentYear = new Date().getFullYear();
       type="application/rss+xml"
       href={new URL("/rss.xml", Astro.site)}
     />
-      
+
     <!-- Umami Analytics -->
     <script is:inline defer src="https://cloud.umami.is/script.js" data-domains="bachitter.dev" data-website-id="cfd2d291-8e0a-4160-b788-434caca658aa"/>
   </head>
@@ -80,13 +80,13 @@ const currentYear = new Date().getFullYear();
           <div class="flex gap-2">
             {
               NAVIGATION.map((link) => {
-                const isCurrent = 
+                const isCurrent =
                   Astro.url.pathname === `${link.slug}/` ||
                   Astro.url.pathname === `${link.slug}`;
 
                 return (
                   <a href={link.slug} aria-current={isCurrent ? "page" : undefined} class={"text-muted-foreground underline-offset-4 hover:underline p-0 h-auto inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 aria-[current]:text-primary"}>
-                    {link.label}      
+                    {link.label}
                   </a>
                 )
               })
@@ -100,7 +100,7 @@ const currentYear = new Date().getFullYear();
       <footer class="pb-20 flex items-center justify-between">
         <p class="text-muted-foreground" >&copy; <span id="footer-year">{currentYear}</span></p>
         <Sign class="w-20 fill-foreground" />
-      </footer>     
+      </footer>
     </div>
   </body>
 </html>

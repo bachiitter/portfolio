@@ -1,19 +1,8 @@
 import { z } from "astro:content";
 import { CONTENTFUL_API_TOKEN, CONTENTFUL_SPACE_ID } from "astro:env/server";
 import { createMarkdownProcessor } from "@astrojs/markdown-remark";
-import {
-  transformerCompactLineOptions,
-  transformerMetaHighlight,
-  transformerMetaWordHighlight,
-  transformerNotationDiff,
-  transformerNotationErrorLevel,
-  transformerNotationFocus,
-  transformerNotationHighlight,
-  transformerNotationWordHighlight,
-  transformerRenderWhitespace,
-} from "@shikijs/transformers";
+import { transformerMetaHighlight } from "@shikijs/transformers";
 import type { Loader } from "astro/loaders";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 
 const CONTENTFUL_ENDPOINT = `https://graphql.contentful.com/content/v1/spaces/${CONTENTFUL_SPACE_ID}`;
@@ -29,6 +18,8 @@ const GET_POSTS = `
         title
       	description
         slug
+        featured
+        tag
         content
       }
     }
@@ -40,9 +31,11 @@ export const ContentfulLoader: Loader = {
   schema: z.object({
     id: z.string(),
     title: z.string(),
-    description: z.string(),
+    description: z.string().optional(),
     slug: z.string(),
-    publishedAt: z.string().datetime(),
+    featured: z.boolean(),
+    tag: z.string().optional(),
+    publishedAt: z.string().datetime().optional(),
     content: z.string(),
   }),
   load: async (ctx) => {
@@ -70,26 +63,10 @@ export const ContentfulLoader: Loader = {
         shikiConfig: {
           theme: "vesper",
           defaultColor: false,
-          transformers: [
-            transformerNotationDiff(),
-            transformerNotationFocus(),
-            transformerMetaHighlight(),
-            transformerMetaWordHighlight(),
-            transformerNotationHighlight(),
-            transformerNotationWordHighlight(),
-            transformerNotationErrorLevel(),
-            transformerRenderWhitespace(),
-            transformerCompactLineOptions(),
-          ],
+          transformers: [transformerMetaHighlight()],
         },
         remarkPlugins: [],
-        rehypePlugins: [
-          rehypeSlug,
-          [
-            rehypeAutolinkHeadings,
-            { behavior: "append", className: ["subheading-anchor"], ariaLabel: "Link to section" },
-          ],
-        ],
+        rehypePlugins: [rehypeSlug],
       });
 
       const { code, metadata } = await preprocessor.render(item.content, {
@@ -97,6 +74,8 @@ export const ContentfulLoader: Loader = {
           title: item.title,
           description: item.description,
           slug: item.slug,
+          featured: item.featured,
+          tag: item.tag,
           publishedAt: item.sys.publishedAt,
         },
       });
@@ -107,6 +86,8 @@ export const ContentfulLoader: Loader = {
           title: item.title,
           description: item.description,
           slug: item.slug,
+          featured: item.featured,
+          tag: item.tag,
           publishedAt: item.sys.publishedAt,
           content: item.content,
         },
