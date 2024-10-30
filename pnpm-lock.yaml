@@ -23,6 +23,15 @@ importers:
       '@fontsource-variable/jetbrains-mono':
         specifier: ^5.1.1
         version: 5.1.1
+      '@fontsource/ibm-plex-mono':
+        specifier: ^5.1.0
+        version: 5.1.0
+      '@fontsource/ibm-plex-sans':
+        specifier: ^5.1.0
+        version: 5.1.0
+      '@fontsource/ibm-plex-serif':
+        specifier: ^5.1.0
+        version: 5.1.0
       '@shikijs/transformers':
         specifier: ^1.22.0
         version: 1.22.0
@@ -441,6 +450,15 @@ packages:
 
   '@fontsource-variable/jetbrains-mono@5.1.1':
     resolution: {integrity: sha512-V+1aRFRvuZ66PpO30s8l/2aADKzpV9VRsO3kSZE+rTMvi4vab3cUcPHMN2z+wAvjkYJO71Yf+g3/Y6pSMmQpVQ==}
+
+  '@fontsource/ibm-plex-mono@5.1.0':
+    resolution: {integrity: sha512-XKsZNyRCj6tz8zlatHmniSoLVephMD5GQG2sXgcaEb8DkUO+O61r28uTlIMEZuoZXtP4c4STvL+KUlJM5jZOEg==}
+
+  '@fontsource/ibm-plex-sans@5.1.0':
+    resolution: {integrity: sha512-v2aFHGh33ogG+At6dVNUCX6vWlNAhQ6STWj5WrBKPxVWX1SsAnHNq8sXQBa7WHEt29Irmozuk7GTp6GzFlpwdQ==}
+
+  '@fontsource/ibm-plex-serif@5.1.0':
+    resolution: {integrity: sha512-x8/rprq/hc94eYugICIUJCyUVMC1rPpgmL8km5FhhXIl6l2soaYadLcx4bmVP/rvLr/cRtj4GCaV6ZnGg3jaPA==}
 
   '@img/sharp-darwin-arm64@0.33.5':
     resolution: {integrity: sha512-UT4p+iz/2H4twwAoLCqfA9UH5pI6DggwKEGuaPy7nCVQ8ZsiY5PIcrRvD1DzuY3qYL07NtIQcWnBSY/heikIFQ==}
@@ -2245,6 +2263,12 @@ snapshots:
     optional: true
 
   '@fontsource-variable/jetbrains-mono@5.1.1': {}
+
+  '@fontsource/ibm-plex-mono@5.1.0': {}
+
+  '@fontsource/ibm-plex-sans@5.1.0': {}
+
+  '@fontsource/ibm-plex-serif@5.1.0': {}
 
   '@img/sharp-darwin-arm64@0.33.5':
     optionalDependencies:

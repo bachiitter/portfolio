@@ -14,8 +14,9 @@ const config = {
     },
     extend: {
       fontFamily: {
-        sans: ["Hubot Sans", ...fontFamily.sans],
-        mono: ["JetBrains Mono Variable", ...fontFamily.mono],
+        serif: ["IBM Plex Serif", ...fontFamily.serif],
+        sans: ["IBM Plex Sans", ...fontFamily.sans],
+        mono: ["IBM Plex Mono", ...fontFamily.mono],
       },
       colors: {
         border: "hsl(var(--border))",
