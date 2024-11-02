@@ -38,7 +38,7 @@ export const SOCIALS: Array<{
   },
   {
     label: "bluesky",
-    handle: "@bachiitter.bsky.social",
+    handle: "@bachiitter.dev",
     url: "https://bsky.app/profile/bachitter.dev",
   },
 ] as const;
