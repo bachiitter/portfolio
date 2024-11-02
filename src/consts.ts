@@ -39,7 +39,7 @@ export const SOCIALS: Array<{
   {
     label: "bluesky",
     handle: "@bachiitter.bsky.social",
-    url: "https://bsky.app/profile/bachiitter.bsky.social",
+    url: "https://bsky.app/profile/bachitter.dev",
   },
 ] as const;
 
