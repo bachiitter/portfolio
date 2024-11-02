@@ -23,7 +23,7 @@ export const SOCIALS: Array<{
 }> = [
   {
     label: "email",
-    handle: "bachitter@pm.me",
+    handle: "bachiitter@pm.me",
     url: "mailto:bachiitter@pm.me",
   },
   {
