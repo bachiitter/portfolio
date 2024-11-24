@@ -130,10 +130,6 @@
     @apply my-6 ml-4 list-decimal [&>li]:mt-2 [&>li]:pl-1 marker:text-primary;
   }
 
-  article a {
-    @apply p-0 h-auto text-primary underline-offset-4 hover:underline inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
-  }
-
   mark {
     @apply inline rounded bg-warning/20 px-1 text-warning-foreground [box-decoration-break:clone];
   }
@@ -153,6 +149,10 @@
   :not(pre) > code::after {
     content: "`";
   }
+}
+
+article > a {
+  @apply p-0 h-auto text-primary underline-offset-4 hover:underline inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
 }
 
 pre {
