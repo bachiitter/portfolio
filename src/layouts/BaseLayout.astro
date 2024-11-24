@@ -24,8 +24,7 @@ export interface Props {
 }
 
 const { title, description } = Astro.props;
-const metaTitle =
-  Astro.url.pathname === "/" ? "Bachitter Chahal" : `${title} // Bachitter`;
+const metaTitle = Astro.url.pathname === "/" ? "Bachitter Chahal" : `${title} // Bachitter`;
 const metaDescription = description
   ? description
   : "Hi! I am Bachitter Chahal, a Product Engineer based in Vancouver, Canada.";

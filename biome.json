@@ -24,9 +24,9 @@
       "complexity": {
         "useArrowFunction": "off"
       },
-      "style"{
-      "noNonNullAssertion":"off"
-    }
+      "style": {
+        "noNonNullAssertion": "off"
+      }
     }
   },
   "formatter": {
