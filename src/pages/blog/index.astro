@@ -6,7 +6,10 @@ import { formatDate } from "../../lib/utils";
 const posts = await getCollection("posts");
 ---
 
-<BaseLayout title="Blog" description="A collection of my writings, rants and incomplete notes." >
+<BaseLayout
+  title="Blog"
+  description="A collection of my writings, rants and incomplete notes."
+>
   <main class="flex flex-col gap-10">
     <section>
       <h1>Blog</h1>
@@ -15,25 +18,27 @@ const posts = await getCollection("posts");
       </p>
     </section>
     <section>
-    {posts.length > 0 ? (
-      <div class="flex flex-col gap-6">
-        {posts.map((post) => (
-          <a href={`/blog/${post.data.slug}`}>
-            <div class="flex gap-6 justify-between items-center">
-              <h3 class="!mt-0">{post.data.title}</h3>
-              <span class="text-muted-foreground text-sm">
-                {formatDate(new Date(post.data.publishedAt))}
-              </span>
-            </div>
-            <p class="text-muted-foreground text-sm !mt-0 pr-[32px]">
-              {post.data.description}
-            </p>
-          </a>
-        ))}
-      </div>
+      {
+        posts.length > 0 ? (
+          <div class="flex flex-col gap-6">
+            {posts.map((post) => (
+              <a href={`/blog/${post.data.slug}`}>
+                <div class="flex gap-6 justify-between items-center">
+                  <h3 class="!mt-0">{post.data.title}</h3>
+                  <span class="text-muted-foreground text-sm">
+                    {formatDate(new Date(post.data.publishedAt!))}
+                  </span>
+                </div>
+                <p class="text-muted-foreground text-sm !mt-0 pr-[32px]">
+                  {post.data.description}
+                </p>
+              </a>
+            ))}
+          </div>
         ) : (
           <p class="text-muted-foreground">Nothing to see here!</p>
-        )}
+        )
+      }
     </section>
   </main>
 </BaseLayout>

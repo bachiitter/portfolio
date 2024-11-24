@@ -26,7 +26,7 @@ const formattedDate = new Intl.DateTimeFormat("en-US", {
   month: "long",
   day: "2-digit",
   timeZone: "UTC",
-}).format(new Date(post.data.publishedAt));
+}).format(new Date(post.data.publishedAt!));
 
 const { Content } = await render(post);
 ---
@@ -37,7 +37,7 @@ const { Content } = await render(post);
   }
 </style>
 
-<BaseLayout title={post.data.title} description={post.data.description}  >
+<BaseLayout title={post.data.title} description={post.data.description}>
   <main class="flex flex-col gap-12">
     <section class="flex flex-col">
       <h1>{post.data.title}</h1>
@@ -45,7 +45,7 @@ const { Content } = await render(post);
         Posted <time>{formattedDate}</time>
       </p>
     </section>
-    <article class="overflow-auto" >
+    <article class="overflow-auto">
       <Content />
     </article>
   </main>
