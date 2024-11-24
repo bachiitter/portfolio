@@ -51,7 +51,7 @@
       --destructive: 358.09 75.12% 59.02%;
       --destructive-foreground: 0 0% 93.33%;
       --warning: 42.1 100% 62%;
-      --success-foreground: 0 0% 93.33%;
+      --warning-foreground: 0 0% 93.33%;
       --success: 151 54.7% 41.6%;
       --success-foreground: 0 0% 93.33%;
       --ring: 10 78% 54%;
@@ -66,6 +66,8 @@
 
   * {
     @apply border-border;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
   }
 
   body {
@@ -121,45 +123,23 @@
   }
 
   ul {
-    @apply my-6 ml-6 list-disc [&>li]:mt-2;
+    @apply my-6 ml-4 list-disc [&>li]:mt-2 [&>li]:pl-1 marker:text-primary;
   }
 
   ol {
-    @apply my-6 ml-6 list-decimal [&>li]:mt-2;
+    @apply my-6 ml-4 list-decimal [&>li]:mt-2 [&>li]:pl-1 marker:text-primary;
   }
 
   article a {
     @apply p-0 h-auto text-primary underline-offset-4 hover:underline inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
   }
 
-  pre {
-    --pre-bg: hsl(0 0% 9.8%);
-    @apply !bg-[--pre-bg] py-4 text-sm leading-6;
-  }
-
-  code {
-    --pre-bg: hsl(0 0% 9.8%);
-    @apply isolate block w-fit min-w-full [counter-reset:line] *:inline-block *:w-full *:[counter-increment:line] *:before:pointer-events-none *:before:sticky *:before:left-0 *:before:z-20 *:before:inline-block *:before:w-11 *:before:select-none *:before:bg-gradient-to-r *:before:from-[--pre-bg] *:before:from-80% *:before:pr-4 *:before:text-right *:before:text-muted-foreground *:before:content-[counter(line)] *:after:pointer-events-none *:after:sticky *:after:right-0 *:after:z-10 *:after:inline-block *:after:w-6 *:after:select-none *:after:bg-gradient-to-l *:after:from-[--pre-bg] *:after:from-35% *:after:content-['_'];
-  }
-
   mark {
-    @apply -mx-0.5 inline rounded bg-amber-500/20 px-0.5 text-amber-100 [box-decoration-break:clone];
-  }
-
-  pre {
-    @apply overflow-hidden mt-6 rounded-md border border-border;
-  }
-
-  pre code span:last-of-type:empty {
-    @apply hidden;
-  }
-
-  pre code .highlighted {
-    @apply bg-muted;
+    @apply inline rounded bg-warning/20 px-1 text-warning-foreground [box-decoration-break:clone];
   }
 
   kbd {
-    @apply -mx-0.5 inline rounded bg-accent px-0.5 text-[0.9375rem] [box-decoration-break:clone];
+    @apply inline rounded border border-border bg-accent px-1 text-xs [box-decoration-break:clone];
   }
 
   :not(pre) > code {
@@ -173,4 +153,60 @@
   :not(pre) > code::after {
     content: "`";
   }
+}
+
+pre {
+  @apply py-4 text-sm leading-6 overflow-hidden mt-6 rounded-md border border-border/35;
+}
+
+pre code span:last-of-type:empty {
+  @apply hidden;
+}
+
+code {
+  --pre-bg: hsl(0 0% 9.8%);
+  @apply isolate block w-fit min-w-full *:inline-block;
+}
+
+pre > code > .line {
+  @apply px-4 inline-block w-full pb-0.5;
+}
+
+pre > code > .highlighted {
+  @apply bg-muted w-full;
+}
+
+pre > code > .error {
+  @apply bg-destructive/15;
+}
+
+pre > code > .warning {
+  @apply bg-warning/15;
+}
+
+pre > code > .add {
+  @apply bg-success/15;
+}
+
+pre > code > .remove {
+  @apply bg-destructive/15;
+}
+
+pre > code > .line > .highlighted-word {
+  @apply border-border border rounded px-1;
+}
+
+pre code {
+  counter-reset: step;
+  counter-increment: step 0;
+}
+
+pre code .line::before {
+  @apply text-xs mr-4 inline-block text-right text-muted-foreground;
+  content: counter(step);
+  counter-increment: step;
+}
+
+#footnote-label {
+  @apply sr-only mt-12;
 }

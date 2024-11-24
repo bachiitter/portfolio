@@ -1,9 +1,16 @@
 import { z } from "astro:content";
 import { CONTENTFUL_API_TOKEN, CONTENTFUL_SPACE_ID } from "astro:env/server";
 import { createMarkdownProcessor } from "@astrojs/markdown-remark";
-import { transformerMetaHighlight } from "@shikijs/transformers";
+import {
+  transformerMetaHighlight,
+  transformerMetaWordHighlight,
+  transformerNotationDiff,
+  transformerNotationErrorLevel,
+  transformerNotationWordHighlight,
+} from "@shikijs/transformers";
 import type { Loader } from "astro/loaders";
 import rehypeSlug from "rehype-slug";
+import { remarkDeruntify } from "../remark/deruntify";
 
 const CONTENTFUL_ENDPOINT = `https://graphql.contentful.com/content/v1/spaces/${CONTENTFUL_SPACE_ID}`;
 
@@ -62,10 +69,15 @@ export const ContentfulLoader: Loader = {
         syntaxHighlight: "shiki",
         shikiConfig: {
           theme: "vesper",
-          defaultColor: false,
-          transformers: [transformerMetaHighlight()],
+          transformers: [
+            transformerMetaHighlight(),
+            transformerNotationDiff(),
+            transformerMetaWordHighlight(),
+            transformerNotationErrorLevel(),
+            transformerNotationWordHighlight(),
+          ],
         },
-        remarkPlugins: [],
+        remarkPlugins: [remarkDeruntify],
         rehypePlugins: [rehypeSlug],
       });
 

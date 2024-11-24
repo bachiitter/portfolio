@@ -1,5 +1,6 @@
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
+
 import { defineConfig, envField } from "astro/config";
 // https://astro.build/config
 
@@ -18,6 +19,7 @@ export default defineConfig({
     tailwind({
       configFile: "./tailwind.config.ts",
       nesting: true,
+      applyBaseStyles: false,
     }),
   ],
   output: "static",
