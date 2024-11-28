@@ -1,5 +1,5 @@
 import sitemap from "@astrojs/sitemap";
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
 
 import { defineConfig, envField } from "astro/config";
 // https://astro.build/config
@@ -14,14 +14,7 @@ export default defineConfig({
   experimental: {
     clientPrerender: true,
   },
-  integrations: [
-    sitemap(),
-    tailwind({
-      configFile: "./tailwind.config.ts",
-      nesting: true,
-      applyBaseStyles: false,
-    }),
-  ],
+  integrations: [sitemap()],
   output: "static",
   prefetch: {
     prefetchAll: true,
@@ -30,4 +23,7 @@ export default defineConfig({
   scopedStyleStrategy: "attribute",
   site: "https://bachitter.dev",
   trailingSlash: "never",
+  vite: {
+    plugins: [tailwindcss()],
+  },
 });
