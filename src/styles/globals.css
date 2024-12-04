@@ -159,7 +159,7 @@
   }
 
   body {
-    @apply bg-background tracking-[-3%] text-[15px] text-foreground;
+    @apply bg-background text-[15px] text-foreground;
     line-height: calc(15px * 1.7);
   }
 
@@ -177,6 +177,11 @@
 
   h4 {
     @apply scroll-m-20 mt-8 font-serif font-semibold text-[18px] leading-[1.4] tracking-tight;
+  }
+
+  span,
+  p {
+    @apply tracking-[-3%];
   }
 
   p {
