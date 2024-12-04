@@ -243,27 +243,33 @@
   }
 
   pre {
-    @apply flex py-4 text-sm leading-6 mt-6 rounded-md border border-border/35;
+    @apply relative z-[1] overflow-x-auto whitespace-pre py-4 text-sm leading-7 mt-6 rounded-md border border-border/35;
+  }
+
+  pre code {
+    @apply block w-fit px-[24px] min-w-full;
   }
 
   pre code span:last-of-type:empty {
     @apply hidden;
   }
 
-  pre code span.line {
-    @apply px-4 inline-block pb-0.5 min-w-full;
-  }
-
   pre code span.highlighted {
-    @apply bg-muted;
+    @apply inline-block bg-muted -mx-[24px] px-[24px];
+    width: calc(100% + 48px);
   }
 
   pre code span.error {
-    @apply bg-destructive/15!;
+    @apply bg-destructive/15;
   }
 
   pre code span.warning {
     @apply bg-warning/15!;
+  }
+
+  pre code span.diff {
+    @apply inline-block -mx-[24px] px-[24px];
+    width: calc(100% + 48px);
   }
 
   pre code span.add {
@@ -276,17 +282,6 @@
 
   pre code span.line span.highlighted-word {
     @apply border-border border rounded px-1;
-  }
-
-  pre code {
-    counter-reset: step;
-    counter-increment: step 0;
-  }
-
-  pre code .line::before {
-    @apply text-xs mr-4 inline-block text-right text-muted-foreground;
-    content: counter(step);
-    counter-increment: step;
   }
 
   #footnote-label {
