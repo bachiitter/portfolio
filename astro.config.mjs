@@ -13,6 +13,8 @@ export default defineConfig({
   },
   experimental: {
     clientPrerender: true,
+    svg: true,
+    responsiveImages: true,
   },
   integrations: [sitemap()],
   output: "static",

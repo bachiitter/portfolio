@@ -7,12 +7,13 @@ export const GET: APIRoute = async (context) => {
 
   return rss({
     title: "Bachitter",
-    description: "Hi! I am Bachitter Chahal, a Product Engineer based in Vancouver, Canada.",
+    description:
+      "Hi! I am Bachitter Chahal, a Product Engineer based in Vancouver, Canada.",
     site: context.site?.toString() || "",
-    copyright: `© ${new Date().getFullYear()} Bachitter`,
+    // copyright: `© ${new Date().getFullYear()} Bachitter`,
     items: posts.map((post) => ({
       title: post.data.title,
-      pubDate: post.data.publishedAt,
+      pubDate: new Date(post.data.publishedAt || ""),
       description: post.data.description,
       link: `/blog/${post.data.slug}/`,
     })),

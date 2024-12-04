@@ -1,18 +1,14 @@
 ---
 import "../styles/globals.css";
+import "@fontsource-variable/inter/wght.css";
+import "@fontsource-variable/inter/wght-italic.css";
+
+import "@fontsource/redaction-20/400.css";
+import "@fontsource/redaction-20/700.css";
+import "@fontsource/redaction-20/400-italic.css";
+import "@fontsource/redaction-20/700-italic.css";
+
 import "@fontsource/ibm-plex-mono";
-import "@fontsource/ibm-plex-sans/400.css";
-import "@fontsource/ibm-plex-sans/500.css";
-import "@fontsource/ibm-plex-sans/600.css";
-import "@fontsource/ibm-plex-sans/700.css";
-
-import "@fontsource/ibm-plex-sans/400-italic.css";
-import "@fontsource/ibm-plex-sans/500-italic.css";
-import "@fontsource/ibm-plex-sans/600-italic.css";
-import "@fontsource/ibm-plex-sans/700-italic.css";
-
-import "@fontsource/ibm-plex-serif/600.css";
-import "@fontsource/ibm-plex-serif/700.css";
 
 import Sign from "../components/sign.astro";
 
@@ -24,7 +20,8 @@ export interface Props {
 }
 
 const { title, description } = Astro.props;
-const metaTitle = Astro.url.pathname === "/" ? "Bachitter Chahal" : `${title} // Bachitter`;
+const metaTitle =
+  Astro.url.pathname === "/" ? "Bachitter Chahal" : `${title} // Bachitter`;
 const metaDescription = description
   ? description
   : "Hi! I am Bachitter Chahal, a Product Engineer based in Vancouver, Canada.";

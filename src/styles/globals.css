@@ -3,11 +3,11 @@
 @variant dark (@media (prefers-color-scheme: dark));
 
 @theme {
-  --font-serif: IBM Plex Serif, ui-serif, Georgia, Cambria, "Times New Roman", Times,
+  --font-serif: "Redaction 20", ui-serif, Georgia, Cambria, "Times New Roman", Times,
     serif;
-  --font-sans: IBM Plex Sans, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-mono: IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
 
   --color-border: hsl(var(--border));
