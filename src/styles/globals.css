@@ -211,11 +211,11 @@
   }
 
   ul {
-    @apply my-6 ml-4 list-disc [&>li]:mt-2 [&>li]:pl-1 marker:text-primary;
+    @apply my-6 ml-4 list-disc [&>li]:mt-2 [&>li]:pl-1 marker:text-primary marker:text-sm marker:font-sans;
   }
 
   ol {
-    @apply my-6 ml-4 list-decimal [&>li]:mt-2 [&>li]:pl-1 marker:text-primary;
+    @apply my-6 ml-4 list-decimal [&>li]:mt-2 [&>li]:pl-1 marker:text-primary marker:text-sm marker:font-sans;
   }
 
   mark {
@@ -227,7 +227,7 @@
   }
 
   :not(pre) > code {
-    @apply inline px-[0.3rem] py-[0.2rem] text-sm [box-decoration-break:clone];
+    @apply inline mx-1 px-[0.2rem] py-[0.1rem] text-sm rounded-sm bg-muted! border-[0.5px] border-border [box-decoration-break:clone];
   }
 
   :not(pre) > code::before {
@@ -237,64 +237,59 @@
   :not(pre) > code::after {
     content: "`";
   }
-}
 
-article > a {
-  @apply p-0 h-auto text-primary underline-offset-4 hover:underline inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
-}
+  article a {
+    @apply p-0 h-auto text-primary underline-offset-4 hover:underline inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
+  }
 
-pre {
-  @apply py-4 text-sm leading-6 overflow-hidden mt-6 rounded-md border border-border/35;
-}
+  pre {
+    @apply flex py-4 text-sm leading-6 mt-6 rounded-md border border-border/35;
+  }
 
-pre code span:last-of-type:empty {
-  @apply hidden;
-}
+  pre code span:last-of-type:empty {
+    @apply hidden;
+  }
 
-code {
-  --pre-bg: hsl(0 0% 9.8%);
-  @apply isolate block w-fit min-w-full *:inline-block;
-}
+  pre code span.line {
+    @apply px-4 inline-block pb-0.5 min-w-full;
+  }
 
-pre > code > .line {
-  @apply px-4 inline-block w-full pb-0.5;
-}
+  pre code span.highlighted {
+    @apply bg-muted;
+  }
 
-pre > code > .highlighted {
-  @apply bg-muted w-full;
-}
+  pre code span.error {
+    @apply bg-destructive/15!;
+  }
 
-pre > code > .error {
-  @apply bg-destructive/15;
-}
+  pre code span.warning {
+    @apply bg-warning/15!;
+  }
 
-pre > code > .warning {
-  @apply bg-warning/15;
-}
+  pre code span.add {
+    @apply bg-success/15!;
+  }
 
-pre > code > .add {
-  @apply bg-success/15;
-}
+  pre code span.remove {
+    @apply bg-destructive/15!;
+  }
 
-pre > code > .remove {
-  @apply bg-destructive/15;
-}
+  pre code span.line span.highlighted-word {
+    @apply border-border border rounded px-1;
+  }
 
-pre > code > .line > .highlighted-word {
-  @apply border-border border rounded px-1;
-}
+  pre code {
+    counter-reset: step;
+    counter-increment: step 0;
+  }
 
-pre code {
-  counter-reset: step;
-  counter-increment: step 0;
-}
+  pre code .line::before {
+    @apply text-xs mr-4 inline-block text-right text-muted-foreground;
+    content: counter(step);
+    counter-increment: step;
+  }
 
-pre code .line::before {
-  @apply text-xs mr-4 inline-block text-right text-muted-foreground;
-  content: counter(step);
-  counter-increment: step;
-}
-
-#footnote-label {
-  @apply sr-only mt-12;
+  #footnote-label {
+    @apply sr-only mt-12;
+  }
 }

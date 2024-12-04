@@ -76,6 +76,7 @@ export const ContentfulLoader: Loader = {
             transformerNotationErrorLevel(),
             transformerNotationWordHighlight(),
           ],
+          wrap: false,
         },
         remarkPlugins: [remarkDeruntify],
         rehypePlugins: [rehypeSlug],
