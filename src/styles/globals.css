@@ -159,7 +159,8 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background tracking-[-3%] text-[15px] text-foreground;
+    line-height: calc(15px * 1.7);
   }
 
   h1 {
@@ -179,7 +180,7 @@
   }
 
   p {
-    @apply text-[15px] leading-7 not-first:mt-6;
+    @apply not-first:mt-6;
   }
 
   img {
@@ -252,6 +253,17 @@
 
   pre code span:last-of-type:empty {
     @apply hidden;
+  }
+
+  code {
+    counter-reset: step;
+    counter-increment: step 0;
+  }
+
+  code .line::before {
+    @apply text-xs mr-4 inline-block text-right text-muted-foreground;
+    content: counter(step);
+    counter-increment: step;
   }
 
   pre code span.highlighted {

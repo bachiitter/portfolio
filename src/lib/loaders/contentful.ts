@@ -7,6 +7,7 @@ import {
   transformerNotationDiff,
   transformerNotationErrorLevel,
   transformerNotationWordHighlight,
+  transformerCompactLineOptions,
 } from "@shikijs/transformers";
 import type { Loader } from "astro/loaders";
 import rehypeSlug from "rehype-slug";
@@ -75,6 +76,7 @@ export const ContentfulLoader: Loader = {
             transformerMetaWordHighlight(),
             transformerNotationErrorLevel(),
             transformerNotationWordHighlight(),
+            transformerCompactLineOptions(),
           ],
           wrap: false,
         },
