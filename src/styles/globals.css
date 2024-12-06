@@ -160,6 +160,9 @@
 
   body {
     @apply bg-background text-[15px] text-foreground;
+    font-feature-settings:
+      "liga" 1,
+      "calt" 1; /* fix for Chrome */
     line-height: calc(15px * 1.7);
   }
 
