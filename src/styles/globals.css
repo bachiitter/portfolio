@@ -188,7 +188,7 @@
   }
 
   p {
-    @apply not-first:mt-6;
+    @apply not-first:mt-6 text-muted-foreground;
   }
 
   img {
