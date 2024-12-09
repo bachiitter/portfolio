@@ -118,7 +118,7 @@
     --radius: 0.75rem;
   }
 
-  @media (prefers-color-scheme: dark) {
+  /* @media (prefers-color-scheme: dark) {
     :root {
       --background: 0 0% 6.67%;
       --foreground: 0 0% 93.33%;
@@ -144,7 +144,7 @@
       --success-foreground: 0 0% 93.33%;
       --ring: 10 78% 54%;
     }
-  }
+  } */
 }
 
 @layer base {
