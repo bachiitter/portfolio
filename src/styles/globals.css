@@ -184,11 +184,11 @@
 
   span,
   p {
-    @apply tracking-[-3%];
+    @apply tracking-[-3%] text-muted-foreground;
   }
 
   p {
-    @apply not-first:mt-6 text-muted-foreground;
+    @apply not-first:mt-6;
   }
 
   img {
