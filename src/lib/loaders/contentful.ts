@@ -9,9 +9,9 @@ import {
   transformerNotationWordHighlight,
   transformerCompactLineOptions,
 } from "@shikijs/transformers";
-import type { Loader } from "astro/loaders";
 import rehypeSlug from "rehype-slug";
 import { remarkDeruntify } from "../remark/deruntify";
+import type { Loader } from "astro/loaders";
 
 const CONTENTFUL_ENDPOINT = `https://graphql.contentful.com/content/v1/spaces/${CONTENTFUL_SPACE_ID}`;
 

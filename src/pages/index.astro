@@ -35,7 +35,7 @@ const featuredPosts = posts.filter((post) => post.data.featured);
               <li class="flex gap-1 text-sm">
                 <span>{link.label}</span>
                 <span>/</span>
-                <Link client:load target="_blank" rel="noreferrer" href={link.url}>
+                <Link target="_blank" rel="noreferrer" href={link.url}>
                   {link.handle}
                 </Link>
               </li>

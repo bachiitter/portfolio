@@ -95,7 +95,6 @@ const currentYear = new Date().getFullYear();
                 const isCurrent =
                   Astro.url.pathname === `${link.slug}/` ||
                   Astro.url.pathname === `${link.slug}`;
-
                 return (
                   <a
                     href={link.slug}
