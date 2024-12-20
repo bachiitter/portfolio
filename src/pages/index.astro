@@ -14,8 +14,8 @@ const featuredPosts = posts.filter((post) => post.data.featured);
   <main class="flex flex-col gap-10">
     <section class="flex flex-col">
       <h1>Bachitter Chahal</h1>
-      <p class="mt-0! text-primary">Product Engineer</p>
-      <p class="text-muted-foreground">
+      <p class="mt-0! text-primary-solid">Product Engineer</p>
+      <p class="text-foreground">
         Hi! I am a Product Engineer based in Vancouver, Canada. I love building and
         breaking things. Everything I have learned has been taught by my curiosity about{
           " "
@@ -23,19 +23,19 @@ const featuredPosts = posts.filter((post) => post.data.featured);
         <span class="font-bold">how</span> and <span class="font-bold">why</span> things work
         the way they work.
       </p>
-      <p class="text-muted-foreground">
+      <p class="text-foreground">
         Currently, I am building{" "}
         <Link target="_blank" rel="noreferrer" href="https://favite.co"> favite </Link>, a
         simple bookmarking app and doing a deep dive into backend engineering and infra.
       </p>
       <p class="flex flex-col items-start gap-2">
-        <ul class="my-0 ml-0 list-none text-muted-foreground">
+        <ul class="my-0 ml-0 list-none text-foreground">
           {
             SOCIALS.map((link) => (
               <li class="flex gap-1 text-sm">
                 <span>{link.label}</span>
                 <span>/</span>
-                <Link target="_blank" rel="noreferrer" href={link.url}>
+                <Link client:load target="_blank" rel="noreferrer" href={link.url}>
                   {link.handle}
                 </Link>
               </li>
@@ -80,7 +80,7 @@ const featuredPosts = posts.filter((post) => post.data.featured);
               ))}
             </div>
           ) : (
-            <p class="text-muted-foreground">Nothing to see here!</p>
+            <p class="text-foreground-subtle">Nothing to see here!</p>
           )
         }
       </div>

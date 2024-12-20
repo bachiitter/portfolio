@@ -20,8 +20,7 @@ export interface Props {
 }
 
 const { title, description } = Astro.props;
-const metaTitle =
-  Astro.url.pathname === "/" ? "Bachitter Chahal" : `${title} // Bachitter`;
+const metaTitle = Astro.url.pathname === "/" ? "Bachitter Chahal" : `${title} // Bachitter`;
 const metaDescription = description
   ? description
   : "Hi! I am Bachitter Chahal, a Product Engineer based in Vancouver, Canada.";
@@ -102,7 +101,7 @@ const currentYear = new Date().getFullYear();
                     href={link.slug}
                     aria-current={isCurrent ? "page" : undefined}
                     class={
-                      "text-foreground underline-offset-4 hover:underline p-0 h-auto inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 aria-[current]:text-primary"
+                      "p-0 h-auto inline-flex items-center justify-center gap-x-2 whitespace-nowrap text-sm font-semibold transition-colors focus-visible:ring-2 focus-visible:ring-offset-background-subtle dark:focus-visible:ring-offset-background focus-visible:ring-offset-2 focus-visible:ring-info-focus-ring focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 underline-offset-4 text-foreground bg-transparent hover:underline rounded-md aria-[current]:text-primary-solid"
                     }
                   >
                     {link.label}
@@ -117,10 +116,10 @@ const currentYear = new Date().getFullYear();
       <slot />
       <div class="pb-20"></div>
       <footer class="pb-20 flex items-center justify-between">
-        <p class="text-muted-foreground">
+        <p class="text-foreground-subtle">
           &copy; <span id="footer-year">{currentYear}</span>
         </p>
-        <Sign class="w-20 fill-foreground" />
+        <Sign class="w-20 fill-black" />
       </footer>
     </div>
   </body>
