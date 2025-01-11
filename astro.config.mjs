@@ -22,7 +22,6 @@ export default defineConfig({
     prefetchAll: true,
     defaultStrategy: "viewport",
   },
-  scopedStyleStrategy: "attribute",
   site: "https://bachitter.dev",
   trailingSlash: "never",
   vite: {

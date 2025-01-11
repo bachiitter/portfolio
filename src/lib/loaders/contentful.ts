@@ -13,8 +13,6 @@ import rehypeSlug from "rehype-slug";
 import { remarkDeruntify } from "../remark/deruntify";
 import type { Loader } from "astro/loaders";
 
-const CONTENTFUL_ENDPOINT = `https://graphql.contentful.com/content/v1/spaces/${CONTENTFUL_SPACE_ID}`;
-
 const GET_POSTS = `
   query GetPosts($preview:Boolean) {
     blogPostCollection(preview:$preview) {
@@ -34,8 +32,10 @@ const GET_POSTS = `
   }
 `;
 
+const CONTENTFUL_ENDPOINT = `https://graphql.contentful.com/content/v1/spaces/${CONTENTFUL_SPACE_ID}/environments/master`;
+
 export const ContentfulLoader: Loader = {
-  name: "posts",
+  name: "blog",
   schema: z.object({
     id: z.string(),
     title: z.string(),
@@ -61,9 +61,9 @@ export const ContentfulLoader: Loader = {
       }),
     });
 
-    const { data } = await res.json();
+    const body = await res.json();
 
-    for (const item of data.blogPostCollection.items) {
+    for (const item of body.data.blogPostCollection.items) {
       const preprocessor = await createMarkdownProcessor({
         gfm: true,
         smartypants: true,
@@ -71,17 +71,11 @@ export const ContentfulLoader: Loader = {
         shikiConfig: {
           theme: "vesper",
           transformers: [
-            // @ts-expect-error shut up!
             transformerMetaHighlight(),
-            // @ts-expect-error shut up!
             transformerNotationDiff(),
-            // @ts-expect-error shut up!
             transformerMetaWordHighlight(),
-            // @ts-expect-error shut up!
             transformerNotationErrorLevel(),
-            // @ts-expect-error shut up!
             transformerNotationWordHighlight(),
-            // @ts-expect-error shut up!
             transformerCompactLineOptions(),
           ],
           wrap: false,

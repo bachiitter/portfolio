@@ -1,10 +1,8 @@
 import { defineCollection } from "astro:content";
 import { ContentfulLoader } from "../lib/loaders/contentful";
 
-const posts = defineCollection({
+const blog = defineCollection({
   loader: ContentfulLoader,
 });
 
-export const collections = {
-  posts,
-};
+export const collections = { blog };
