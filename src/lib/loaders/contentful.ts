@@ -1,5 +1,4 @@
 import { z } from "astro:content";
-import { CONTENTFUL_API_TOKEN, CONTENTFUL_SPACE_ID } from "astro:env/server";
 import { createMarkdownProcessor } from "@astrojs/markdown-remark";
 import {
   transformerMetaHighlight,
@@ -12,6 +11,7 @@ import {
 import rehypeSlug from "rehype-slug";
 import { remarkDeruntify } from "../remark/deruntify";
 import type { Loader } from "astro/loaders";
+import { isTemplateMiddle } from "typescript";
 
 const GET_POSTS = `
   query GetPosts($preview:Boolean) {
@@ -32,7 +32,7 @@ const GET_POSTS = `
   }
 `;
 
-const CONTENTFUL_ENDPOINT = `https://graphql.contentful.com/content/v1/spaces/${CONTENTFUL_SPACE_ID}/environments/master`;
+const CONTENTFUL_ENDPOINT = `https://graphql.contentful.com/content/v1/spaces/${import.meta.env.CONTENTFUL_SPACE_ID}/environments/master`;
 
 export const ContentfulLoader: Loader = {
   name: "blog",
@@ -50,7 +50,7 @@ export const ContentfulLoader: Loader = {
     const res = await fetch(CONTENTFUL_ENDPOINT, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${CONTENTFUL_API_TOKEN}`,
+        Authorization: `Bearer ${import.meta.env.CONTENTFUL_API_TOKEN}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({

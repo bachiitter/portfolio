@@ -5,12 +5,6 @@ import { defineConfig, envField } from "astro/config";
 // https://astro.build/config
 
 export default defineConfig({
-  env: {
-    schema: {
-      CONTENTFUL_API_TOKEN: envField.string({ context: "server", access: "secret" }),
-      CONTENTFUL_SPACE_ID: envField.string({ context: "server", access: "public" }),
-    },
-  },
   experimental: {
     clientPrerender: true,
     svg: true,
