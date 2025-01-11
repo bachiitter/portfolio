@@ -34,7 +34,7 @@ const { Content } = await render(post);
 <BaseLayout title={post.data.title} description={post.data.description}>
   <main class="flex flex-col gap-12">
     <section class="flex flex-col">
-      <h1>{post.data.title}</h1>
+      <h1 class="text-3xl leading-none text-balance tracking-tight font-bold mt-8" >{post.data.title}</h1>
       <!-- <p class="text-sm text-muted-foreground mt-0!">
         <time>{formattedDate}</time>
       </p> -->

@@ -12,7 +12,7 @@ const posts = await getCollection("posts");
 >
   <main class="flex flex-col gap-10">
     <section>
-      <h1>Blog</h1>
+      <h1 class="text-3xl leading-none text-balance tracking-tight font-bold mt-8" >Blog</h1>
       <p class="text-foreground-subtle mt-0!">
         A collection of my writings, rants and incomplete notes.
       </p>
@@ -24,7 +24,7 @@ const posts = await getCollection("posts");
             {posts.map((post) => (
               <a href={`/blog/${post.data.slug}`}>
                 <div class="flex flex-col sm:flex-row gap-1.5 sm:gap-4 sm:justify-between sm:items-center">
-                  <h2 class="m-0! p-0! border-b-0!">{post.data.title}</h2>
+                  <h2 class="text-xl font-bold leading-tight tracking-tight">{post.data.title}</h2>
                   <span class="text-foreground-subtle text-sm">
                     {formatDate(new Date(post.data.publishedAt!))}
                   </span>

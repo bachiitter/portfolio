@@ -71,11 +71,17 @@ export const ContentfulLoader: Loader = {
         shikiConfig: {
           theme: "vesper",
           transformers: [
+            // @ts-expect-error shut up!
             transformerMetaHighlight(),
+            // @ts-expect-error shut up!
             transformerNotationDiff(),
+            // @ts-expect-error shut up!
             transformerMetaWordHighlight(),
+            // @ts-expect-error shut up!
             transformerNotationErrorLevel(),
+            // @ts-expect-error shut up!
             transformerNotationWordHighlight(),
+            // @ts-expect-error shut up!
             transformerCompactLineOptions(),
           ],
           wrap: false,
