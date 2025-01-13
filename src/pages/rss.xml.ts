@@ -11,7 +11,7 @@ export const GET: APIRoute = async (context) => {
     site: context.site?.toString() || "",
     // copyright: `© ${new Date().getFullYear()} Bachitter`,
     items: posts.map((post) => ({
-      title: post.data.title,
+      title: post.data.title || "",
       pubDate: new Date(post.data.publishedAt || ""),
       description: post.data.description || "",
       link: `/blog/${post.data.slug}/`,
