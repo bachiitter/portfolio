@@ -11,7 +11,6 @@ import {
 import rehypeSlug from "rehype-slug";
 import { remarkDeruntify } from "../remark/deruntify";
 import type { Loader } from "astro/loaders";
-import { isTemplateMiddle } from "typescript";
 
 const GET_POSTS = `
   query GetPosts($preview:Boolean) {
