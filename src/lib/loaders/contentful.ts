@@ -16,12 +16,12 @@ const GET_POSTS = `
   query GetPosts($preview:Boolean) {
     blogPostCollection(preview:$preview) {
       items {
-      	sys {
-      	  id
+        sys {
+          id
           publishedAt
-      	}
+        }
         title
-      	description
+        description
         slug
         featured
         tag
@@ -38,7 +38,7 @@ export const ContentfulLoader: Loader = {
   schema: z.object({
     id: z.string(),
     title: z.string(),
-    description: z.string().optional(),
+    description: z.string(),
     slug: z.string(),
     featured: z.boolean(),
     tag: z.string().optional(),
@@ -83,7 +83,7 @@ export const ContentfulLoader: Loader = {
         rehypePlugins: [rehypeSlug],
       });
 
-      const { code, metadata } = await preprocessor.render(item.content, {
+      const { code: html, metadata } = await preprocessor.render(item.content, {
         frontmatter: {
           title: item.title,
           description: item.description,
@@ -107,7 +107,7 @@ export const ContentfulLoader: Loader = {
         },
         body: item.content,
         rendered: {
-          html: code,
+          html,
           metadata: {
             frontmatter: metadata.frontmatter,
             headings: metadata.headings,
