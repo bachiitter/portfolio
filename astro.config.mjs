@@ -13,7 +13,6 @@ export default defineConfig({
   integrations: [sitemap()],
   output: "static",
   prefetch: {
-    prefetchAll: true,
     defaultStrategy: "viewport",
   },
   site: "https://bachitter.dev",
