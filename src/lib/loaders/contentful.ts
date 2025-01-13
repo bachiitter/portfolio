@@ -1,16 +1,16 @@
 import { z } from "astro:content";
 import { createMarkdownProcessor } from "@astrojs/markdown-remark";
 import {
+  transformerCompactLineOptions,
   transformerMetaHighlight,
   transformerMetaWordHighlight,
   transformerNotationDiff,
   transformerNotationErrorLevel,
   transformerNotationWordHighlight,
-  transformerCompactLineOptions,
 } from "@shikijs/transformers";
+import type { Loader } from "astro/loaders";
 import rehypeSlug from "rehype-slug";
 import { remarkDeruntify } from "../remark/deruntify";
-import type { Loader } from "astro/loaders";
 
 const GET_POSTS = `
   query GetPosts($preview:Boolean) {
