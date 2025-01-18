@@ -55,7 +55,7 @@ export const ContentfulLoader: Loader = {
       body: JSON.stringify({
         query: GET_POSTS,
         variables: {
-          preview: !import.meta.env.PROD,
+          preview: import.meta.env.NODE_ENV !== "production",
         },
       }),
     });
