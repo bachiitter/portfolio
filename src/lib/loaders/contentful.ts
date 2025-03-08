@@ -111,7 +111,7 @@ export const ContentfulLoader: Loader = {
           metadata: {
             frontmatter: metadata.frontmatter,
             headings: metadata.headings,
-            imagePaths: Array.from(metadata.imagePaths),
+            imagePaths: Array.from(metadata.remoteImagePaths),
           },
         },
       });
