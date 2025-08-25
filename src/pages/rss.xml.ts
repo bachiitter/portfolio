@@ -12,11 +12,12 @@ export const GET = async (context: APIContext) => {
     items: posts.map((post) => ({
       title: post.data.title,
       description: post.data.description,
-      pubDate: new Date(post.data.sys.publishedAt || ""),
-      link: `/blog/${post.data.slug}/`,
+      pubDate: new Date(post.data.publishedAt || ""),
+      link: `/blog/${post.data.slug.current}`,
       content: post.rendered?.html,
       author: "Bachitter",
     })),
+    trailingSlash: false,
     customData: "<language>en-us</language>",
   });
 };

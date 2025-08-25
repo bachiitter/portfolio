@@ -1,8 +1,8 @@
 import { defineCollection } from "astro:content";
-import { ContentfulLoader } from "./lib/loaders/contentful";
+import { SanityLoader } from "./lib/loaders/sanity";
 
 const blog = defineCollection({
-  loader: ContentfulLoader,
+  loader: SanityLoader,
 });
 
 export const collections = { blog };

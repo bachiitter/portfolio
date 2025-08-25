@@ -10,8 +10,6 @@ import "@fontsource/redaction-20/700-italic.css";
 
 import "@fontsource/ibm-plex-mono";
 
-import Sign from "../components/sign.astro";
-
 import { NAVIGATION } from "../consts.ts";
 
 export interface Props {
@@ -27,7 +25,7 @@ const metaDescription = description
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const currentYear = new Date().getFullYear();
+// const currentYear = new Date().getFullYear();
 ---
 
 <html lang="en" class="dark">
@@ -112,16 +110,10 @@ const currentYear = new Date().getFullYear();
         </nav>
       </header>
       <slot />
-      <footer class="pt-24 flex items-center justify-between pb-10">
-        <p class="text-foreground-subtle">
-          &copy; <span id="footer-year">{currentYear}</span>
-        </p>
-        <Sign class="w-20 fill-white" />
-      </footer>
     </div>
   </body>
 </html>
 
-<script is:inline>
-  document.getElementById("footer-year").innerText = new Date().getFullYear();
-</script>
+<!-- <script is:inline> -->
+<!--   document.getElementById("footer-year").innerText = new Date().getFullYear(); -->
+<!-- </script> -->
