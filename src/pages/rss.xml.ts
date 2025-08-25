@@ -14,6 +14,7 @@ export const GET = async (context: APIContext) => {
       description: post.data.description,
       pubDate: new Date(post.data.publishedAt || "January 1, 1970"),
       link: `/blog/${post.data.slug}/`,
+      content: post.rendered?.html,
     })),
     customData: "<language>en-us</language>",
   });

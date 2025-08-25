@@ -1,16 +1,5 @@
 import { z } from "astro:content";
-import { createMarkdownProcessor } from "@astrojs/markdown-remark";
-import {
-  transformerCompactLineOptions,
-  transformerMetaHighlight,
-  transformerMetaWordHighlight,
-  transformerNotationDiff,
-  transformerNotationErrorLevel,
-  transformerNotationWordHighlight,
-} from "@shikijs/transformers";
 import type { Loader } from "astro/loaders";
-import rehypeSlug from "rehype-slug";
-import { remarkDeruntify } from "../remark/deruntify";
 
 const GET_POSTS = `
   query GetPosts($preview:Boolean) {
@@ -42,7 +31,9 @@ export const ContentfulLoader: Loader = {
     slug: z.string(),
     featured: z.boolean(),
     tag: z.string().optional(),
-    publishedAt: z.string().datetime().optional(),
+    sys: z.object({
+      publishedAt: z.string().datetime().optional(),
+    }),
     content: z.string(),
   }),
   load: async (ctx) => {
@@ -63,57 +54,10 @@ export const ContentfulLoader: Loader = {
     const body = await res.json();
 
     for (const item of body.data.blogPostCollection.items) {
-      const preprocessor = await createMarkdownProcessor({
-        gfm: true,
-        smartypants: true,
-        syntaxHighlight: "shiki",
-        shikiConfig: {
-          theme: "vesper",
-          transformers: [
-            transformerMetaHighlight(),
-            transformerNotationDiff(),
-            transformerMetaWordHighlight(),
-            transformerNotationErrorLevel(),
-            transformerNotationWordHighlight(),
-            transformerCompactLineOptions(),
-          ],
-          wrap: false,
-        },
-        remarkPlugins: [remarkDeruntify],
-        rehypePlugins: [rehypeSlug],
-      });
-
-      const { code: html, metadata } = await preprocessor.render(item.content, {
-        frontmatter: {
-          title: item.title,
-          description: item.description,
-          slug: item.slug,
-          featured: item.featured,
-          tag: item.tag,
-          publishedAt: item.sys.publishedAt,
-        },
-      });
-
       ctx.store.set({
         id: item.sys.id,
-        data: {
-          title: item.title,
-          description: item.description,
-          slug: item.slug,
-          featured: item.featured,
-          tag: item.tag,
-          publishedAt: item.sys.publishedAt,
-          content: item.content,
-        },
-        body: item.content,
-        rendered: {
-          html,
-          metadata: {
-            frontmatter: metadata.frontmatter,
-            headings: metadata.headings,
-            imagePaths: Array.from(metadata.remoteImagePaths),
-          },
-        },
+        data: item,
+        rendered: await ctx.renderMarkdown(item.content),
       });
     }
   },

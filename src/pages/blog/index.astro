@@ -26,7 +26,7 @@ const posts = await getCollection("blog");
                 <div class="flex flex-col xs:flex-row sm:gap-4 xs:justify-between xs:items-center">
                   <span class="group-hover:underline underline-offset-2 text-base font-medium leading-7">{post.data.title}</span>
                   <time class="tabular-nums text-foreground-subtle text-sm">
-                    {formatDate(new Date(post.data.publishedAt!))}
+                    {formatDate(new Date(post.data.sys.publishedAt!))}
                   </time>
                 </div>
               </a>

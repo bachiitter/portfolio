@@ -1,5 +1,17 @@
 import sitemap from "@astrojs/sitemap";
+import {
+  transformerCompactLineOptions,
+  transformerMetaHighlight,
+  transformerMetaWordHighlight,
+  transformerNotationDiff,
+  transformerNotationErrorLevel,
+  transformerNotationWordHighlight,
+} from "@shikijs/transformers";
 import tailwindcss from "@tailwindcss/vite";
+
+import rehypeSlug from "rehype-slug";
+
+import { remarkDeruntify } from "./src/lib/remark/deruntify";
 
 import { defineConfig, envField } from "astro/config";
 // https://astro.build/config
@@ -7,7 +19,6 @@ import { defineConfig, envField } from "astro/config";
 export default defineConfig({
   experimental: {
     clientPrerender: true,
-    svg: true,
     responsiveImages: true,
   },
   integrations: [sitemap()],
@@ -19,5 +30,24 @@ export default defineConfig({
   trailingSlash: "never",
   vite: {
     plugins: [tailwindcss()],
+  },
+  markdown: {
+    gfm: true,
+    smartypants: true,
+    syntaxHighlight: "shiki",
+    shikiConfig: {
+      theme: "vesper",
+      transformers: [
+        transformerMetaHighlight(),
+        transformerNotationDiff(),
+        transformerMetaWordHighlight(),
+        transformerNotationErrorLevel(),
+        transformerNotationWordHighlight(),
+        transformerCompactLineOptions(),
+      ],
+      wrap: false,
+    },
+    remarkPlugins: [remarkDeruntify],
+    rehypePlugins: [rehypeSlug],
   },
 });
