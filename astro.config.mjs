@@ -1,3 +1,4 @@
+import cloudflare from "@astrojs/cloudflare";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import sanity from "@sanity/astro";
@@ -16,9 +17,7 @@ import { remarkDeruntify } from "./src/lib/remark/deruntify";
 // https://astro.build/config
 
 export default defineConfig({
-  experimental: {
-    clientPrerender: false,
-  },
+  adapter: cloudflare(),
   integrations: [
     sitemap(),
     sanity({
@@ -30,10 +29,9 @@ export default defineConfig({
     }),
     react(),
   ],
-  output: "static",
-  prefetch: {
-    defaultStrategy: "viewport",
-  },
+  // prefetch: {
+  //   defaultStrategy: "viewport",
+  // },
   site: "https://bachitter.dev",
   trailingSlash: "never",
   vite: {
