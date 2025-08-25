@@ -1,19 +1,17 @@
 @import "tailwindcss";
-@import "@theanalog/orphos/theme.css";
+@import "orphos/theme.css";
 
 @theme {
   --font-serif: "Redaction 20", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
+  --font-sans:
+    "Inter Variable", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono:
+    "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
 }
 
 @layer base {
-  html {
-    @apply scroll-smooth;
-  }
-
   * {
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
@@ -21,7 +19,9 @@
 
   body {
     @apply min-w-[360px] w-full bg-background text-[15px] text-foreground-subtle;
-    font-feature-settings: "liga" 1, "calt" 1; /* fix for Chrome */
+    font-feature-settings:
+      "liga" 1,
+      "calt" 1; /* fix for Chrome */
     line-height: calc(15px * 1.7);
   }
 
@@ -46,7 +46,7 @@
   }
 
   :not(pre) > code {
-    @apply w-fit break-words rounded-sm bg-primary-surface px-[0.3rem] py-[0.075rem] text-primary-surface-foreground text-sm [box-decoration-break:clone];
+    @apply w-fit break-words rounded-sm bg-background-element px-[0.3rem] py-[0.075rem] text-foreground-subtle text-sm [box-decoration-break:clone];
   }
 
   :not(pre) > code::before {
@@ -82,7 +82,7 @@
   }
 
   pre {
-    @apply relative z-[1] overflow-x-auto whitespace-pre py-4 text-sm leading-7 mt-6 rounded-md inset-ring-1 inset-ring-border-element;
+    @apply relative z-[1] bg-background-subtle! overflow-x-auto whitespace-pre py-4 px-[2]! text-sm leading-7 mt-6 rounded-md border border-border-element bg-clip-padding! overflow-auto!;
   }
 
   pre code {

@@ -1,19 +1,18 @@
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
   "files": {
-    "ignore": [
-      "**/build",
-      "**/dist",
-      "**/node_modules",
-      "**/playwright-report",
-      ".vercel",
-      ".vscode",
-      ".astro"
+    "includes": [
+      "**",
+      "!**/build",
+      "!**/dist",
+      "!**/node_modules",
+      "!**/playwright-report",
+      "!**/.vercel",
+      "!**/.vscode",
+      "!**/.astro"
     ]
   },
-  "organizeImports": {
-    "enabled": true
-  },
+  "assist": { "actions": { "source": { "organizeImports": "on" } } },
   "linter": {
     "enabled": true,
     "rules": {
@@ -38,7 +37,7 @@
   },
   "overrides": [
     {
-      "include": ["*.astro"]
+      "includes": ["**/*.astro"]
     }
   ]
 }

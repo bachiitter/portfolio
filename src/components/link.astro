@@ -1,6 +1,6 @@
 ---
 const { href, ...props } = Astro.props;
 ---
-<a  class={"p-0 h-auto inline-flex items-center justify-center gap-x-2 whitespace-nowrap text-[14px] font-semibold transition-colors focus-visible:ring-2 focus-visible:ring-offset-background focus-visible:ring-offset-2 focus-visible:ring-focus-ring focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 underline-offset-4 text-primary-element-foreground bg-transparent hover:underline rounded-md"} {...props} href={href}>
+<a  class={"p-0 h-auto inline-flex items-center justify-center gap-x-2 whitespace-nowrap text-[14px] font-semibold transition-colors focus-visible:ring-2 focus-visible:ring-offset-background focus-visible:ring-offset-2 focus-visible:ring-focus-ring focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 underline-offset-4 text-primary bg-transparent hover:underline rounded-md"} {...props} href={href}>
   <slot />
 </a>

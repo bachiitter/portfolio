@@ -19,7 +19,6 @@ import { defineConfig, envField } from "astro/config";
 export default defineConfig({
   experimental: {
     clientPrerender: true,
-    responsiveImages: true,
   },
   integrations: [sitemap()],
   output: "static",
