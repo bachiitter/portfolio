@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "@theanalog/orphos/styles.css";
+@import "@theanalog/orphos/theme.css";
 
 @theme {
   --font-serif: "Redaction 20", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
@@ -30,7 +30,7 @@
   h3,
   h4,
   h5 {
-    @apply font-serif text-white;
+    @apply font-serif text-foreground;
   }
 
   p {
@@ -38,15 +38,15 @@
   }
 
   mark {
-    @apply inline bg-warning-element text-warning-element-foreground rounded [box-decoration-break:clone];
+    @apply inline bg-warning-surface text-warning-surface-foreground rounded [box-decoration-break:clone];
   }
 
   kbd {
-    @apply inline rounded border border-border-element/60 bg-background px-1 text-xs [box-decoration-break:clone];
+    @apply inline w-fit rounded-sm bg-background-element px-1.5 py-px text-foreground/75 text-xs [box-decoration-break:clone] dark:bg-background-element-active dark:text-foreground-subtle/85;
   }
 
   :not(pre) > code {
-    @apply px-[0.2rem] py-[0.1rem] break-words text-sm rounded-sm bg-background-subtle border-[0.5px] border-border-element/60 [box-decoration-break:clone];
+    @apply w-fit break-words rounded-sm bg-primary-surface px-[0.3rem] py-[0.075rem] text-primary-surface-foreground text-sm [box-decoration-break:clone];
   }
 
   :not(pre) > code::before {
@@ -78,11 +78,11 @@
   }
 
   article a {
-    @apply text-base font-semibold transition-colors focus-visible:ring-2 focus-visible:ring-offset-background focus-visible:ring-offset-2 focus-visible:ring-focus-ring focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 underline-offset-4 text-primary-element-foreground bg-transparent hover:underline rounded-md;
+    @apply text-base font-semibold transition-colors focus-visible:ring-2 focus-visible:ring-offset-background focus-visible:ring-offset-2 focus-visible:ring-focus-ring focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0  hover:underline rounded-md bg-transparent text-primary underline decoration-border-element underline-offset-[2.5px] hover:decoration-primary;
   }
 
   pre {
-    @apply relative z-[1] overflow-x-auto whitespace-pre py-4 text-sm leading-7 mt-6 rounded-md border border-border-element/60;
+    @apply relative z-[1] overflow-x-auto whitespace-pre py-4 text-sm leading-7 mt-6 rounded-md inset-ring-1 inset-ring-border-element;
   }
 
   pre code {
@@ -93,28 +93,17 @@
     @apply hidden;
   }
 
-  code {
-    counter-reset: step;
-    counter-increment: step 0;
-  }
-
-  code .line::before {
-    @apply text-xs mr-4 inline-block text-right text-foreground-subtle;
-    content: counter(step);
-    counter-increment: step;
-  }
-
   pre code span.highlighted {
-    @apply inline-block bg-background-element -mx-[24px] px-[24px];
+    @apply inline-block bg-background-element text-foreground -mx-[24px] px-[24px];
     width: calc(100% + 48px);
   }
 
   pre code span.error {
-    @apply inline-block bg-danger-element;
+    @apply inline-block bg-danger-surface;
   }
 
   pre code span.warning {
-    @apply inline-block bg-warning/25;
+    @apply inline-block bg-warning-surface;
   }
 
   pre code span.diff {
@@ -123,15 +112,15 @@
   }
 
   pre code span.add {
-    @apply inline-block bg-primary/30;
+    @apply inline-block bg-success-surface;
   }
 
   pre code span.remove {
-    @apply inline-block bg-danger-element;
+    @apply inline-block bg-danger-surface;
   }
 
   pre code span.line span.highlighted-word {
-    @apply border-border border rounded px-1;
+    @apply inset-ring-1 inset-ring-border-subtle rounded px-1;
   }
 
   #footnote-label {
