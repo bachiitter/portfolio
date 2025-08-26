@@ -1,7 +1,4 @@
-import cloudflare from "@astrojs/cloudflare";
-import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
-import sanity from "@sanity/astro";
 import {
   transformerCompactLineOptions,
   transformerMetaHighlight,
@@ -17,18 +14,7 @@ import { remarkDeruntify } from "./src/lib/remark/deruntify";
 // https://astro.build/config
 
 export default defineConfig({
-  adapter: cloudflare(),
-  integrations: [
-    sitemap(),
-    sanity({
-      apiVersion: "2025-08-25",
-      dataset: "production",
-      projectId: "4cylhej4",
-      studioBasePath: "/admin",
-      useCdn: false,
-    }),
-    react(),
-  ],
+  integrations: [sitemap()],
   // prefetch: {
   //   defaultStrategy: "viewport",
   // },

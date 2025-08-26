@@ -1,8 +1,8 @@
 import { defineCollection } from "astro:content";
-import { SanityLoader } from "./lib/loaders/sanity";
+import { cmsLoader } from "./lib/loaders/cms";
 
 const blog = defineCollection({
-  loader: SanityLoader,
+  loader: cmsLoader,
 });
 
 export const collections = { blog };

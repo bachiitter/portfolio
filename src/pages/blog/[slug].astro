@@ -11,7 +11,7 @@ export async function getStaticPaths() {
 
   return posts.map((post: CollectionEntry<"blog">) => ({
     params: {
-      slug: post.data.slug.current,
+      slug: post.data.slug,
     },
     props: {
       post,
@@ -29,7 +29,7 @@ const { Content } = await render(post);
     <section class="flex flex-col">
       <h1 class="text-3xl leading-none text-balance tracking-tight font-bold mt-8" >{post.data.title}</h1>
     </section>
-    <article>
+    <article >
       <Content />
     </article>
   </main>

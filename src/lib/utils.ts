@@ -1,6 +1,5 @@
-export function formatDate(value: Date) {
+export function formatDate(value: string | number | Date) {
   return new Intl.DateTimeFormat("en-US", {
     year: "numeric",
-    timeZone: "UTC",
-  }).format(value);
+  }).format(new Date(value));
 }

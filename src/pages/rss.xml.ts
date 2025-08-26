@@ -13,7 +13,7 @@ export const GET = async (context: APIContext) => {
       title: post.data.title,
       description: post.data.description,
       pubDate: new Date(post.data.publishedAt || ""),
-      link: `/blog/${post.data.slug.current}`,
+      link: `/blog/${post.data.slug}`,
       content: post.rendered?.html,
       author: "Bachitter",
     })),
