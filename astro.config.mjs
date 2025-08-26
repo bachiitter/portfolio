@@ -26,6 +26,10 @@ export default defineConfig({
       exclude: ["node_modules/.vite/deps/index2-2MB4FSBB.js?v=5932ec79"],
     },
   },
+  output: "static",
+  prefetch: {
+    defaultStrategy: "hover",
+  },
   markdown: {
     gfm: true,
     smartypants: true,
