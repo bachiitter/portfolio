@@ -1,129 +1,134 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
 @import "tailwindcss";
-@import "orphos/theme.css";
 
 @theme {
-  --font-serif: "Redaction 20", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  --font-sans:
-    "Inter Variable", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol", "Noto Color Emoji";
-  --font-mono:
-    "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
-    "Courier New", monospace;
+  --color-background: color-mix(in oklch, var(--color-neutral-950) 90%, var(--color-neutral-900));
+  --color-background-secondary: color-mix(
+    in oklch,
+    var(--color-neutral-950) 75%,
+    var(--color-neutral-800)
+  );
+  --color-primary: var(--color-neutral-50);
+  --color-secondary: var(--color-neutral-400);
+  --color-tertiary: color-mix(in oklch, var(--color-neutral-500) 90%, var(--color-neutral-600));
+  --color-border: color-mix(in oklch, var(--color-neutral-800) 50%, var(--color-neutral-700));
+  --color-accent: oklch(0.63 0.19 33.31);
+
+  --font-sans: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
 }
 
 @layer base {
-  * {
-    animation-fill-mode: forwards;
-    -webkit-animation-fill-mode: forwards;
-  }
-
   body {
-    @apply min-w-[360px] w-full bg-background text-[15px] text-foreground-subtle;
-    font-feature-settings:
-      "liga" 1,
-      "calt" 1; /* fix for Chrome */
-    line-height: calc(15px * 1.7);
+    @apply text-base leading-relaxed bg-background text-primary font-sans antialiased selection:bg-accent selection:text-white;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5 {
-    @apply font-serif text-foreground;
+  /* Custom Main Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
   }
-
-  p {
-    @apply leading-7;
+  ::-webkit-scrollbar-track {
+    background: var(--color-background-secondary);
   }
-
-  mark {
-    @apply inline bg-warning-surface text-warning-surface-foreground rounded [box-decoration-break:clone];
-  }
-
-  kbd {
-    @apply inline w-fit rounded-sm bg-background-element px-1.5 py-px text-foreground/75 text-xs [box-decoration-break:clone] dark:bg-background-element-active dark:text-foreground-subtle/85;
-  }
-
-  :not(pre) > code {
-    @apply w-fit break-words rounded-sm bg-background-element px-[0.3rem] py-[0.075rem] text-foreground-subtle text-sm [box-decoration-break:clone];
-  }
-
-  :not(pre) > code::before {
-    content: "`";
-  }
-
-  :not(pre) > code::after {
-    content: "`";
-  }
-
-  article h2 {
-    @apply text-2xl font-bold leading-tight mt-8  text-balance tracking-tight;
-  }
-
-  article h3 {
-    @apply mt-8 text-xl leading-snug text-balance tracking-tight font-semibold;
-  }
-
-  article h4 {
-    @apply mt-8 text-lg leading-snug text-balance tracking-tight font-semibold;
-  }
-
-  article p:not(:first-child) {
-    @apply mt-6;
-  }
-
-  article li {
-    @apply break-words;
-  }
-
-  article a {
-    @apply text-base font-semibold transition-colors focus-visible:ring-2 focus-visible:ring-offset-background focus-visible:ring-offset-2 focus-visible:ring-focus-ring focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0  hover:underline rounded-md bg-transparent text-primary underline decoration-border-element underline-offset-[2.5px] hover:decoration-primary;
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 4px;
   }
 
   pre {
-    @apply relative z-[1] bg-background-subtle! overflow-x-auto whitespace-pre py-4 px-[2]! text-sm leading-7 mt-6 rounded-md border border-border-element bg-clip-padding! overflow-auto!;
+    @apply bg-background-secondary! bg-clip-padding!;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@layer components {
+  .prose {
+    @apply max-w-none;
   }
 
-  pre code {
-    @apply block w-fit px-[24px] bg-transparent min-w-full! leading-6;
+  .prose p {
+    @apply text-secondary leading-relaxed mb-6;
   }
 
-  pre code span:last-of-type:empty {
-    @apply hidden;
+  .prose h1 {
+    @apply text-4xl sm:text-5xl font-semibold leading-tight tracking-tight text-primary mb-4;
   }
 
-  pre code span.highlighted {
-    @apply inline-block bg-background-element text-foreground -mx-[24px] px-[24px];
-    width: calc(100% + 48px);
+  .prose h2 {
+    @apply text-2xl font-semibold leading-snug text-primary mt-12 mb-4;
   }
 
-  pre code span.error {
-    @apply inline-block bg-danger-surface;
+  .prose h3 {
+    @apply text-xl font-semibold leading-normal text-primary mt-8 mb-2;
   }
 
-  pre code span.warning {
-    @apply inline-block bg-warning-surface;
+  .prose h4 {
+    @apply text-lg font-semibold leading-normal text-primary mt-6 mb-2;
   }
 
-  pre code span.diff {
-    @apply inline-block -mx-[24px] px-[24px];
-    width: calc(100% + 48px);
+  .prose strong {
+    @apply font-semibold text-primary;
   }
 
-  pre code span.add {
-    @apply inline-block bg-success-surface;
+  .prose em {
+    @apply italic text-primary;
   }
 
-  pre code span.remove {
-    @apply inline-block bg-danger-surface;
+  .prose a {
+    @apply text-accent no-underline font-medium hover:underline;
   }
 
-  pre code span.line span.highlighted-word {
-    @apply inset-ring-1 inset-ring-border-subtle rounded px-1;
+  .prose code {
+    @apply wrap-break-word w-fit rounded-sm font-mono text-sm text-primary border border-border bg-background-secondary px-[0.3rem] py-[0.075rem];
   }
 
-  #footnote-label {
-    @apply sr-only mt-12;
+  .prose pre {
+    @apply border border-border bg-background-secondary rounded-md p-6 overflow-x-auto mb-6;
+  }
+
+  .prose pre code {
+    @apply bg-transparent p-0 rounded-none border-0;
+  }
+
+  .prose ul,
+  .prose ol {
+    @apply text-secondary mb-6 pl-6;
+  }
+
+  .prose ul {
+    @apply list-disc;
+  }
+
+  .prose ol {
+    @apply list-decimal;
+  }
+
+  .prose li {
+    @apply mb-2 leading-relaxed;
+  }
+
+  .prose blockquote {
+    @apply border-l-[3px] border-accent pl-6 ml-0 mb-6 text-secondary italic;
+  }
+
+  .prose hr {
+    @apply border-0 border-t border-border my-12;
+  }
+
+  .prose img {
+    @apply w-full h-auto rounded-lg mb-6;
+  }
+
+  .prose table {
+    @apply w-full border-collapse mb-6;
+  }
+
+  .prose th {
+    @apply font-semibold text-primary text-left p-3 border-b border-border;
+  }
+
+  .prose td {
+    @apply text-secondary p-3 border-b border-border;
   }
 }

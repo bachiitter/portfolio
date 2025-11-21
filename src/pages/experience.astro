@@ -1,0 +1,26 @@
+---
+  import BaseLayout from "../layouts/BaseLayout.astro";
+  import { EXPERIENCE } from "../lib/data";
+---
+<BaseLayout title="Experience" description={undefined}>
+  <section>
+    <h2 class="font-mono text-xs font-medium uppercase tracking-wider text-tertiary mb-6">
+      Experience
+    </h2>
+    { EXPERIENCE.length > 0 ? (
+
+<ul class="list-none">
+      {EXPERIENCE.map(item => (
+<li class="py-6 border-b border-border first:pt-0 last:border-b-0">
+  <div class="text-base font-semibold mb-1">{item.company}</div>
+  <div class="text-secondary mb-1">{item.role}</div>
+  <div class="font-mono text-xs text-tertiary">{item.date}</div>
+</li>
+      ))}
+    </ul>
+    ) : ( <div class="py-12 text-center">
+       <div class="text-tertiary font-mono text-sm mb-2">No experience yet</div>
+                <p class="text-secondary text-sm">Professional experience will appear here</p>
+            </div>)}
+  </section>
+</BaseLayout>

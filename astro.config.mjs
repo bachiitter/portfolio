@@ -1,12 +1,4 @@
 import sitemap from "@astrojs/sitemap";
-import {
-  transformerCompactLineOptions,
-  transformerMetaHighlight,
-  transformerMetaWordHighlight,
-  transformerNotationDiff,
-  transformerNotationErrorLevel,
-  transformerNotationWordHighlight,
-} from "@shikijs/transformers";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import rehypeSlug from "rehype-slug";
@@ -22,9 +14,6 @@ export default defineConfig({
   trailingSlash: "never",
   vite: {
     plugins: [tailwindcss()],
-    optimizeDeps: {
-      exclude: ["node_modules/.vite/deps/index2-2MB4FSBB.js?v=5932ec79"],
-    },
   },
   output: "static",
   prefetch: {
@@ -35,15 +24,7 @@ export default defineConfig({
     smartypants: true,
     syntaxHighlight: "shiki",
     shikiConfig: {
-      theme: "vesper",
-      transformers: [
-        transformerMetaHighlight(),
-        transformerNotationDiff(),
-        transformerMetaWordHighlight(),
-        transformerNotationErrorLevel(),
-        transformerNotationWordHighlight(),
-        transformerCompactLineOptions(),
-      ],
+      theme: "github-dark",
       wrap: false,
     },
     remarkPlugins: [remarkDeruntify],

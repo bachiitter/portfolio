@@ -1,17 +1,106 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
----
+  import BaseLayout from "../layouts/BaseLayout.astro";
+  import { PHOTOS } from "../lib/data";
 
-<BaseLayout title="Photos" description="Random dump of unedited photos." >
-  <main class="flex flex-col gap-12">
-    <section>
-      <h1 class="text-3xl leading-none text-balance tracking-tight font-bold mt-8">Photos</h1>
-      <p class="text-foreground-subtle mt-0!">
-        Collection of photos sometimes edited or sometimes not. Moments from my life.
-      </p>
-    </section>
-    <section>
-      <p class="text-muted-foreground text-xs leading-5" >Final point — go slower, look around and sometimes just be in the moment than taking a photo.</p>
-    </section>
-  </main>
+  const res = await fetch("https://lens.bachitter.dev/api/images");
+  const data = await res.json();
+---
+<BaseLayout title="Photos" description="Random dump of unedited photos.">
+  <section>
+    <h2 class="font-mono text-xs font-medium uppercase tracking-wider text-tertiary mb-6">
+      Photos
+    </h2>
+    { PHOTOS.length > 0 ? (
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+  {data.map((photo: any, index: number) => (
+   <div class="relative aspect-3/2 overflow-hidden border border-border bg-background-secondary group cursor-zoom-in">
+     <img data-lightbox src={photo.largeUrl} class="relative w-full z-50 h-full object-cover cursor-zoom-in! opacity-80 grayscale contrast-110 transition-all duration-500 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105" data-lightbox={index}>
+    <div class="absolute z-10 inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+  </div>
+       ))}
+</div>
+    ) : ( <div class="py-12 text-center">
+       <div class="text-tertiary font-mono text-sm mb-2">No photos yet</div>
+                <p class="text-secondary text-sm">Photo gallery will appear here</p>
+            </div>)}
+  </section>
+
+  <div
+    id="lightbox"
+    class="hidden fixed inset-0 z-50 flex items-center justify-center bg-background/95 backdrop-blur-sm animate-fade-in cursor-zoom-out"
+  >
+    <button
+      id="lightbox-close"
+      class="absolute top-4 right-4 md:top-8 md:right-8 p-4 text-secondary hover:text-accent font-mono text-sm z-50 bg-background/50 rounded-full"
+      aria-label="Close lightbox"
+    >
+      [CLOSE]
+    </button>
+    <img
+      id="lightbox-image"
+      src=""
+      alt="Lightbox view"
+      class="max-h-[85vh] max-w-[90vw] object-contain border border-border shadow-2xl cursor-default"
+    >
+  </div>
 </BaseLayout>
+
+<script is:inline>
+  function initLightbox() {
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImage = document.getElementById("lightbox-image");
+    const lightboxClose = document.getElementById("lightbox-close");
+    const photoImages = document.querySelectorAll("[data-lightbox]");
+
+    function openLightbox(imgElement) {
+      if (lightboxImage) {
+        lightboxImage.src = imgElement.src.replace(/w=\d+/, "w=1200");
+        lightbox?.classList.remove("hidden");
+      }
+    }
+
+    function closeLightbox() {
+      lightbox?.classList.add("hidden");
+    }
+
+    photoImages.forEach((img) => {
+      img.style.cursor = "pointer";
+      img.addEventListener("click", () => {
+        openLightbox(img);
+      });
+    });
+
+    if (lightboxClose) {
+      lightboxClose.addEventListener("click", (e) => {
+        e.stopPropagation();
+        closeLightbox();
+      });
+    }
+
+    if (lightbox) {
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) {
+          closeLightbox();
+        }
+      });
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (lightbox?.classList.contains("hidden")) return;
+      if (e.key === "Escape") {
+        closeLightbox();
+      }
+    });
+  }
+
+  // Wait for DOM to be ready
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initLightbox);
+  } else {
+    initLightbox();
+  }
+
+  // Also try on a slight delay to ensure everything is ready
+  setTimeout(initLightbox, 100);
+</script>
