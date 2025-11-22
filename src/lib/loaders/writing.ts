@@ -3,7 +3,7 @@ import type { Loader } from "astro/loaders";
 import * as contentful from "contentful";
 import readingTime from "reading-time";
 
-export const cmsLoader: Loader = {
+export const writingLoader: Loader = {
   name: "writings",
   schema: z.object({
     title: z.string(),

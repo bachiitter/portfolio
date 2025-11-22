@@ -1,8 +1,13 @@
 import { defineCollection } from "astro:content";
-import { cmsLoader } from "./lib/loaders/cms";
+import { photosLoader } from "./lib/loaders/photos";
+import { writingLoader } from "./lib/loaders/writing";
 
 const writings = defineCollection({
-  loader: cmsLoader,
+  loader: writingLoader,
 });
 
-export const collections = { writings };
+const photos = defineCollection({
+  loader: photosLoader,
+});
+
+export const collections = { writings, photos };

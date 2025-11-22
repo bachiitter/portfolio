@@ -1,0 +1,117 @@
+---
+---
+<div
+  id="lightbox"
+  class="hidden fixed inset-0 z-50 flex flex-col items-center justify-center bg-background/95 backdrop-blur-sm animate-fade-in cursor-zoom-out p-4"
+>
+  <button
+    id="lightbox-close"
+    class="absolute bottom-[158px] hidden right-4 md:top-8 md:right-8 text-secondary hover:text-accent font-mono text-sm z-50 "
+    aria-label="Close lightbox"
+  >
+    [CLOSE]
+  </button>
+  <img
+    id="lightbox-image"
+    src=""
+    alt="Lightbox view"
+    class="max-h-[80vh] max-w-[90vw] object-contain border border-border shadow-2xl cursor-default mb-4"
+  >
+  <div id="lightbox-metadata" class="w-full max-w-[90vw] text-left">
+    <ul class="space-y-1 font-mono text-xs text-tertiary">
+      <li id="lightbox-camera-make-model" class="text-primary font-medium"></li>
+      <li id="lightbox-lens-make-model"></li>
+      <li id="lightbox-focal-length"></li>
+      <li id="lightbox-fstop"></li>
+      <li id="lightbox-exposure"></li>
+      <li id="lightbox-iso"></li>
+      <li id="lightbox-date" class="opacity-75"></li>
+    </ul>
+  </div>
+</div>
+
+<script is:inline>
+  function initLightbox() {
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImage = document.getElementById("lightbox-image");
+    const lightboxClose = document.getElementById("lightbox-close");
+    const photoImages = document.querySelectorAll("[data-lightbox]");
+
+    const metaCameraMakeModel = document.getElementById("lightbox-camera-make-model");
+    const metaLensMakeModel = document.getElementById("lightbox-lens-make-model");
+    const metaFocalLength = document.getElementById("lightbox-focal-length");
+    const metaFStop = document.getElementById("lightbox-fstop");
+    const metaExposure = document.getElementById("lightbox-exposure");
+    const metaISO = document.getElementById("lightbox-iso");
+    const metaDate = document.getElementById("lightbox-date");
+
+    function openLightbox(imgElement) {
+      if (lightboxImage) {
+        lightboxImage.src = imgElement.dataset.largeUrl || imgElement.src;
+        
+        try {
+          const data = JSON.parse(imgElement.dataset.metadata || "{}");
+          
+          if (metaCameraMakeModel) metaCameraMakeModel.textContent = `${data.make} ${data.camera}`;
+          if (metaLensMakeModel) metaLensMakeModel.textContent = `${data.lensMake} ${data.lensModel}`;
+          if (metaFocalLength) metaFocalLength.textContent = `${data.focalLength}mm`;
+          if (metaFStop) metaFStop.textContent = `ƒ${data.FStop}`;
+          if (metaExposure) metaExposure.textContent = `${data.exposure}`;
+          if (metaISO) metaISO.textContent = `ISO ${data.iso}`;
+          if (metaDate && data.taken) {
+            metaDate.textContent = new Date(data.taken).toLocaleDateString(undefined, { 
+              year: 'numeric', month: 'long', day: 'numeric' 
+            });
+          }
+        } catch (e) {
+          console.error("Error parsing metadata", e);
+        }
+
+        lightbox?.classList.remove("hidden");
+      }
+    }
+
+    function closeLightbox() {
+      lightbox?.classList.add("hidden");
+    }
+
+    photoImages.forEach((img) => {
+      img.style.cursor = "pointer";
+      img.addEventListener("click", () => {
+        openLightbox(img);
+      });
+    });
+
+    if (lightboxClose) {
+      lightboxClose.addEventListener("click", (e) => {
+        e.stopPropagation();
+        closeLightbox();
+      });
+    }
+
+    if (lightbox) {
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) {
+          closeLightbox();
+        }
+      });
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (lightbox?.classList.contains("hidden")) return;
+      if (e.key === "Escape") {
+        closeLightbox();
+      }
+    });
+  }
+
+  // Wait for DOM to be ready
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initLightbox);
+  } else {
+    initLightbox();
+  }
+
+  // Also try on a slight delay to ensure everything is ready
+  setTimeout(initLightbox, 100);
+</script>

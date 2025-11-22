@@ -39,11 +39,3 @@ export const SOCIALS: Array<Social> = [
     url: "https://bsky.app/profile/bachitter.dev",
   },
 ] as const;
-
-export const PHOTOS: Array<string> = [
-  "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1000&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1000&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1480796927426-f609979314bd?q=80&w=1000&fit=crop",
-  "https://images.unsplash.com/photo-1470723710355-95304d8aece4?q=80&w=1000&fit=crop",
-  "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1000&fit=crop",
-];
