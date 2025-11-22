@@ -3,6 +3,8 @@
   import BaseLayout from "../../layouts/BaseLayout.astro";
   import { formatDate } from "../../lib/utils";
 
+  export const prerender = true;
+
   const posts = await getCollection("writings");
 ---
 <BaseLayout title="Writing" description="A collection of my writings, rants and incomplete notes.">

@@ -1,6 +1,8 @@
 ---
   import BaseLayout from "../layouts/BaseLayout.astro";
   import { EXPERIENCE } from "../lib/data";
+
+  export const prerender = true;
 ---
 <BaseLayout title="Experience" description={undefined}>
   <section>
