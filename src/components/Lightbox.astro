@@ -91,7 +91,7 @@
 
     if (lightbox) {
       lightbox.addEventListener("click", (e) => {
-        if (e.target === lightbox) {
+        if (e.target !== lightboxImage) {
           closeLightbox();
         }
       });
