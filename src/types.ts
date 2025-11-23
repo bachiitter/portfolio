@@ -21,5 +21,5 @@ export const routes = [
   { path: "/", label: "Projects" },
   { path: "/writing", label: "Writing" },
   { path: "/experience", label: "Experience" },
-  { path: "/photos", label: "Photos" },
+  // { path: "/photos", label: "Photos" },
 ] as const;
