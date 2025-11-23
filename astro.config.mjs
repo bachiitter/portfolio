@@ -13,7 +13,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  output: "static",
+  // output: "static",
   prefetch: {
     defaultStrategy: "hover",
   },
@@ -36,4 +36,3 @@ export default defineConfig({
     imageService: "compile",
   }),
 });
-
