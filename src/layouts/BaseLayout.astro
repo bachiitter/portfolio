@@ -88,7 +88,7 @@
     </header>
     <nav class="mb-12 flex gap-4 pb-4 border-b border-border">
       {routes.map(item => {
-        const isActive = Astro.url.pathname === `${item.path}/` || Astro.url.pathname === `${item.path}`;
+        const isActive = Astro.routePattern === `${item.path}` ;
         return <a class="data-[active=true]:text-primary font-mono uppercase text-xs font-medium tracking-wider px-0 py-2 hover:text-primary text-secondary" data-active={isActive} href={item.path}>{item.label}</a>
     })}
     </nav>

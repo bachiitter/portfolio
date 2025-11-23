@@ -60,7 +60,7 @@
     return allPhotos;
   }
 
-  Astro.response.headers.set("Cache-Control", "public, max-age=3600");
+  Astro.response.headers.set("Cache-Control", "public, max-age=600, stale-while-revalidate=300");
 
   const photos = await fetchAllPhotos();
 
