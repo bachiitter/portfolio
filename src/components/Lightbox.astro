@@ -1,4 +1,5 @@
 ---
+  Astro.csp.insertScriptHash("sha256-R76ScJyDsU3Anei+wH7tvhI+4GlJFwR5/XHhWMIIq4c=");
 ---
 <div
   id="lightbox"
@@ -48,19 +49,22 @@
     function openLightbox(imgElement) {
       if (lightboxImage) {
         lightboxImage.src = imgElement.dataset.largeUrl || imgElement.src;
-        
+
         try {
           const data = JSON.parse(imgElement.dataset.metadata || "{}");
-          
+
           if (metaCameraMakeModel) metaCameraMakeModel.textContent = `${data.make} ${data.camera}`;
-          if (metaLensMakeModel) metaLensMakeModel.textContent = `${data.lensMake} ${data.lensModel}`;
+          if (metaLensMakeModel)
+            metaLensMakeModel.textContent = `${data.lensMake} ${data.lensModel}`;
           if (metaFocalLength) metaFocalLength.textContent = `${data.focalLength}mm`;
           if (metaFStop) metaFStop.textContent = `ƒ${data.FStop}`;
           if (metaExposure) metaExposure.textContent = `${data.exposure}`;
           if (metaISO) metaISO.textContent = `ISO ${data.iso}`;
           if (metaDate && data.taken) {
-            metaDate.textContent = new Date(data.taken).toLocaleDateString(undefined, { 
-              year: 'numeric', month: 'long', day: 'numeric' 
+            metaDate.textContent = new Date(data.taken).toLocaleDateString(undefined, {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
             });
           }
         } catch (e) {

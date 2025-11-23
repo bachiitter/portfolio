@@ -30,7 +30,15 @@ export default defineConfig({
   },
   experimental: {
     liveContentCollections: true,
-    csp: true,
+    csp: {
+      scriptDirective: {
+        resources: ["https://static.cloudflareinsights.com"],
+        hashes: ["sha256-47be92709c83b14dc09de8bec07eedbe123ee06949170479fd71e158c208ab87"],
+      },
+      styleDirective: {
+        resources: ["https://fonts.googleapis.com"],
+      },
+    },
   },
   adapter: cloudflare({
     imageService: "compile",
