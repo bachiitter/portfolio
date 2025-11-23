@@ -1,9 +1,9 @@
 ---
+  export const prerender = true;
+
   import { type CollectionEntry, getCollection } from "astro:content";
   import BaseLayout from "../../layouts/BaseLayout.astro";
   import { formatDate } from "../../lib/utils";
-
-  export const prerender = true;
 
   const posts = await getCollection("writings");
 ---
