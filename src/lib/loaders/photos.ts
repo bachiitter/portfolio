@@ -20,7 +20,7 @@ export const PhotoSchema = z.object({
   taken: z.string().datetime(),
 });
 
-type Photo = z.infer<typeof PhotoSchema>;
+export type Photo = z.infer<typeof PhotoSchema>;
 
 interface PhotosCollectionFilter {
   page?: number;

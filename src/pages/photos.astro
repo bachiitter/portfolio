@@ -1,16 +1,16 @@
 ---
   import { getLiveCollection } from "astro:content";
   import Lightbox from "../components/Lightbox.astro";
-  import BaseLayout from "../layouts/BaseLayout.astro";
   import PhotoCard from "../components/PhotoCard.astro";
+  import BaseLayout from "../layouts/BaseLayout.astro";
 
   export const prerender = false;
 
   Astro.response.headers.set("Cache-Control", "public, max-age=3600");
 
   const { entries: photos } = await getLiveCollection("photos");
-  const col1 = photos.filter((_, i) => i % 2 === 0);
-  const col2 = photos.filter((_, i) => i % 2 === 1);
+  const col1 = photos?.filter((_, i) => i % 2 === 0);
+  const col2 = photos?.filter((_, i) => i % 2 === 1);
 ---
 <BaseLayout title="Photos" description="Random dump of unedited photos.">
   <section>
@@ -29,12 +29,12 @@
         {/* Desktop View: Masonry Split (1-2, 3-4 ordering visual) */}
         <div class="hidden xs:grid xs:grid-cols-2 gap-4 items-start">
           <div class="flex flex-col gap-4">
-            {col1.map(({ data: photo }, index: number) => (
+            {col1?.map(({ data: photo }, index: number) => (
               <PhotoCard photo={photo} index={index * 2} />
             ))}
           </div>
           <div class="flex flex-col gap-4">
-            {col2.map(({ data: photo }, index: number) => (
+            {col2?.map(({ data: photo }, index: number) => (
               <PhotoCard photo={photo} index={index * 2 + 1} />
             ))}
           </div>
