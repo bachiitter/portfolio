@@ -1,26 +1,18 @@
 ---
   export const prerender = false;
 
+  import { PHOTOS_API_TOKEN, PHOTOS_API_URL } from "astro:env/server";
   import Lightbox from "../components/Lightbox.astro";
   import PhotoCard from "../components/PhotoCard.astro";
   import BaseLayout from "../layouts/BaseLayout.astro";
   import { type Photo } from "../lib/loaders/photos";
-
-  const apiUrl = import.meta.env.PHOTOS_API_URL;
-  const bearerToken = import.meta.env.PHOTOS_API_TOKEN;
-
-  if (!apiUrl) {
-    throw new Error("PHOTOS_API_URL environment variable is required");
-  }
 
   function buildHeaders(etag?: string): HeadersInit {
     const headers: HeadersInit = {
       "Content-Type": "application/json",
     };
 
-    if (bearerToken) {
-      headers.Authorization = `Bearer ${bearerToken}`;
-    }
+    headers.Authorization = `Bearer ${PHOTOS_API_TOKEN}`;
 
     if (etag) {
       headers["If-None-Match"] = etag;
@@ -36,7 +28,7 @@
     const limit = 100;
 
     while (hasMore) {
-      const url = `${apiUrl}?page=${currentPage}&limit=${limit}&sort=desc`;
+      const url = `${PHOTOS_API_URL}?page=${currentPage}&limit=${limit}&sort=desc`;
       const response = await fetch(url, {
         headers: buildHeaders(),
       });
