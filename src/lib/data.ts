@@ -2,7 +2,7 @@ import type { Experience, Project, Social } from "../types";
 
 export const INFO = {
   name: "Bachitter Chahal",
-  title: "Software Engineer",
+  title: "Engineer",
   intro: `I build stuff for fun. I may have written just one app like 5 times. Currently I'm building GetDigest - RSS Reader(It's complicated).`,
   email: "me@bachitter.dev",
 };
