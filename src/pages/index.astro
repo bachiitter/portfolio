@@ -19,7 +19,7 @@
    <span class="font-mono text-xs text-tertiary bg-background-secondary px-2 py-1 rounded-md">{project.status}</span>
                         </div>
   <p class="text-secondary mb-3 line-clamp-2">{project.desc}</p>
-  <div class="flex flex-wrap gap-2">
+  <div class={`flex flex-wrap gap-2 ${project.tech.length > 0 ? "mb-3": ""}`}>
     {project.tech.map(t => (<code class="font-mono text-xs text-tertiary" >#{t}</code>))}
   </div>
   <div class="flex gap-4">

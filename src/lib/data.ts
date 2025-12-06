@@ -11,8 +11,8 @@ export const PROJECTS: Array<Project> = [
   {
     title: "Orphos Design System",
     desc: "A collection of components and UI elements.",
-    tech: [],
-    status: "Soon",
+    tech: ["React", "Tailwind CSS", "Base UI"],
+    status: "Active",
     link: "https://github.com/theasterism/ui",
   },
   {
