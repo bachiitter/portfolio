@@ -16,7 +16,7 @@ export const PROJECTS: Array<Project> = [
   },
   {
     title: "GetDigest",
-    desc: "A refined RSS reader for people who still believe in the open web.",
+    desc: "A distraction-free RSS reader. Save articles, follow feeds, read when ready.",
     status: "Soon",
   },
 ];
