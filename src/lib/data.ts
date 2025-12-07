@@ -2,7 +2,7 @@ import type { Experience, Project, Social } from "../types";
 
 export const INFO = {
   name: "Bachitter Chahal",
-  title: "Engineer",
+  title: "Product Engineer",
   intro: `I build stuff for fun. I may have written just one app like 5 times. Currently I'm building GetDigest - RSS Reader(It's complicated).`,
   email: "me@bachitter.dev",
 };
@@ -10,15 +10,13 @@ export const INFO = {
 export const PROJECTS: Array<Project> = [
   {
     title: "Orphos Design System",
-    desc: "A collection of components and UI elements.",
-    tech: ["React", "Tailwind CSS", "Base UI"],
+    desc: "A minimal, accessible component library built for modern React apps.",
     status: "Active",
     link: "https://github.com/theasterism/ui",
   },
   {
     title: "GetDigest",
-    desc: "Overengineered RSS Reader",
-    tech: [],
+    desc: "A refined RSS reader for people who still believe in the open web.",
     status: "Soon",
   },
 ];

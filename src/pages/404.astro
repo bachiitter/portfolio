@@ -1,0 +1,16 @@
+---
+  import BaseLayout from "../layouts/BaseLayout.astro";
+---
+<BaseLayout title="Page Not Found" description="The page you're looking for doesn't exist.">
+  <section class="py-16 text-center">
+    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-background-secondary mb-6">
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-tertiary"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
+    </div>
+    <h2 class="text-4xl font-semibold text-primary mb-4">404</h2>
+    <p class="text-secondary mb-8">The page you're looking for doesn't exist or has been moved.</p>
+    <a href="/" class="inline-flex items-center gap-2 text-accent font-medium hover:underline">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+      <span>Back to Home</span>
+    </a>
+  </section>
+</BaseLayout>

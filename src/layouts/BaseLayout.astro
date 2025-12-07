@@ -1,5 +1,4 @@
 ---
-  /** biome-ignore-all lint/correctness/noUnusedVariables: shut up! */
   import "../styles/globals.css";
 
   import "@fontsource-variable/inter";
@@ -22,6 +21,17 @@
   const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
   const currentYear = new Date().getFullYear();
+
+  // Structured data for SEO
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: INFO.name,
+    jobTitle: INFO.title,
+    url: Astro.site?.toString(),
+    email: `mailto:${INFO.email}`,
+    sameAs: SOCIALS.map((s) => s.url),
+  };
 ---
 <html lang="en" class="dark">
   <head>
@@ -45,15 +55,16 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content={Astro.url}>
-    <meta property="og:title" content={title}>
+    <meta property="og:title" content={metaTitle}>
     <meta property="og:description" content={metaDescription}>
-    <!-- <meta property="og:image" content={new URL(image, Astro.url)} /> -->
+    <meta property="og:image" content={new URL("/icon.png", Astro.site)}>
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary">
+    <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content={Astro.url}>
     <meta property="twitter:title" content={metaTitle}>
     <meta property="twitter:description" content={metaDescription}>
+    <meta property="twitter:image" content={new URL("/icon.png", Astro.site)}>
 
     <!-- Manifest -->
     <!-- <link rel="manifest" href="/manifest.json" /> -->
@@ -72,37 +83,90 @@
       data-domains="bachitter.dev"
       data-website-id="cfd2d291-8e0a-4160-b788-434caca658aa"
     ></script>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)}/>
   </head>
-  <body class="px-6 py-20 max-w-2xl mx-auto">
-    <header class="mb-16">
+  <body class="px-6 py-24 max-w-2xl mx-auto">
+    <!-- Skip to content link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to content</a>
+    <header class="mb-20">
       <h1 class="text-4xl sm:text-5xl font-semibold tracking-tight leading-tight mb-4 text-primary">
         {INFO.name}
       </h1>
       <p class="text-lg text-secondary mb-6">{INFO.title}</p>
       <p class="text-base leading-relaxed mb-8 text-secondary">{INFO.intro}</p>
-      <div class="flex gap-6 mb-0 ">
+      <div class="flex gap-5">
         {SOCIALS.map(item => (
-          <a class="text-accent font-medium hover:underline" href={item.url} target="blank">{item.label}</a>
+          <a class="text-accent font-medium transition-colors hover:text-primary" href={item.url} target="_blank" rel="noopener noreferrer">{item.label}</a>
         ))}
       </div>
     </header>
-    <nav class="mb-12 flex gap-4 pb-4 border-b border-border">
+    <nav class="mb-12 flex gap-6 pb-4 border-b border-border">
       {routes.map(item => {
         const isActive = Astro.routePattern === `${item.path}` ;
-        return <a class="data-[active=true]:text-primary font-mono uppercase text-xs font-medium tracking-wider px-0 py-2 hover:text-primary text-secondary" data-active={isActive} href={item.path}>{item.label}</a>
+        return <a 
+          class="font-mono uppercase text-xs font-medium tracking-wider py-2 transition-all text-secondary hover:text-primary data-[active=true]:text-primary underline decoration-dashed decoration-border underline-offset-6 decoration-1 hover:decoration-current data-[active=true]:decoration-solid data-[active=true]:decoration-accent" 
+          data-active={isActive} 
+          href={item.path}
+        >
+          {item.label}
+        </a>
     })}
     </nav>
-    <slot/>
+    <main id="main-content">
+      <slot/>
+    </main>
     <footer
       class="mt-20 pt-8 border-t border-border flex justify-between items-center flex-wrap gap-4"
     >
-      <div class="flex gap-6">
-        <a href={`mailto:${INFO.email}`} class="text-accent font-medium hover:underline">Email</a>
-        <a href="/rss.xml" class="text-accent font-medium hover:underline">RSS</a>
+      <div class="flex gap-5">
+        <button
+          type="button"
+          id="copy-email-btn"
+          data-email={INFO.email}
+          class="inline-flex items-center gap-1.5 text-accent font-medium hover:underline transition-colors cursor-pointer bg-transparent border-0 p-0"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect width="20" height="16" x="2" y="4" rx="2"/>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          </svg>
+          <span id="copy-email-text">Copy Email</span>
+        </button>
+        <a
+          href="/rss.xml"
+          class="inline-flex items-center gap-1.5 text-accent font-medium hover:underline transition-colors"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M4 11a9 9 0 0 1 9 9"/>
+            <path d="M4 4a16 16 0 0 1 16 16"/>
+            <circle cx="5" cy="19" r="1"/>
+          </svg>
+          <span>RSS</span>
+        </a>
       </div>
       <div class="font-mono text-xs text-tertiary">
         © <span id="footer-year">{currentYear}</span>
-        {" "}
         {INFO.name.split(" ")[0]}
       </div>
     </footer>
@@ -111,4 +175,22 @@
 
 <script is:inline>
   document.getElementById("footer-year").innerText = new Date().getFullYear();
+
+  // Copy email to clipboard
+  const copyBtn = document.getElementById("copy-email-btn");
+  const copyText = document.getElementById("copy-email-text");
+  if (copyBtn && copyText) {
+    copyBtn.addEventListener("click", async () => {
+      const email = copyBtn.dataset.email;
+      try {
+        await navigator.clipboard.writeText(email);
+        copyText.textContent = "Copied!";
+        setTimeout(() => {
+          copyText.textContent = "Copy Email";
+        }, 2000);
+      } catch {
+        window.location.href = `mailto:${email}`;
+      }
+    });
+  }
 </script>

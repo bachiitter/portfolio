@@ -6,7 +6,6 @@ export interface Social {
 export interface Project {
   title: string;
   desc: string;
-  tech: string[];
   status: "Active" | "Archived" | "Beta" | "Soon";
   link?: string;
 }
