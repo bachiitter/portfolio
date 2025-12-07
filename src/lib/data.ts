@@ -10,7 +10,7 @@ export const INFO = {
 export const PROJECTS: Array<Project> = [
   {
     title: "Orphos Design System",
-    desc: "A minimal, accessible component library built for modern React apps.",
+    desc: "A modern React UI component library built on Base UI and Tailwind CSS v4.",
     status: "Active",
     link: "https://github.com/theasterism/ui",
   },
