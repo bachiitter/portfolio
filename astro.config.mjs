@@ -13,10 +13,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  // output: "static",
-  prefetch: {
-    defaultStrategy: "hover",
-  },
+  prefetch: true,
   markdown: {
     gfm: true,
     smartypants: true,

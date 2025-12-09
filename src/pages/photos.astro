@@ -1,73 +1,74 @@
 ---
-  export const prerender = false;
+export const prerender = true;
 
-  import { PHOTOS_API_TOKEN, PHOTOS_API_URL } from "astro:env/server";
-  import Lightbox from "../components/Lightbox.astro";
-  import PhotoCard from "../components/PhotoCard.astro";
-  import BaseLayout from "../layouts/BaseLayout.astro";
-  import { type Photo } from "../lib/loaders/photos";
+import { PHOTOS_API_TOKEN, PHOTOS_API_URL } from "astro:env/server";
+import Lightbox from "../components/Lightbox.astro";
+import PhotoCard from "../components/PhotoCard.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { type Photo } from "../lib/loaders/photos";
 
-  function buildHeaders(etag?: string): HeadersInit {
-    const headers: HeadersInit = {
-      "Content-Type": "application/json",
-    };
+function buildHeaders(etag?: string): HeadersInit {
+  const headers: HeadersInit = {
+    "Content-Type": "application/json",
+  };
 
-    headers.Authorization = `Bearer ${PHOTOS_API_TOKEN}`;
+  headers.Authorization = `Bearer ${PHOTOS_API_TOKEN}`;
 
-    if (etag) {
-      headers["If-None-Match"] = etag;
-    }
-
-    return headers;
+  if (etag) {
+    headers["If-None-Match"] = etag;
   }
 
-  async function fetchAllPhotos(): Promise<Photo[]> {
-    const allPhotos: Photo[] = [];
-    let currentPage = 1;
-    let hasMore = true;
-    const limit = 100;
+  return headers;
+}
 
-    while (hasMore) {
-      const url = `${PHOTOS_API_URL}?page=${currentPage}&limit=${limit}&sort=desc`;
-      const response = await fetch(url, {
-        headers: buildHeaders(),
-      });
+async function fetchAllPhotos(): Promise<Photo[]> {
+  const allPhotos: Photo[] = [];
+  let currentPage = 1;
+  let hasMore = true;
+  const limit = 100;
 
-      if (response.status === 429) {
-        throw new Error("Rate limit exceeded. Please try again later.");
-      }
+  while (hasMore) {
+    const url = `${PHOTOS_API_URL}?page=${currentPage}&limit=${limit}&sort=desc`;
+    const response = await fetch(url, {
+      headers: buildHeaders(),
+    });
 
-      if (response.status === 401) {
-        throw new Error("Unauthorized. Check your API token.");
-      }
-
-      if (!response.ok) {
-        throw new Error(`Failed to fetch photos: ${response.status} ${response.statusText}`);
-      }
-
-      const data = await response.json();
-
-      if (!data.photos || !Array.isArray(data.photos)) {
-        throw new Error("Invalid API response format");
-      }
-
-      allPhotos.push(...data.photos);
-
-      hasMore = data.pagination?.hasNext || false;
-      currentPage++;
+    if (response.status === 429) {
+      throw new Error("Rate limit exceeded. Please try again later.");
     }
 
-    return allPhotos;
+    if (response.status === 401) {
+      throw new Error("Unauthorized. Check your API token.");
+    }
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch photos: ${response.status} ${response.statusText}`);
+    }
+
+    const data = await response.json();
+
+    if (!data.photos || !Array.isArray(data.photos)) {
+      throw new Error("Invalid API response format");
+    }
+
+    allPhotos.push(...data.photos);
+
+    hasMore = data.pagination?.hasNext || false;
+    currentPage++;
   }
 
-  Astro.response.headers.set("Cache-Control", "public, max-age=600, stale-while-revalidate=300");
+  return allPhotos;
+}
 
-  const photos = await fetchAllPhotos();
+Astro.response.headers.set("Cache-Control", "public, max-age=600, stale-while-revalidate=300");
 
-  // const { entries: photos } = await getLiveCollection("photos");
-  const col1 = photos?.filter((_, i) => i % 2 === 0);
-  const col2 = photos?.filter((_, i) => i % 2 === 1);
+const photos = await fetchAllPhotos();
+
+// const { entries: photos } = await getLiveCollection("photos");
+const col1 = photos?.filter((_, i) => i % 2 === 0);
+const col2 = photos?.filter((_, i) => i % 2 === 1);
 ---
+
 <BaseLayout title="Photos" description="Random dump of unedited photos.">
   <section>
     <h2 class="font-mono text-xs font-medium uppercase tracking-wider text-tertiary mb-6">
