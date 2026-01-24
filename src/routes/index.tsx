@@ -62,19 +62,23 @@ function RouteComponent() {
                   ) : null}
                 </Accordion.Trigger>
               </Accordion.Header>
-              <Accordion.Panel className="flex flex-col gap-4 p-4 border-t border-t-border h-[var(--accordion-panel-height)] overflow-hidden transition-[height] ease-out data-[ending-style]:h-0 data-[starting-style]:h-0">
-                <p className="text-[15px] leading-[26px] tracking-normal text-secondary">
-                  {project.desc}
-                </p>
-                <div className="flex items-center gap-2 flex-wrap">
-                  {project.tags.map((item) => (
-                    <span
-                      className="text-[12px] leading-[21px] tracking-[0.0075em] text-secondary bg-background-secondary px-1.5 py-px border border-border/50 rounded-md"
-                      key={item}
-                    >
-                      {item}
-                    </span>
-                  ))}
+              <Accordion.Panel className="grid transition-[grid-template-rows] duration-200 ease-out data-[ending-style]:grid-rows-[0fr] data-[starting-style]:grid-rows-[0fr] grid-rows-[1fr] border-t border-t-border">
+                <div className="overflow-hidden">
+                  <div className="flex flex-col gap-4 p-4">
+                    <p className="text-[15px] leading-[26px] tracking-normal text-secondary">
+                      {project.desc}
+                    </p>
+                    <div className="flex items-center gap-2 flex-wrap">
+                      {project.tags.map((item) => (
+                        <span
+                          className="text-[12px] leading-[21px] tracking-[0.0075em] text-secondary bg-background-secondary px-1.5 py-px border border-border/50 rounded-md"
+                          key={item}
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </Accordion.Panel>
             </Accordion.Item>
