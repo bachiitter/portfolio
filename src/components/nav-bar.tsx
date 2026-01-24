@@ -21,21 +21,45 @@ export function MainNav() {
   const router = useRouterState();
   const navRef = useRef<HTMLUListElement>(null);
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 });
+  const isInitializedRef = useRef(false);
+  const [enableTransition, setEnableTransition] = useState(false);
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: router.location.pathname is needed for transition
   useEffect(() => {
-    if (!navRef.current) return;
+    const updateIndicator = () => {
+      if (!navRef.current) return;
 
-    const activeLink = navRef.current.querySelector('[data-status="active"]');
-    if (!activeLink) return;
+      const currentPath = router.location.pathname;
+      const activeLinkData = links.find((link) => link.to === currentPath);
+      if (!activeLinkData) return;
 
-    const navRect = navRef.current.getBoundingClientRect();
-    const linkRect = activeLink.getBoundingClientRect();
+      const activeLink = navRef.current.querySelector(
+        `a[href="${activeLinkData.to}"]`
+      );
+      if (!activeLink) return;
 
-    setIndicatorStyle({
-      left: linkRect.left - navRect.left,
-      width: linkRect.width,
-    });
+      const navRect = navRef.current.getBoundingClientRect();
+      const linkRect = activeLink.getBoundingClientRect();
+
+      setIndicatorStyle({
+        left: linkRect.left - navRect.left,
+        width: linkRect.width,
+      });
+    };
+
+    if (!isInitializedRef.current) {
+      document.fonts.ready.then(() => {
+        requestAnimationFrame(() => {
+          updateIndicator();
+          requestAnimationFrame(() => {
+            isInitializedRef.current = true;
+            setEnableTransition(true);
+          });
+        });
+      });
+    } else {
+      updateIndicator();
+    }
   }, [router.location.pathname]);
 
   return (
@@ -46,7 +70,7 @@ export function MainNav() {
           className="flex h-(--header-height) w-full items-center justify-between relative gap-4"
         >
           <span
-            className="absolute -bottom-[1px] h-px bg-accent transition-all duration-200 ease-in-out"
+            className={`absolute -bottom-[1px] h-px bg-accent ease-in-out ${enableTransition ? "transition-all duration-200" : ""}`}
             style={{
               left: `${indicatorStyle.left}px`,
               width: `${indicatorStyle.width}px`,
