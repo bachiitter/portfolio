@@ -145,6 +145,81 @@
     @apply bg-transparent p-0 rounded-none border-0;
   }
 
+  /* Prism syntax highlighting - Vitesse Dark theme */
+  .prose code .token.comment,
+  .prose code .token.prolog,
+  .prose code .token.doctype,
+  .prose code .token.cdata {
+    @apply text-[#758575] italic;
+  }
+
+  .prose code .token.punctuation {
+    @apply text-[#858585];
+  }
+
+  .prose code .token.namespace {
+    @apply opacity-70;
+  }
+
+  .prose code .token.property,
+  .prose code .token.tag,
+  .prose code .token.constant,
+  .prose code .token.symbol,
+  .prose code .token.deleted {
+    @apply text-[#cb7676];
+  }
+
+  .prose code .token.boolean,
+  .prose code .token.number {
+    @apply text-[#4c9a91];
+  }
+
+  .prose code .token.selector,
+  .prose code .token.attr-name,
+  .prose code .token.string,
+  .prose code .token.char,
+  .prose code .token.builtin,
+  .prose code .token.inserted {
+    @apply text-[#c98a7d];
+  }
+
+  .prose code .token.operator,
+  .prose code .token.entity,
+  .prose code .token.url,
+  .prose code .language-css .token.string,
+  .prose code .style .token.string {
+    @apply text-[#cb7676];
+  }
+
+  .prose code .token.atrule,
+  .prose code .token.attr-value,
+  .prose code .token.keyword {
+    @apply text-[#4d9375];
+  }
+
+  .prose code .token.function {
+    @apply text-[#80a665];
+  }
+
+  .prose code .token.class-name {
+    @apply text-[#5da994];
+  }
+
+  .prose code .token.regex,
+  .prose code .token.important,
+  .prose code .token.variable {
+    @apply text-[#bd976a];
+  }
+
+  .prose code .token.important,
+  .prose code .token.bold {
+    @apply font-semibold;
+  }
+
+  .prose code .token.italic {
+    @apply italic;
+  }
+
   .prose ul,
   .prose ol {
     @apply text-secondary mb-6 pl-6;
