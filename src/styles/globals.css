@@ -31,6 +31,11 @@
 }
 
 @layer base {
+  html {
+    scrollbar-gutter: stable;
+    overflow-y: scroll;
+  }
+
   body {
     @apply text-base leading-relaxed bg-background text-primary font-sans antialiased selection:bg-accent selection:text-white;
   }
@@ -61,7 +66,7 @@
     width: 8px;
   }
   ::-webkit-scrollbar-track {
-    background: var(--color-background-secondary);
+    background: var(--color-background);
   }
   ::-webkit-scrollbar-thumb {
     background: var(--color-border);
