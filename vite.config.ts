@@ -16,7 +16,6 @@ export default defineConfig({
     tailwindcss(),
     cloudflare({
       viteEnvironment: { name: "ssr" },
-      persistState: true,
     }),
     tanstackStart({
       prerender: {
@@ -24,6 +23,7 @@ export default defineConfig({
         crawlLinks: true,
       },
       sitemap: {
+        enabled: true,
         host: "https://bachitter.dev",
       },
     }),
