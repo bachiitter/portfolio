@@ -24,7 +24,6 @@ export function MainNav() {
   const isInitializedRef = useRef(false);
   const [enableTransition, setEnableTransition] = useState(false);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: router.location.pathname is needed for transition
   useEffect(() => {
     const updateIndicator = () => {
       if (!navRef.current) return;
@@ -33,9 +32,7 @@ export function MainNav() {
       const activeLinkData = links.find((link) => link.to === currentPath);
       if (!activeLinkData) return;
 
-      const activeLink = navRef.current.querySelector(
-        `a[href="${activeLinkData.to}"]`
-      );
+      const activeLink = navRef.current.querySelector(`a[href="${activeLinkData.to}"]`);
       if (!activeLink) return;
 
       const navRect = navRef.current.getBoundingClientRect();
@@ -79,7 +76,6 @@ export function MainNav() {
           {links.map(({ label, ...item }) => (
             <li key={item.to}>
               <Link
-                activeOptions={{ exact: true }}
                 className="text-secondary hover:no-underline text-sm leading-[22px] tracking-normal relative before:absolute before:-inset-x-[7px] before:-inset-y-[14px] h-auto hover:text-primary data-[status=active]:text-accent"
                 {...item}
               >
