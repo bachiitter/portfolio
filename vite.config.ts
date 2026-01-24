@@ -18,7 +18,16 @@ export default defineConfig({
       viteEnvironment: { name: "ssr" },
       persistState: true,
     }),
-    tanstackStart(),
+    tanstackStart({
+      prerender: {
+        enabled: true,
+        crawlLinks: true,
+        filter: ({ path }) => !path.includes("photo"),
+      },
+      sitemap: {
+        host: "https://bachitter.dev",
+      },
+    }),
     viteReact(),
   ],
 });
