@@ -6,8 +6,8 @@ export interface Social {
 export interface Project {
   title: string;
   desc: string;
-  status: "Active" | "Archived" | "Beta" | "Soon";
   link?: string;
+  tags: Array<string>;
 }
 
 export interface Experience {

@@ -1,8 +1,14 @@
 {
-  "extends": "./node_modules/astro/tsconfigs/strictest",
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"],
+  "extends": "@total-typescript/tsconfig/bundler/dom/app",
   "compilerOptions": {
-    "module": "ES2022"
-  },
-  "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist", "node_modules"]
+    "jsx": "react-jsx",
+    "verbatimModuleSyntax": false,
+    "types": ["vite/client"],
+    "paths": {
+      "$/*": ["./src/*"]
+    }
+  }
 }
