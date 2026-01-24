@@ -1,5 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import readingTime from "reading-time";
+import { renderMarkdown } from "../render-markdown";
 
 interface GetPostsGraphQLResponse {
   data?: {
@@ -195,10 +196,13 @@ export const getPostBySlug = createServerFn()
       return;
     }
 
-    const post = posts.find((p) => p?.slug === data);
+    const { content, ...post } = posts.find((p) => p?.slug === data);
+
+    const markup = await renderMarkdown(content || "");
 
     return {
       ...post,
-      readingTime: readingTime(post?.content || "").text,
+      content: String(markup),
+      readingTime: readingTime(content || "").text,
     };
   });

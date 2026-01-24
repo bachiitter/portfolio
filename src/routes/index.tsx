@@ -19,15 +19,15 @@ function RouteComponent() {
         />
         <h1 className="text-[32px] font-medium leading-[42px] tracking-[-0.01em]">{INFO.name}</h1>
       </div>
-      <p className="text-base leading-[26px] tracking-none">
+      <p className="text-[15px] leading-[26px] tracking-normal">
         <span>{INFO.intro}</span>{" "}
         <span className="text-accent">{INFO.currentProjects[0]?.name}</span> <span>and</span>{" "}
-        <a target="blank" href={INFO.currentProjects[1]?.link}>
+        <a target="blank" className="link" href={INFO.currentProjects[1]?.link}>
           {INFO.currentProjects[1]?.name}
         </a>
         .
       </p>
-      <ul className="flex flex-col gap-2 text-secondary text-base leading-[26px] tracking-none [&_li]:flex [&_li]:items-start [&_li]:gap-2">
+      <ul className="flex flex-col gap-2 text-secondary text-[15px] leading-[26px] tracking-normal [&_li]:flex [&_li]:items-start [&_li]:gap-2">
         <li>
           <MapPinIcon className="size-4 shrink-0 mt-1" /> {INFO.city}
         </li>
@@ -35,7 +35,7 @@ function RouteComponent() {
           <BriefcaseIcon className="size-4 shrink-0 mt-1" /> {INFO.work}
         </li>
       </ul>
-      <p className="text-base leading-[26px] tracking-none text-secondary">{INFO.aboutMe}</p>
+      <p className="text-[15px] leading-[26px] tracking-normal text-secondary">{INFO.aboutMe}</p>
       <div className="flex flex-col gap-4">
         <h2 className="text-2xl font-medium leading-[32px] tracking-[-0.0075em]">Projects</h2>
         <Accordion.Root className="flex flex-col">
@@ -46,11 +46,12 @@ function RouteComponent() {
             >
               <Accordion.Header>
                 <Accordion.Trigger className="flex gap-4 items-center justify-between w-full p-4 hover:bg-background-secondary">
-                  <span className="text-base font-medium leading-[25px] tracking-none">
+                  <span className="text-base font-medium leading-[25px] tracking-normal">
                     {project.title}
                   </span>
                   {project.link ? (
                     <a
+                      className="link"
                       href={project.link}
                       target="blank"
                       rel="noopener noreferrer"
@@ -62,7 +63,7 @@ function RouteComponent() {
                 </Accordion.Trigger>
               </Accordion.Header>
               <Accordion.Panel className="flex flex-col gap-4 p-4 border-t border-t-border h-[var(--accordion-panel-height)] overflow-hidden transition-[height] ease-out data-[ending-style]:h-0 data-[starting-style]:h-0">
-                <p className="text-[15px] leading-[24px] tracking-none text-secondary">
+                <p className="text-[15px] leading-[26px] tracking-normal text-secondary">
                   {project.desc}
                 </p>
                 <div className="flex items-center gap-2 flex-wrap">
@@ -82,7 +83,7 @@ function RouteComponent() {
       </div>
       <div className="flex flex-col gap-4">
         <h2 className="text-2xl font-medium leading-[32px] tracking-[-0.0075em]">Experience</h2>
-        <p className="text-secondary text-sm leading-[22px] tracking-none">No experience yet</p>
+        <p className="text-secondary text-sm leading-[22px] tracking-normal">No experience yet</p>
       </div>
     </section>
   );
