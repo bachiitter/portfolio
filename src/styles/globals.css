@@ -81,7 +81,7 @@
 }
 
 @utility container {
-  @apply min-h-screen mx-auto w-full max-w-2xl px-4 border-x border-x-border;
+  @apply min-h-screen mx-auto w-full max-w-2xl px-4 border-x border-transparent xs:border-x-border;
 }
 
 @layer components {
