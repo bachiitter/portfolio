@@ -41,7 +41,7 @@ function RouteComponent() {
               taken: photo.taken,
             }}
           >
-            <img className="object-cover aspect-square w-full" src={photo.largeUrl} alt="" />
+            <img className="object-cover aspect-square w-full" src={photo.thumbnailUrl} alt="" />
           </ImageZoom>
         ))}
       </div>
