@@ -20,6 +20,7 @@
     "@tailwindcss/vite": "^4.1.18",
     "@tanstack/react-router": "^1.156.0",
     "@tanstack/react-start": "^1.156.0",
+    "@tanstack/start-static-server-functions": "^1.156.0",
     "@types/hast": "^3.0.4",
     "clsx": "^2.1.1",
     "react": "^19.2.3",
