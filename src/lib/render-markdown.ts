@@ -1,4 +1,5 @@
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypePrismPlus from "rehype-prism-plus";
 import rehypeRaw from "rehype-raw";
 import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
@@ -14,20 +15,21 @@ export type MarkdownHeading = {
   level: number;
 };
 
-export async function renderMarkdown(content: string) {
+export async function renderMarkdown(content: string): Promise<string> {
   const result = await unified()
-    .use(remarkParse) // Parse markdown
-    .use(remarkGfm) // Support GitHub Flavored Markdown
-    .use(remarkRehype, { allowDangerousHtml: true }) // Convert to HTML AST
-    .use(rehypeRaw) // Process raw HTML in markdown
-    .use(rehypeSlug) // Add IDs to headings
+    .use(remarkParse)
+    .use(remarkGfm)
+    .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeRaw)
+    .use(rehypeSlug)
     .use(rehypeAutolinkHeadings, {
       behavior: "wrap",
       properties: { className: ["anchor"] },
     })
     .use(remarkDeruntify)
-    .use(rehypeStringify) // Serialize to HTML string
+    .use(rehypePrismPlus, { ignoreMissing: true })
+    .use(rehypeStringify)
     .process(content);
 
-  return result;
+  return String(result);
 }
