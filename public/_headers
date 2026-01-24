@@ -1,7 +1,0 @@
-/_astro/*
-  Cache-Control: public, immutable, max-age=31536000
-/fonts/*
-  Cache-Control: public, immutable, max-age=31536000
-/blog/*
-  Cache-Control: public, max-age=0, must-revalidate 
-
