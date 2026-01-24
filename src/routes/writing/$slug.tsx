@@ -8,7 +8,7 @@ export const Route = createFileRoute("/writing/$slug")({
     // Cache for 1 hour, allow stale for 7 days
     "Cache-Control": "public, max-age=3600, stale-while-revalidate=604800",
   }),
-  staleTime: 5 * 60_000, // 5 minutes client-side
+  staleTime: 15 * 60_000, // 15 minutes client-side
   head: ({ loaderData, params }) => ({
     meta: [
       ...metadata({
