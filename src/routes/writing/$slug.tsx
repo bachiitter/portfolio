@@ -56,7 +56,7 @@ function RouteComponent() {
             </span>
             <time
               dateTime={post?.publishedAt}
-              className="text-[15px] leading-[24px] tracking-none text-secondary"
+              className="text-[15px] leading-[26px] tracking-normal text-primary"
             >
               {formatDate(post?.publishedAt || "")}
             </time>
@@ -65,13 +65,13 @@ function RouteComponent() {
             <span className="text-tertiary text-[12px] leading-[21px] tracking-[0.0075em]">
               Reading time
             </span>
-            <span className="text-[15px] leading-[24px] tracking-none text-secondary">
+            <span className="text-[15px] leading-[26px] tracking-normal text-primary">
               {post?.readingTime}
             </span>
           </div>
         </div>
       </div>
-      <div className="flex flex-col">{post?.content}</div>
+      <div className="prose" dangerouslySetInnerHTML={{ __html: post?.content || "" }} />
     </section>
   );
 }

@@ -56,7 +56,7 @@ export function MainNav() {
             <li key={item.to}>
               <Link
                 activeOptions={{ exact: true }}
-                className="text-secondary hover:no-underline text-sm leading-[22px] tracking-none relative before:absolute before:-inset-x-[7px] before:-inset-y-[14px] h-auto hover:text-primary data-[status=active]:text-accent"
+                className="text-secondary hover:no-underline text-sm leading-[22px] tracking-normal relative before:absolute before:-inset-x-[7px] before:-inset-y-[14px] h-auto hover:text-primary data-[status=active]:text-accent"
                 {...item}
               >
                 {label}
@@ -66,7 +66,7 @@ export function MainNav() {
           <li>
             <a
               href={`mailto:${INFO.email}`}
-              className="text-secondary hover:no-underline text-sm leading-[22px] tracking-none relative before:absolute before:-inset-x-[7px] before:-inset-y-[14px] h-auto hover:text-primary data-[status=active]:text-accent"
+              className="text-secondary hover:no-underline text-sm leading-[22px] tracking-normal relative before:absolute before:-inset-x-[7px] before:-inset-y-[14px] h-auto hover:text-primary data-[status=active]:text-accent"
             >
               Contact
             </a>

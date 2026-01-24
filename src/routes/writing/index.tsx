@@ -35,10 +35,10 @@ function RouteComponent() {
             className="border-t border-t-border -mx-4 last:border-b last:border-b-border hover:bg-background-secondary hover:no-underline "
           >
             <div className="flex gap-4 items-center justify-between w-full p-4 ">
-              <span className="text-base text-primary font-medium leading-[25px] tracking-none">
+              <span className="text-base text-primary font-medium leading-[25px] tracking-normal">
                 {post.title}
               </span>
-              <span className="text-[15px] leading-[24px] tracking-none text-secondary">
+              <span className="text-[15px] leading-[26px] tracking-normal text-secondary">
                 {formatDate(post.publishedAt || "")}
               </span>
             </div>

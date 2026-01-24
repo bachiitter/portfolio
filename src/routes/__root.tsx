@@ -67,10 +67,14 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <div className="flex flex-col gap-12 container">
           <MainNav />
           <main className="flex-1">{children}</main>
-          <footer className="flex gap-8 xs:gap-4 xs:justify-between flex-col xs:flex-row xs:items-center text-[15px] leading-[24px] tracking-none text-secondary pb-4">
+          <footer className="flex gap-8 xs:gap-4 xs:justify-between flex-col xs:flex-row xs:items-center text-[15px] leading-[24px] tracking-normal text-secondary pb-4">
             <div className="flex items-center gap-2">
               {LINKS.map((item) => (
-                <a className="text-sm leading-[22px] tracking-none" href={item.url} key={item.url}>
+                <a
+                  className="text-sm leading-[22px] tracking-normal link"
+                  href={item.url}
+                  key={item.url}
+                >
                   {item.label}
                 </a>
               ))}
