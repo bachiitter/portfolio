@@ -80,7 +80,7 @@ export const ImageZoom = ({ children, src, className, meta }: ImageZoomProps) =>
             <img
               src={src}
               alt="Lightbox view"
-              className="max-h-[70vh] max-w-full object-contain rounded-lg shadow-2xl border border-border"
+              className="max-h-[70vh] max-w-full object-contain shadow-2xl border border-border"
             />
           </div>
 
