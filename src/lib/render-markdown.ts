@@ -1,5 +1,4 @@
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypePrismPlus from "rehype-prism-plus";
 import rehypeRaw from "rehype-raw";
 import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
@@ -27,7 +26,6 @@ export async function renderMarkdown(content: string): Promise<string> {
       properties: { className: ["anchor"] },
     })
     .use(remarkDeruntify)
-    .use(rehypePrismPlus, { ignoreMissing: true })
     .use(rehypeStringify)
     .process(content);
 

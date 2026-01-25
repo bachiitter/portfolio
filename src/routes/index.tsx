@@ -71,7 +71,7 @@ function RouteComponent() {
                     <div className="flex items-center gap-2 flex-wrap">
                       {project.tags.map((item) => (
                         <span
-                          className="text-[12px] leading-[21px] tracking-[0.0075em] text-secondary bg-background-secondary px-1.5 py-px border border-border/50 rounded-md"
+                          className="text-[12px] leading-[21px] tracking-[0.0075em] text-secondary bg-background-secondary px-1.5 py-px border border-border/50"
                           key={item}
                         >
                           {item}
