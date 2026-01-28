@@ -27,7 +27,7 @@ function RouteComponent() {
         </a>
         .
       </p>
-      <ul className="flex flex-col gap-2 text-secondary text-[15px] leading-[26px] tracking-normal [&_li]:flex [&_li]:items-start [&_li]:gap-2">
+      <ul className="flex flex-col gap-1 text-secondary text-[15px] leading-[26px] tracking-normal [&_li]:flex [&_li]:items-start [&_li]:gap-2">
         <li>
           <MapPinIcon className="size-4 shrink-0 mt-1" /> {INFO.city}
         </li>

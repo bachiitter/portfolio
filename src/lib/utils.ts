@@ -46,3 +46,9 @@ export function metadata({
 
   return tags;
 }
+
+export function calculateReadingTime(markdown: string | null | undefined): number {
+  if (!markdown) return 0;
+  const words = markdown.split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.ceil(words / 200));
+}

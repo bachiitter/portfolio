@@ -51,7 +51,7 @@ export const Route = createRootRoute({
         src: "https://cdn.databuddy.cc/databuddy.js",
         "data-client-id": "a4c6f301-27f4-4d44-804f-6f92853625dc",
         "data-track-outgoing-links": true,
-        crossorigin: "anonymous",
+        crossOrigin: "anonymous",
         async: true,
       },
     ],
@@ -88,7 +88,10 @@ function RootDocument({ children }: { children: React.ReactNode }) {
                 </a>
               ))}
             </div>
-            <span className="text-[12px] leading-5.25 tracking-[0.0075em] text-secondary">
+            <span
+              className="text-[12px] leading-5.25 tracking-[0.0075em] text-secondary"
+              suppressHydrationWarning
+            >
               © {new Date().getFullYear()} {INFO.name.split(" ")[0]}
             </span>
           </footer>

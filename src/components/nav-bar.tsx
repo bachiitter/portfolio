@@ -20,11 +20,17 @@ const links = linkOptions([
 export function MainNav() {
   const router = useRouterState();
   const navRef = useRef<HTMLUListElement>(null);
-  const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 });
-  const isInitializedRef = useRef(false);
+  const [indicatorStyle, setIndicatorStyle] = useState<{ left: number; width: number } | null>(null);
   const [enableTransition, setEnableTransition] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isMounted) return;
+
     const updateIndicator = () => {
       if (!navRef.current) return;
 
@@ -44,12 +50,11 @@ export function MainNav() {
       });
     };
 
-    if (!isInitializedRef.current) {
+    if (!enableTransition) {
       document.fonts.ready.then(() => {
         requestAnimationFrame(() => {
           updateIndicator();
           requestAnimationFrame(() => {
-            isInitializedRef.current = true;
             setEnableTransition(true);
           });
         });
@@ -57,7 +62,7 @@ export function MainNav() {
     } else {
       updateIndicator();
     }
-  }, [router.location.pathname]);
+  }, [router.location.pathname, isMounted, enableTransition]);
 
   return (
     <header className="sticky inset-x-0 top-0 isolate z-20 flex shrink-0 items-center gap-2 border-b border-border bg-background -mx-4">
@@ -66,13 +71,15 @@ export function MainNav() {
           ref={navRef}
           className="flex h-(--header-height) w-full items-center justify-between relative gap-4"
         >
-          <span
-            className={`absolute -bottom-[1px] h-px bg-accent ease-in-out ${enableTransition ? "transition-all duration-200" : ""}`}
-            style={{
-              left: `${indicatorStyle.left}px`,
-              width: `${indicatorStyle.width}px`,
-            }}
-          />
+          {indicatorStyle && (
+            <span
+              className={`absolute -bottom-[1px] h-px bg-accent ease-in-out ${enableTransition ? "transition-all duration-200" : ""}`}
+              style={{
+                left: `${indicatorStyle.left}px`,
+                width: `${indicatorStyle.width}px`,
+              }}
+            />
+          )}
           {links.map(({ label, ...item }) => (
             <li key={item.to}>
               <Link
