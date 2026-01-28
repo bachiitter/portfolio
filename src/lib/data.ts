@@ -4,7 +4,7 @@ export const INFO = {
   avatarImage: "https://pbs.twimg.com/profile_images/2014842071358521344/bXAVoW42_400x400.jpg",
   name: "Bachitter Chahal",
   descrition: "Hi! I am Bachitter Chahal, a Product Engineer based in Barnala, India.",
-  intro: `I'm a product engineer, working on`,
+  intro: `I'm a product engineer, currently building`,
   currentProjects: [
     {
       name: "GetDigest",

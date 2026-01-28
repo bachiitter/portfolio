@@ -46,6 +46,15 @@ export const Route = createRootRoute({
       // { rel: "manifest", href: "/site.webmanifest", color: "#fffff" },
       { rel: "icon", href: "/favicon.png" },
     ],
+    scripts: [
+      {
+        src: "https://cdn.databuddy.cc/databuddy.js",
+        "data-client-id": "a4c6f301-27f4-4d44-804f-6f92853625dc",
+        "data-track-outgoing-links": true,
+        crossorigin: "anonymous",
+        async: true,
+      },
+    ],
   }),
   shellComponent: RootDocument,
 });
@@ -67,11 +76,11 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <div className="flex flex-col gap-12 container">
           <MainNav />
           <main className="flex-1">{children}</main>
-          <footer className="flex gap-8 xs:gap-4 xs:justify-between flex-col xs:flex-row xs:items-center text-[15px] leading-[24px] tracking-normal text-secondary pb-4">
+          <footer className="flex gap-8 xs:gap-4 xs:justify-between flex-col xs:flex-row xs:items-center text-[15px] leading-6 tracking-normal text-secondary pb-4">
             <div className="flex items-center gap-2">
               {LINKS.map((item) => (
                 <a
-                  className="text-sm leading-[22px] tracking-normal link"
+                  className="text-sm leading-5.5 tracking-normal link"
                   href={item.url}
                   key={item.url}
                 >
@@ -79,7 +88,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
                 </a>
               ))}
             </div>
-            <span className="text-[12px] leading-[21px] tracking-[0.0075em] text-secondary">
+            <span className="text-[12px] leading-5.25 tracking-[0.0075em] text-secondary">
               © {new Date().getFullYear()} {INFO.name.split(" ")[0]}
             </span>
           </footer>
