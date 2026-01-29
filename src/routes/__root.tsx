@@ -66,10 +66,11 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />*{" "}
         <ClientOnly>
           <script
-            src="https://cdn.databuddy.cc/databuddy.js"
-            data-client-id="a4c6f301-27f4-4d44-804f-6f92853625dc"
-            crossOrigin="anonymous"
-            async
+            defer
+            data-host-url={INFO.siteUrl}
+            src="/stats.js"
+            data-website-id="cfd2d291-8e0a-4160-b788-434caca658aa"
+            data-umami-event="outbound-link-click"
           />
         </ClientOnly>
       </head>

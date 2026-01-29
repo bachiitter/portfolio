@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as StatsDotjsRouteImport } from './routes/stats[.]js'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as RssDotxmlRouteImport } from './routes/rss[.]xml'
 import { Route as PhotosRouteImport } from './routes/photos'
@@ -17,6 +18,11 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as WritingIndexRouteImport } from './routes/writing/index'
 import { Route as WritingSlugRouteImport } from './routes/writing/$slug'
 
+const StatsDotjsRoute = StatsDotjsRouteImport.update({
+  id: '/stats.js',
+  path: '/stats.js',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
@@ -59,6 +65,7 @@ export interface FileRoutesByFullPath {
   '/photos': typeof PhotosRoute
   '/rss.xml': typeof RssDotxmlRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/stats.js': typeof StatsDotjsRoute
   '/writing/$slug': typeof WritingSlugRoute
   '/writing/': typeof WritingIndexRoute
 }
@@ -67,6 +74,7 @@ export interface FileRoutesByTo {
   '/photos': typeof PhotosRoute
   '/rss.xml': typeof RssDotxmlRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/stats.js': typeof StatsDotjsRoute
   '/writing/$slug': typeof WritingSlugRoute
   '/writing': typeof WritingIndexRoute
 }
@@ -77,6 +85,7 @@ export interface FileRoutesById {
   '/photos': typeof PhotosRoute
   '/rss.xml': typeof RssDotxmlRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/stats.js': typeof StatsDotjsRoute
   '/writing/$slug': typeof WritingSlugRoute
   '/writing/': typeof WritingIndexRoute
 }
@@ -88,6 +97,7 @@ export interface FileRouteTypes {
     | '/photos'
     | '/rss.xml'
     | '/sitemap.xml'
+    | '/stats.js'
     | '/writing/$slug'
     | '/writing/'
   fileRoutesByTo: FileRoutesByTo
@@ -96,6 +106,7 @@ export interface FileRouteTypes {
     | '/photos'
     | '/rss.xml'
     | '/sitemap.xml'
+    | '/stats.js'
     | '/writing/$slug'
     | '/writing'
   id:
@@ -105,6 +116,7 @@ export interface FileRouteTypes {
     | '/photos'
     | '/rss.xml'
     | '/sitemap.xml'
+    | '/stats.js'
     | '/writing/$slug'
     | '/writing/'
   fileRoutesById: FileRoutesById
@@ -115,10 +127,18 @@ export interface RootRouteChildren {
   PhotosRoute: typeof PhotosRoute
   RssDotxmlRoute: typeof RssDotxmlRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  StatsDotjsRoute: typeof StatsDotjsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/stats.js': {
+      id: '/stats.js'
+      path: '/stats.js'
+      fullPath: '/stats.js'
+      preLoaderRoute: typeof StatsDotjsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
@@ -191,6 +211,7 @@ const rootRouteChildren: RootRouteChildren = {
   PhotosRoute: PhotosRoute,
   RssDotxmlRoute: RssDotxmlRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  StatsDotjsRoute: StatsDotjsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
