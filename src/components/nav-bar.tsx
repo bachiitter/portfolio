@@ -2,7 +2,7 @@ import { Link, linkOptions, useRouterState } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { INFO } from "$/lib/data";
 
-const links = linkOptions([
+export const NAV_LINKS = linkOptions([
   {
     to: "/",
     label: "Home",
@@ -37,7 +37,7 @@ export function MainNav() {
       if (!navRef.current) return;
 
       const currentPath = router.location.pathname;
-      const activeLinkData = links.find((link) => link.to === currentPath);
+      const activeLinkData = NAV_LINKS.find((link) => link.to === currentPath);
       if (!activeLinkData) return;
 
       const activeLink = navRef.current.querySelector(`a[href="${activeLinkData.to}"]`);
@@ -82,7 +82,7 @@ export function MainNav() {
               }}
             />
           )}
-          {links.map(({ label, ...item }) => (
+          {NAV_LINKS.map(({ label, ...item }) => (
             <li key={item.to}>
               <Link
                 className="text-secondary hover:no-underline text-sm leading-5.5 tracking-normal relative before:absolute before:-inset-x-1.75 before:-inset-y-3.5 h-auto hover:text-primary data-[status=active]:text-accent"

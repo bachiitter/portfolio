@@ -21,7 +21,7 @@ interface GetPostsGraphQLResponse {
   }>;
 }
 
-export const getPosts = async () => {
+export async function getAllPosts() {
   const spaceId = process.env.CONTENTFUL_SPACE_ID;
   const accessToken = process.env.CONTENTFUL_API_TOKEN;
   const isPreview = !process.env.NODE_ENV?.includes("prod");
@@ -94,9 +94,9 @@ export const getPosts = async () => {
   }
 
   return posts;
-};
+}
 
-export const getPostsFn = createServerFn({ method: "GET" }).handler(getPosts);
+export const getPostsFn = createServerFn({ method: "GET" }).handler(getAllPosts);
 
 interface GetPostBySlugGraphQLResponse {
   data?: {

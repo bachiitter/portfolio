@@ -18,14 +18,14 @@ export default defineConfig({
     }),
     tailwindcss(),
     tanstackStart({
-      prerender: {
-        enabled: true,
-        crawlLinks: false,
-      },
-      sitemap: {
-        enabled: true,
-        host: "https://bachitter.dev",
-      },
+      // prerender: {
+      //   enabled: true,
+      //   crawlLinks: false,
+      // },
+      // sitemap: {
+      //   enabled: true,
+      //   host: "https://bachitter.dev",
+      // },
     }),
     viteReact(),
   ],
