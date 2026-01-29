@@ -8,7 +8,9 @@ export const Route = createFileRoute("/stats.js")({
         const text = await scriptText.text();
 
         return new Response(text, {
-          headers: {},
+          headers: {
+            "Content-Type": "application/javascript; charset=utf-8",
+          },
         });
       },
     },
