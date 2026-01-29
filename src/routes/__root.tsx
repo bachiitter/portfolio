@@ -1,4 +1,4 @@
-import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { ClientOnly, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import appCss from "../styles/globals.css?url";
 import "@fontsource-variable/inter";
 import "@fontsource/jetbrains-mono/400.css";
@@ -47,13 +47,13 @@ export const Route = createRootRoute({
       { rel: "icon", href: "/favicon.png" },
     ],
     scripts: [
-      {
-        src: "https://cdn.databuddy.cc/databuddy.js",
-        "data-client-id": "a4c6f301-27f4-4d44-804f-6f92853625dc",
-        "data-track-outgoing-links": true,
-        crossOrigin: "anonymous",
-        async: true,
-      },
+      // {
+      //   src: "https://cdn.databuddy.cc/databuddy.js",
+      //   "data-client-id": "a4c6f301-27f4-4d44-804f-6f92853625dc",
+      //   "data-track-outgoing-links": true,
+      //   crossOrigin: "anonymous",
+      //   async: true,
+      // },
     ],
   }),
   shellComponent: RootDocument,
@@ -64,6 +64,14 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        <ClientOnly>
+          <script
+            src="https://cdn.databuddy.cc/databuddy.js"
+            data-client-id="a4c6f301-27f4-4d44-804f-6f92853625dc"
+            crossOrigin="anonymous"
+            async
+          />
+        </ClientOnly>
       </head>
       <body
         className=""
