@@ -8,6 +8,7 @@ export function getRouter() {
     scrollRestoration: true,
     defaultPreloadStaleTime: 0,
     defaultNotFoundComponent: () => <p>Not Found</p>,
+    trailingSlash: "never",
   });
 
   return router;
