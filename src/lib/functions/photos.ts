@@ -1,11 +1,9 @@
-import { createServerFn } from "@tanstack/react-start";
-
 export const getPhotos = async () => {
   const PHOTOS_API_URL = process.env.PHOTOS_API_URL;
   const PHOTOS_API_TOKEN = process.env.PHOTOS_API_TOKEN;
 
   if (!PHOTOS_API_URL || !PHOTOS_API_TOKEN) {
-    console.error("Missing  credentials (CONTENTFUL_SPACE_ID or CONTENTFUL_API_TOKEN)");
+    console.error("Missing  credentials (PHOTOS_API_URL or PHOTOS_API_TOKEN)");
     return;
   }
 
