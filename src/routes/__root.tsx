@@ -44,9 +44,18 @@ export const Route = createRootRoute({
         href: "/favicon.png",
       },
       // { rel: "manifest", href: "/site.webmanifest", color: "#fffff" },
-      { rel: "icon", href: "/favicon.png" },
+      // { rel: "icon", href: "/favicon.png" },
     ],
-    scripts: [],
+    scripts: [
+      {
+        src: "https://cloud.umami.is/script.js",
+        defer: true,
+        "data-do-not-track": true,
+        "data-domains": INFO.siteUrl,
+        "data-website-id": "cfd2d291-8e0a-4160-b788-434caca658aa",
+        "data-umami-event": "outbound-link-click",
+      },
+    ],
   }),
   shellComponent: RootDocument,
 });
@@ -56,16 +65,6 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
-        <ClientOnly>
-          <script
-            defer
-            data-do-not-track="true"
-            data-domains={INFO.siteUrl}
-            src="https://cloud.umami.is/script.js"
-            data-website-id="cfd2d291-8e0a-4160-b788-434caca658aa"
-            data-umami-event="outbound-link-click"
-          />
-        </ClientOnly>
       </head>
       <body
         style={
