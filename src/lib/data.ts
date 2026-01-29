@@ -92,8 +92,8 @@ export const LINKS: Array<Social> = [
     label: "Twitter/X",
     url: "https://x.com/bachiitter",
   },
-  {
-    label: "RSS",
-    url: "/rss.xml",
-  },
+  // {
+  //   label: "RSS",
+  //   url: "/rss.xml",
+  // },
 ] as const;

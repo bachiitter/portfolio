@@ -10,17 +10,16 @@ export default defineConfig({
     port: 3000,
   },
   plugins: [
+    cloudflare({
+      viteEnvironment: { name: "ssr" },
+    }),
     tsConfigPaths({
       projects: ["./tsconfig.json"],
     }),
     tailwindcss(),
-    cloudflare({
-      viteEnvironment: { name: "ssr" },
-    }),
     tanstackStart({
       prerender: {
         enabled: true,
-        crawlLinks: true,
       },
       sitemap: {
         enabled: true,
