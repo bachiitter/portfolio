@@ -67,7 +67,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <ClientOnly>
           <script
             defer
-            data-host-url={INFO.siteUrl}
+            data-domains={INFO.siteUrl}
             src="/stats.js"
             data-website-id="cfd2d291-8e0a-4160-b788-434caca658aa"
             data-umami-event="outbound-link-click"
