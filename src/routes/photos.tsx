@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { createServerFn } from "@tanstack/react-start";
+import { staticFunctionMiddleware } from "@tanstack/start-static-server-functions";
 import { ImageZoom } from "$/components/lightbox";
 import { getPhotos } from "$/lib/functions/photos";
 import { metadata } from "$/lib/utils";
-import { staticFunctionMiddleware } from "@tanstack/start-static-server-functions";
-import { createServerFn } from "@tanstack/react-start";
 
 export const Route = createFileRoute("/photos")({
   loader: () =>
@@ -16,10 +16,6 @@ export const Route = createFileRoute("/photos")({
         title: `Photos - Bachitter`,
       }),
     ],
-  }),
-  headers: () => ({
-    // Cache for 1 hour, allow stale for 7 days
-    "Cache-Control": "public, max-age=3600, stale-while-revalidate=604800",
   }),
   component: RouteComponent,
 });
