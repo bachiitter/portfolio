@@ -63,15 +63,15 @@ function RootDocument({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
-        <HeadContent />
-        {/*  <ClientOnly>
-         <script
+        <HeadContent />*{" "}
+        <ClientOnly>
+          <script
             src="https://cdn.databuddy.cc/databuddy.js"
             data-client-id="a4c6f301-27f4-4d44-804f-6f92853625dc"
             crossOrigin="anonymous"
             async
-          /> 
-        </ClientOnly>*/}
+          />
+        </ClientOnly>
       </head>
       <body
         className=""
