@@ -9,6 +9,7 @@ export const Route = createFileRoute("/stats.js")({
 
         return new Response(text, {
           headers: {
+            "Cache-Control": "public, max-age=86400, must-revalidate",
             "Content-Type": "application/javascript; charset=utf-8",
           },
         });

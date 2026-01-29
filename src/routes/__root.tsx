@@ -63,7 +63,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
-        <HeadContent />*{" "}
+        <HeadContent />
         <ClientOnly>
           <script
             defer
@@ -76,7 +76,6 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         </ClientOnly>
       </head>
       <body
-        className=""
         style={
           {
             "--header-height": "calc(var(--spacing) * 12)",
