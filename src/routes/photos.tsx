@@ -2,9 +2,14 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ImageZoom } from "$/components/lightbox";
 import { getPhotos } from "$/lib/functions/photos";
 import { metadata } from "$/lib/utils";
+import { staticFunctionMiddleware } from "@tanstack/start-static-server-functions";
+import { createServerFn } from "@tanstack/react-start";
 
 export const Route = createFileRoute("/photos")({
-  loader: async () => getPhotos(),
+  loader: () =>
+    createServerFn({ method: "GET" })
+      .middleware([staticFunctionMiddleware])
+      .handler(() => getPhotos())(),
   head: () => ({
     meta: [
       ...metadata({

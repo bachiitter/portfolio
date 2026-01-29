@@ -1,19 +1,20 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { createServerFn } from "@tanstack/react-start";
+import { staticFunctionMiddleware } from "@tanstack/start-static-server-functions";
 import { getPosts } from "$/lib/functions/writing";
 import { formatDate, metadata } from "$/lib/utils";
 
 export const Route = createFileRoute("/writing/")({
-  loader: () => getPosts(),
+  loader: () =>
+    createServerFn({ method: "GET" })
+      .middleware([staticFunctionMiddleware])
+      .handler(() => getPosts())(),
   head: () => ({
     meta: [
       ...metadata({
         title: `Writing - Bachitter`,
       }),
     ],
-  }),
-  headers: () => ({
-    // Cache at CDN for 1 hour, allow stale content for up to 1 day
-    "Cache-Control": "public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400",
   }),
   component: RouteComponent,
 });

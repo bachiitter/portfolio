@@ -65,28 +65,28 @@ export const getPosts = async () => {
 
     if (response.status === 429) {
       console.error("Rate limit exceeded. Please try again later.");
-      return;
+      return [];
     }
 
     if (response.status === 401) {
       console.error("Authentication failed. Check your access token.");
-      return;
+      return [];
     }
 
-    return;
+    return [];
   }
 
   const result = (await response.json()) as GetPostsGraphQLResponse;
 
   if (result.errors) {
     console.error(`GraphQL errors: ${JSON.stringify(result.errors, null, 2)}`);
-    return;
+    return [];
   }
 
   if (!result.data?.blogPostCollection) {
     console.error("No blogPostCollection in response. Check your content type name.");
     console.info(`Response: ${JSON.stringify(result, null, 2)}`);
-    return;
+    return [];
   }
 
   const posts = result.data.blogPostCollection.items;
@@ -96,7 +96,7 @@ export const getPosts = async () => {
 
   if (!posts || posts.length === 0) {
     console.info("No blog post items found");
-    return;
+    return [];
   }
 
   return posts;
