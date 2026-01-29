@@ -1,14 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { createServerFn } from "@tanstack/react-start";
-import { staticFunctionMiddleware } from "@tanstack/start-static-server-functions";
-import { getPosts } from "$/lib/functions/writing";
+import { getPostsFn } from "$/lib/functions/writing";
 import { formatDate, metadata } from "$/lib/utils";
 
 export const Route = createFileRoute("/writing/")({
-  loader: () =>
-    createServerFn({ method: "GET" })
-      .middleware([staticFunctionMiddleware])
-      .handler(() => getPosts())(),
+  loader: () => getPostsFn(),
   head: () => ({
     meta: [
       ...metadata({

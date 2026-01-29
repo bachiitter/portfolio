@@ -1,5 +1,7 @@
+import { createServerFn } from "@tanstack/react-start";
 import { renderMarkdown } from "../render-markdown";
 import { calculateReadingTime } from "../utils";
+import { staticFunctionMiddleware } from "@tanstack/start-static-server-functions";
 
 interface GetPostsGraphQLResponse {
   data?: {
@@ -101,6 +103,10 @@ export const getPosts = async () => {
 
   return posts;
 };
+
+export const getPostsFn = createServerFn({ method: "GET" })
+  .middleware([staticFunctionMiddleware])
+  .handler(getPosts);
 
 interface GetPostBySlugGraphQLResponse {
   data?: {
@@ -205,3 +211,12 @@ export const getPostBySlug = async ({ slug }: { slug: string }) => {
     readingTime: calculateReadingTime(content),
   };
 };
+
+export const getPostBySlugFn = createServerFn({ method: "GET" })
+  .middleware([staticFunctionMiddleware])
+  .inputValidator((d: string) => d)
+  .handler(({ data }) =>
+    getPostBySlug({
+      slug: data,
+    }),
+  );

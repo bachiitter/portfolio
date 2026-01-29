@@ -1,18 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { getPostBySlug } from "$/lib/functions/writing";
+import { getPostBySlugFn } from "$/lib/functions/writing";
 import { formatDate, metadata } from "$/lib/utils";
-import { createServerFn } from "@tanstack/react-start";
-import { staticFunctionMiddleware } from "@tanstack/start-static-server-functions";
 
 export const Route = createFileRoute("/writing/$slug")({
-  loader: async ({ params }) =>
-    createServerFn({ method: "GET" })
-      .middleware([staticFunctionMiddleware])
-      .handler(() =>
-        getPostBySlug({
-          slug: params.slug,
-        }),
-      )(),
+  loader: async ({ params }) => getPostBySlugFn({ data: params.slug }),
   head: ({ loaderData, params }) => ({
     meta: [
       ...metadata({

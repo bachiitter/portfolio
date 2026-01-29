@@ -1,3 +1,6 @@
+import { createServerFn } from "@tanstack/react-start";
+import { staticFunctionMiddleware } from "@tanstack/start-static-server-functions";
+
 export const getPhotos = async () => {
   const PHOTOS_API_URL = process.env.PHOTOS_API_URL;
   const PHOTOS_API_TOKEN = process.env.PHOTOS_API_TOKEN;
@@ -58,3 +61,7 @@ export const getPhotos = async () => {
 
   return allPhotos;
 };
+
+export const getPhotosFn = createServerFn({ method: "GET" })
+  .middleware([staticFunctionMiddleware])
+  .handler(getPhotos);

@@ -20,7 +20,9 @@ const links = linkOptions([
 export function MainNav() {
   const router = useRouterState();
   const navRef = useRef<HTMLUListElement>(null);
-  const [indicatorStyle, setIndicatorStyle] = useState<{ left: number; width: number } | null>(null);
+  const [indicatorStyle, setIndicatorStyle] = useState<{ left: number; width: number } | null>(
+    null,
+  );
   const [enableTransition, setEnableTransition] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
@@ -73,7 +75,7 @@ export function MainNav() {
         >
           {indicatorStyle && (
             <span
-              className={`absolute -bottom-[1px] h-px bg-accent ease-in-out ${enableTransition ? "transition-all duration-200" : ""}`}
+              className={`absolute -bottom-px h-px bg-accent ease-in-out ${enableTransition ? "transition-all duration-200" : ""}`}
               style={{
                 left: `${indicatorStyle.left}px`,
                 width: `${indicatorStyle.width}px`,
@@ -83,7 +85,7 @@ export function MainNav() {
           {links.map(({ label, ...item }) => (
             <li key={item.to}>
               <Link
-                className="text-secondary hover:no-underline text-sm leading-[22px] tracking-normal relative before:absolute before:-inset-x-[7px] before:-inset-y-[14px] h-auto hover:text-primary data-[status=active]:text-accent"
+                className="text-secondary hover:no-underline text-sm leading-5.5 tracking-normal relative before:absolute before:-inset-x-1.75 before:-inset-y-3.5 h-auto hover:text-primary data-[status=active]:text-accent"
                 {...item}
               >
                 {label}
@@ -93,7 +95,7 @@ export function MainNav() {
           <li>
             <a
               href={`mailto:${INFO.email}`}
-              className="text-secondary hover:no-underline text-sm leading-[22px] tracking-normal relative before:absolute before:-inset-x-[7px] before:-inset-y-[14px] h-auto hover:text-primary data-[status=active]:text-accent"
+              className="text-secondary hover:no-underline text-sm leading-5.5 tracking-normal relative before:absolute before:-inset-x-1.75 before:-inset-y-3.5 h-auto hover:text-primary data-[status=active]:text-accent"
             >
               Contact
             </a>
