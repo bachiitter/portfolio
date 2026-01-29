@@ -9,12 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as RssDotxmlRouteImport } from './routes/rss[.]xml'
 import { Route as PhotosRouteImport } from './routes/photos'
 import { Route as WritingRouteRouteImport } from './routes/writing/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as WritingIndexRouteImport } from './routes/writing/index'
 import { Route as WritingSlugRouteImport } from './routes/writing/$slug'
 
+const RssDotxmlRoute = RssDotxmlRouteImport.update({
+  id: '/rss.xml',
+  path: '/rss.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PhotosRoute = PhotosRouteImport.update({
   id: '/photos',
   path: '/photos',
@@ -45,12 +51,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/writing': typeof WritingRouteRouteWithChildren
   '/photos': typeof PhotosRoute
+  '/rss.xml': typeof RssDotxmlRoute
   '/writing/$slug': typeof WritingSlugRoute
   '/writing/': typeof WritingIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/photos': typeof PhotosRoute
+  '/rss.xml': typeof RssDotxmlRoute
   '/writing/$slug': typeof WritingSlugRoute
   '/writing': typeof WritingIndexRoute
 }
@@ -59,25 +67,47 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/writing': typeof WritingRouteRouteWithChildren
   '/photos': typeof PhotosRoute
+  '/rss.xml': typeof RssDotxmlRoute
   '/writing/$slug': typeof WritingSlugRoute
   '/writing/': typeof WritingIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/writing' | '/photos' | '/writing/$slug' | '/writing/'
+  fullPaths:
+    | '/'
+    | '/writing'
+    | '/photos'
+    | '/rss.xml'
+    | '/writing/$slug'
+    | '/writing/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/photos' | '/writing/$slug' | '/writing'
-  id: '__root__' | '/' | '/writing' | '/photos' | '/writing/$slug' | '/writing/'
+  to: '/' | '/photos' | '/rss.xml' | '/writing/$slug' | '/writing'
+  id:
+    | '__root__'
+    | '/'
+    | '/writing'
+    | '/photos'
+    | '/rss.xml'
+    | '/writing/$slug'
+    | '/writing/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   WritingRouteRoute: typeof WritingRouteRouteWithChildren
   PhotosRoute: typeof PhotosRoute
+  RssDotxmlRoute: typeof RssDotxmlRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/rss.xml': {
+      id: '/rss.xml'
+      path: '/rss.xml'
+      fullPath: '/rss.xml'
+      preLoaderRoute: typeof RssDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/photos': {
       id: '/photos'
       path: '/photos'
@@ -134,6 +164,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   WritingRouteRoute: WritingRouteRouteWithChildren,
   PhotosRoute: PhotosRoute,
+  RssDotxmlRoute: RssDotxmlRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

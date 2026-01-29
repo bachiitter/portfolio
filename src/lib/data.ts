@@ -5,6 +5,7 @@ export const INFO = {
   name: "Bachitter Chahal",
   descrition: "Hi! I am Bachitter Chahal, a Product Engineer based in Barnala, India.",
   intro: `I'm a product engineer, currently building`,
+  siteUrl: "https://bachitter.dev",
   currentProjects: [
     {
       name: "GetDigest",
@@ -92,8 +93,8 @@ export const LINKS: Array<Social> = [
     label: "Twitter/X",
     url: "https://x.com/bachiitter",
   },
-  // {
-  //   label: "RSS",
-  //   url: "/rss.xml",
-  // },
+  {
+    label: "RSS",
+    url: "/rss.xml",
+  },
 ] as const;

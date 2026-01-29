@@ -16,7 +16,6 @@ export const Route = createFileRoute("/photos")({
     // Cache for 1 hour, allow stale for 7 days
     "Cache-Control": "public, max-age=3600, stale-while-revalidate=604800",
   }),
-  staleTime: 15 * 60_000, // 15 minutes client-side
   component: RouteComponent,
 });
 

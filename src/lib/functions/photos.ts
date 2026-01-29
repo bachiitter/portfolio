@@ -1,6 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 
-export const getPhotos = createServerFn().handler(async () => {
+export const getPhotos = async () => {
   const PHOTOS_API_URL = process.env.PHOTOS_API_URL;
   const PHOTOS_API_TOKEN = process.env.PHOTOS_API_TOKEN;
 
@@ -59,4 +59,4 @@ export const getPhotos = createServerFn().handler(async () => {
   }
 
   return allPhotos;
-});
+};

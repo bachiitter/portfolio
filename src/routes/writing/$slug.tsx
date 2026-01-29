@@ -5,13 +5,12 @@ import { formatDate, metadata } from "$/lib/utils";
 export const Route = createFileRoute("/writing/$slug")({
   loader: async ({ params }) =>
     getPostBySlug({
-      data: params.slug,
+      slug: params.slug,
     }),
   headers: () => ({
     // Cache for 1 hour, allow stale for 7 days
     "Cache-Control": "public, max-age=3600, stale-while-revalidate=604800",
   }),
-  staleTime: 15 * 60_000, // 15 minutes client-side
   head: ({ loaderData, params }) => ({
     meta: [
       ...metadata({
