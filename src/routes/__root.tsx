@@ -46,15 +46,7 @@ export const Route = createRootRoute({
       // { rel: "manifest", href: "/site.webmanifest", color: "#fffff" },
       { rel: "icon", href: "/favicon.png" },
     ],
-    scripts: [
-      // {
-      //   src: "https://cdn.databuddy.cc/databuddy.js",
-      //   "data-client-id": "a4c6f301-27f4-4d44-804f-6f92853625dc",
-      //   "data-track-outgoing-links": true,
-      //   crossOrigin: "anonymous",
-      //   async: true,
-      // },
-    ],
+    scripts: [],
   }),
   shellComponent: RootDocument,
 });
@@ -69,7 +61,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
             defer
             data-do-not-track="true"
             data-domains={INFO.siteUrl}
-            src="/stats.js"
+            src="https://cloud.umami.is/script.js"
             data-website-id="cfd2d291-8e0a-4160-b788-434caca658aa"
             data-umami-event="outbound-link-click"
           />
