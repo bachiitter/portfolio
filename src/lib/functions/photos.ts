@@ -1,13 +1,11 @@
 import { createServerFn } from "@tanstack/react-start";
-import { staticFunctionMiddleware } from "@tanstack/start-static-server-functions";
 
 export const getPhotos = async () => {
   const PHOTOS_API_URL = process.env.PHOTOS_API_URL;
   const PHOTOS_API_TOKEN = process.env.PHOTOS_API_TOKEN;
 
   if (!PHOTOS_API_URL || !PHOTOS_API_TOKEN) {
-    console.error("Missing  credentials (PHOTOS_API_URL or PHOTOS_API_TOKEN)");
-    return;
+    throw new Error("Missing credentials (PHOTOS_API_URL or PHOTOS_API_TOKEN)");
   }
 
   function buildHeaders(etag?: string): HeadersInit {
@@ -62,6 +60,4 @@ export const getPhotos = async () => {
   return allPhotos;
 };
 
-export const getPhotosFn = createServerFn({ method: "GET" })
-  .middleware([staticFunctionMiddleware])
-  .handler(getPhotos);
+export const getPhotosFn = createServerFn({ method: "GET" }).handler(getPhotos);

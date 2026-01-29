@@ -4,6 +4,10 @@ import { formatDate, metadata } from "$/lib/utils";
 
 export const Route = createFileRoute("/writing/$slug")({
   loader: async ({ params }) => getPostBySlugFn({ data: params.slug }),
+  headers: () => ({
+    "Cache-Control": "public, max-age=3600, stale-while-revalidate=86400",
+    "CDN-Cache-Control": "max-age=3600, stale-while-revalidate=86400",
+  }),
   head: ({ loaderData, params }) => ({
     meta: [
       ...metadata({

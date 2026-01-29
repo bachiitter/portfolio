@@ -1,14 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Feed } from "feed";
 import { INFO } from "$/lib/data";
-import { getPosts } from "$/lib/functions/writing";
+import { getPostsFn } from "$/lib/functions/writing";
 import { renderMarkdown } from "$/lib/render-markdown";
 
 export const Route = createFileRoute("/rss.xml")({
   server: {
     handlers: {
       GET: async () => {
-        const posts = await getPosts();
+        const posts = await getPostsFn();
 
         const feed = new Feed({
           title: INFO.name,
@@ -48,6 +48,8 @@ export const Route = createFileRoute("/rss.xml")({
         return new Response(feed.rss2(), {
           headers: {
             "Content-Type": "application/xml",
+            "Cache-Control": "public, max-age=3600, stale-while-revalidate=86400",
+            "CDN-Cache-Control": "max-age=3600, stale-while-revalidate=86400",
           },
         });
       },

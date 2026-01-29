@@ -1,7 +1,7 @@
+import { notFound } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 import { renderMarkdown } from "../render-markdown";
 import { calculateReadingTime } from "../utils";
-import { staticFunctionMiddleware } from "@tanstack/start-static-server-functions";
 
 interface GetPostsGraphQLResponse {
   data?: {
@@ -27,8 +27,7 @@ export const getPosts = async () => {
   const isPreview = !process.env.NODE_ENV?.includes("prod");
 
   if (!spaceId || !accessToken) {
-    console.error("Missing Contentful credentials (CONTENTFUL_SPACE_ID or CONTENTFUL_API_TOKEN)");
-    return;
+    throw new Error("Missing Contentful credentials (CONTENTFUL_SPACE_ID or CONTENTFUL_API_TOKEN)");
   }
 
   const endpoint = `https://graphql.contentful.com/content/v1/spaces/${spaceId}`;
@@ -63,32 +62,25 @@ export const getPosts = async () => {
   });
 
   if (!response.ok) {
-    console.error(`GraphQL request failed: ${response.status} ${response.statusText}`);
-
     if (response.status === 429) {
-      console.error("Rate limit exceeded. Please try again later.");
-      return [];
+      throw new Error("Rate limit exceeded. Please try again later.");
     }
 
     if (response.status === 401) {
-      console.error("Authentication failed. Check your access token.");
-      return [];
+      throw new Error("Authentication failed. Check your access token.");
     }
 
-    return [];
+    throw new Error(`GraphQL request failed: ${response.status} ${response.statusText}`);
   }
 
   const result = (await response.json()) as GetPostsGraphQLResponse;
 
   if (result.errors) {
-    console.error(`GraphQL errors: ${JSON.stringify(result.errors, null, 2)}`);
-    return [];
+    throw new Error(`GraphQL errors: ${JSON.stringify(result.errors, null, 2)}`);
   }
 
   if (!result.data?.blogPostCollection) {
-    console.error("No blogPostCollection in response. Check your content type name.");
-    console.info(`Response: ${JSON.stringify(result, null, 2)}`);
-    return [];
+    throw new Error("No blogPostCollection in response. Check your content type name.");
   }
 
   const posts = result.data.blogPostCollection.items;
@@ -104,9 +96,7 @@ export const getPosts = async () => {
   return posts;
 };
 
-export const getPostsFn = createServerFn({ method: "GET" })
-  .middleware([staticFunctionMiddleware])
-  .handler(getPosts);
+export const getPostsFn = createServerFn({ method: "GET" }).handler(getPosts);
 
 interface GetPostBySlugGraphQLResponse {
   data?: {
@@ -131,15 +121,14 @@ export const getPostBySlug = async ({ slug }: { slug: string }) => {
   const isPreview = !process.env.NODE_ENV?.includes("prod");
 
   if (!spaceId || !accessToken) {
-    console.error("Missing Contentful credentials (CONTENTFUL_SPACE_ID or CONTENTFUL_API_TOKEN)");
-    return;
+    throw new Error("Missing Contentful credentials (CONTENTFUL_SPACE_ID or CONTENTFUL_API_TOKEN)");
   }
 
   const endpoint = `https://graphql.contentful.com/content/v1/spaces/${spaceId}`;
 
   const query = `
-      query($preview: Boolean!) {
-        blogPostCollection(preview: $preview) {
+      query($preview: Boolean!, $slug: String!) {
+        blogPostCollection(preview: $preview, where: { slug: $slug }, limit: 1) {
           items {
             title
             description
@@ -161,47 +150,40 @@ export const getPostBySlug = async ({ slug }: { slug: string }) => {
       query,
       variables: {
         preview: isPreview,
+        slug,
       },
     }),
   });
 
   if (!response.ok) {
-    console.error(`GraphQL request failed: ${response.status} ${response.statusText}`);
-
     if (response.status === 429) {
-      console.error("Rate limit exceeded. Please try again later.");
-      return;
+      throw new Error("Rate limit exceeded. Please try again later.");
     }
 
     if (response.status === 401) {
-      console.error("Authentication failed. Check your access token.");
-      return;
+      throw new Error("Authentication failed. Check your access token.");
     }
 
-    return;
+    throw new Error(`GraphQL request failed: ${response.status} ${response.statusText}`);
   }
 
   const result = (await response.json()) as GetPostBySlugGraphQLResponse;
 
   if (result.errors) {
-    console.error(`GraphQL errors: ${JSON.stringify(result.errors, null, 2)}`);
-    return;
+    throw new Error(`GraphQL errors: ${JSON.stringify(result.errors, null, 2)}`);
   }
 
   if (!result.data?.blogPostCollection) {
-    console.error("No blogPostCollection in response. Check your content type name.");
-    console.info(`Response: ${JSON.stringify(result, null, 2)}`);
-    return;
+    throw new Error("No blogPostCollection in response. Check your content type name.");
   }
 
   const posts = result.data.blogPostCollection.items;
 
   if (!posts || posts.length === 0) {
-    console.info("No blog post items found");
-    return;
+    throw notFound();
   }
 
-  const { content, ...post } = posts.find((p) => p?.slug === slug);
+  const { content, ...post } = posts[0];
 
   const markup = await renderMarkdown(content || "");
 
@@ -213,10 +195,10 @@ export const getPostBySlug = async ({ slug }: { slug: string }) => {
 };
 
 export const getPostBySlugFn = createServerFn({ method: "GET" })
-  .middleware([staticFunctionMiddleware])
   .inputValidator((d: string) => d)
-  .handler(({ data }) =>
-    getPostBySlug({
-      slug: data,
-    }),
+  .handler(
+    async ({ data }) =>
+      await getPostBySlug({
+        slug: data,
+      }),
   );

@@ -5,6 +5,10 @@ import { metadata } from "$/lib/utils";
 
 export const Route = createFileRoute("/photos")({
   loader: () => getPhotosFn(),
+  headers: () => ({
+    "Cache-Control": "public, max-age=3600, stale-while-revalidate=86400",
+    "CDN-Cache-Control": "max-age=3600, stale-while-revalidate=86400",
+  }),
   head: () => ({
     meta: [
       ...metadata({
