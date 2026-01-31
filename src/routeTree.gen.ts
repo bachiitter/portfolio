@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as StatsDotjsRouteImport } from './routes/stats[.]js'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as RssDotxmlRouteImport } from './routes/rss[.]xml'
+import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as PhotosRouteImport } from './routes/photos'
 import { Route as WritingRouteRouteImport } from './routes/writing/route'
 import { Route as IndexRouteImport } from './routes/index'
@@ -31,6 +32,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const RssDotxmlRoute = RssDotxmlRouteImport.update({
   id: '/rss.xml',
   path: '/rss.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
+  id: '/robots.txt',
+  path: '/robots.txt',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PhotosRoute = PhotosRouteImport.update({
@@ -63,6 +69,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/writing': typeof WritingRouteRouteWithChildren
   '/photos': typeof PhotosRoute
+  '/robots.txt': typeof RobotsDottxtRoute
   '/rss.xml': typeof RssDotxmlRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/stats.js': typeof StatsDotjsRoute
@@ -72,6 +79,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/photos': typeof PhotosRoute
+  '/robots.txt': typeof RobotsDottxtRoute
   '/rss.xml': typeof RssDotxmlRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/stats.js': typeof StatsDotjsRoute
@@ -83,6 +91,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/writing': typeof WritingRouteRouteWithChildren
   '/photos': typeof PhotosRoute
+  '/robots.txt': typeof RobotsDottxtRoute
   '/rss.xml': typeof RssDotxmlRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/stats.js': typeof StatsDotjsRoute
@@ -95,6 +104,7 @@ export interface FileRouteTypes {
     | '/'
     | '/writing'
     | '/photos'
+    | '/robots.txt'
     | '/rss.xml'
     | '/sitemap.xml'
     | '/stats.js'
@@ -104,6 +114,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/photos'
+    | '/robots.txt'
     | '/rss.xml'
     | '/sitemap.xml'
     | '/stats.js'
@@ -114,6 +125,7 @@ export interface FileRouteTypes {
     | '/'
     | '/writing'
     | '/photos'
+    | '/robots.txt'
     | '/rss.xml'
     | '/sitemap.xml'
     | '/stats.js'
@@ -125,6 +137,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   WritingRouteRoute: typeof WritingRouteRouteWithChildren
   PhotosRoute: typeof PhotosRoute
+  RobotsDottxtRoute: typeof RobotsDottxtRoute
   RssDotxmlRoute: typeof RssDotxmlRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   StatsDotjsRoute: typeof StatsDotjsRoute
@@ -151,6 +164,13 @@ declare module '@tanstack/react-router' {
       path: '/rss.xml'
       fullPath: '/rss.xml'
       preLoaderRoute: typeof RssDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/robots.txt': {
+      id: '/robots.txt'
+      path: '/robots.txt'
+      fullPath: '/robots.txt'
+      preLoaderRoute: typeof RobotsDottxtRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/photos': {
@@ -209,6 +229,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   WritingRouteRoute: WritingRouteRouteWithChildren,
   PhotosRoute: PhotosRoute,
+  RobotsDottxtRoute: RobotsDottxtRoute,
   RssDotxmlRoute: RssDotxmlRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   StatsDotjsRoute: StatsDotjsRoute,
