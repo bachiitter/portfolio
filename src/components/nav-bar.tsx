@@ -68,20 +68,21 @@ export function MainNav() {
 
   return (
     <header className="sticky inset-x-0 top-0 isolate z-20 flex shrink-0 items-center gap-2 border-b border-border bg-background -mx-4">
-      <nav className="px-4">
+      <nav className="px-4 relative">
+        {indicatorStyle && (
+          <span
+            aria-hidden="true"
+            className={`absolute -bottom-px h-px bg-accent ease-in-out ${enableTransition ? "transition-all duration-200" : ""}`}
+            style={{
+              left: `${indicatorStyle.left}px`,
+              width: `${indicatorStyle.width}px`,
+            }}
+          />
+        )}
         <ul
           ref={navRef}
           className="flex h-(--header-height) w-full items-center justify-between relative gap-4"
         >
-          {indicatorStyle && (
-            <span
-              className={`absolute -bottom-px h-px bg-accent ease-in-out ${enableTransition ? "transition-all duration-200" : ""}`}
-              style={{
-                left: `${indicatorStyle.left}px`,
-                width: `${indicatorStyle.width}px`,
-              }}
-            />
-          )}
           {NAV_LINKS.map(({ label, ...item }) => (
             <li key={item.to}>
               <Link
