@@ -1,4 +1,4 @@
-import { ClientOnly, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import appCss from "../styles/globals.css?url";
 import "@fontsource-variable/inter";
 import "@fontsource/jetbrains-mono/400.css";
@@ -48,10 +48,10 @@ export const Route = createRootRoute({
     ],
     scripts: [
       {
-        src: "https://cloud.umami.is/script.js",
+        src: "/stats.js",
         defer: true,
+        "data-domains": INFO.siteUrl.replace(/^https?:\/\//, ""),
         "data-do-not-track": true,
-        "data-domains": INFO.siteUrl,
         "data-website-id": "cfd2d291-8e0a-4160-b788-434caca658aa",
         "data-umami-event": "outbound-link-click",
       },
@@ -88,10 +88,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
                 </a>
               ))}
             </div>
-            <span
-              className="text-[12px] leading-5.25 tracking-[0.0075em] text-secondary"
-              suppressHydrationWarning
-            >
+            <span className="text-[12px] leading-5.25 tracking-[0.0075em] text-secondary">
               © {new Date().getFullYear()} {INFO.name.split(" ")[0]}
             </span>
           </footer>
