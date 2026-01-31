@@ -47,7 +47,7 @@ export function MainNav() {
       const linkRect = activeLink.getBoundingClientRect();
 
       setIndicatorStyle({
-        left: linkRect.left - navRect.left,
+        left: linkRect.left - navRect.left + 16,
         width: linkRect.width,
       });
     };
