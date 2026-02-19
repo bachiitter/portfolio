@@ -11,10 +11,6 @@ export const INFO = {
       name: "GetDigest",
       link: "#",
     },
-    {
-      name: "Lumier",
-      link: "https://github.com/bachiitter/lumier",
-    },
   ],
   city: "Barnala, India",
   work: "Available for full-time roles",

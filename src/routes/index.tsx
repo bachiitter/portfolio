@@ -21,11 +21,7 @@ function RouteComponent() {
       </div>
       <p className="text-[15px] leading-6.5 tracking-normal">
         <span>{INFO.intro}</span>{" "}
-        <span className="text-accent">{INFO.currentProjects[0]?.name}</span> <span>and</span>{" "}
-        <a target="blank" className="link" href={INFO.currentProjects[1]?.link}>
-          {INFO.currentProjects[1]?.name}
-        </a>
-        .
+        <span className="text-accent">{INFO.currentProjects[0]?.name}</span>.
       </p>
       <ul className="flex flex-col gap-1 text-secondary text-[15px] leading-6.5 tracking-normal [&_li]:flex [&_li]:items-start [&_li]:gap-2">
         <li>
